@@ -12,7 +12,11 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 ### Validated
 
-(None yet — ship to validate)
+**PWA & Offline (Phase 1: pwa-foundation)**
+- [x] Service worker with cache-first strategy for app shell — Validated in Phase 1: pwa-foundation
+- [x] App shell pre-cached on install — Validated in Phase 1: pwa-foundation
+- [x] manifest.json: standalone display, landscape orientation, dark theme, 512×512 and 1024×1024 icons — Validated in Phase 1: pwa-foundation
+- [x] Home screen load < 2 seconds from cache — Validated in Phase 1: pwa-foundation (requires human test on A9X hardware)
 
 ### Active
 
@@ -51,12 +55,9 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [ ] Changeable admin passcode
 
 **PWA & Offline**
-- [ ] Service worker with cache-first strategy for all product images and JSON
-- [ ] App shell pre-cached on install
-- [ ] manifest.json: standalone display, landscape orientation, dark theme, 512×512 and 1024×1024 icons
+- [ ] Service worker with cache-first strategy for all product images and JSON (Phase 1 covers app shell; product images covered in Phase 2+)
 - [ ] IndexedDB for: product catalogue, captured emails, analytics events, sync metadata
 - [ ] localStorage for: admin passcode (hashed), event name, timer setting
-- [ ] Home screen load < 2 seconds from cache
 - [ ] Search results < 300ms
 - [ ] Category filter < 100ms
 
@@ -94,8 +95,9 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| PWA over native app | No App Store fees, no annual developer account, iPadOS 16 fully supports PWA + Guided Access | — Pending |
-| Vanilla JS over framework | No build toolchain, no node_modules, simpler deployment — serve directly from filesystem | — Pending |
+| PWA over native app | No App Store fees, no annual developer account, iPadOS 16 fully supports PWA + Guided Access | Implemented Phase 1 |
+| Vanilla JS over framework | No build toolchain, no node_modules, simpler deployment — serve directly from filesystem | Implemented Phase 1 |
+| No arrow functions in sw.js | Safari SW compatibility — older Safari versions had issues parsing arrow functions in SW context | Implemented Phase 1 |
 | Shopify Storefront API | Free, read-only, built into every Shopify store — no custom backend needed | — Pending |
 | IndexedDB for all persistent data | Browser-native, offline-capable, handles large datasets (950+ products + images metadata) | — Pending |
 | Shopify token in client code | Token is read-only and unauthenticated — Shopify's intended use case for storefronts | — Pending |
@@ -118,4 +120,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after initialization*
+*Last updated: 2026-03-21 after Phase 1: pwa-foundation complete*
