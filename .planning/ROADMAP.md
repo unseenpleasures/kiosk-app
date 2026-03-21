@@ -20,7 +20,7 @@
 |-------|----------------|--------|-----------|
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
-| 3. Sync Engine | 0/? | Not started | - |
+| 3. Sync Engine | 0/2 | Planned | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
@@ -70,7 +70,10 @@ Plans:
   4. When sync completes, a status report shows the total products downloaded, number of new cards added, and any errors encountered
   5. If sync is interrupted mid-way (e.g., network drops at page 15), the previously cached catalogue remains fully browsable — no data loss
   6. After a successful sync, all product images and metadata are available with no network connection
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Shopify sync engine with cursor pagination, image caching, and progress callbacks
+- [ ] 03-02-PLAN.md — Admin panel with passcode gate, event config, sync trigger, and wiring
 
 ### Phase 4: Customer Browse Experience
 **Goal**: Attendees can discover any of the 950+ cards quickly — by browsing, filtering, or searching — with every interaction logged silently in the background.
@@ -155,4 +158,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-21*
-*Last updated: 2026-03-21 after Phase 2 planning*
+*Last updated: 2026-03-21 after Phase 3 planning*
