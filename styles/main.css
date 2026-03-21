@@ -262,17 +262,23 @@ html, body {
   align-items: center;
   gap: var(--space-xs);
   z-index: 100;
+  background: rgba(14, 27, 77, 0.92);
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  padding: var(--space-sm);
 }
 
 .chrome-qr img {
   width: 96px;
   height: 96px;
+  border-radius: 4px;
 }
 
 .chrome-qr-label {
   font-family: var(--font-body);
   font-size: 12px;
-  color: var(--color-text-secondary);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
 }
 
 /* ---------------------------------------------------------------------------
@@ -1019,19 +1025,29 @@ html, body {
   position: fixed;
   bottom: var(--space-md);
   left: var(--space-md);
-  width: 48px;
-  height: 48px;
-  min-height: var(--touch-target-min);
-  background: rgba(14, 27, 77, 0.85);
+  width: auto;
+  min-height: 56px;
+  padding: 0 var(--space-md);
+  gap: var(--space-sm);
+  background: rgba(14, 27, 77, 0.92);
   border: 1px solid var(--color-accent);
   border-radius: 8px;
   color: var(--color-accent);
   font-size: 22px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 100;
+}
+
+.chrome-email-label {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+  white-space: nowrap;
 }
 
 .chrome-email:active {
