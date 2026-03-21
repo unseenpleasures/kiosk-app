@@ -1,20 +1,20 @@
 {
   "name": "ID Card Factory",
   "short_name": "ID Cards",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0d0f1a",
   "theme_color": "#0d0f1a",
   "orientation": "landscape",
   "icons": [
     {
-      "src": "/assets/icons/icon-512.png",
+      "src": "./assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/assets/icons/icon-1024.png",
+      "src": "./assets/icons/icon-1024.png",
       "sizes": "1024x1024",
       "type": "image/png"
     }

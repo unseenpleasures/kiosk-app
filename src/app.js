@@ -8,7 +8,7 @@
 // ============================================================
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+  navigator.serviceWorker.register('./sw.js').then(function(reg) {
     reg.addEventListener('updatefound', function() {
       var newSW = reg.installing;
       newSW.addEventListener('statechange', function() {
@@ -46,7 +46,7 @@ function showSplashScreen() {
   // Logo
   var logo = document.createElement('img');
   logo.className = 'splash-logo';
-  logo.src = '/assets/logo.svg';
+  logo.src = './assets/logo.svg';
   logo.alt = 'ID Card Factory';
   screen.appendChild(logo);
 
@@ -71,7 +71,7 @@ function showSplashScreen() {
   qrCorner.className = 'qr-corner';
 
   var qrImg = document.createElement('img');
-  qrImg.src = '/assets/qr-code.png';
+  qrImg.src = './assets/qr-code.png';
   qrImg.alt = 'QR code to theidcardfactory.co.uk';
   qrCorner.appendChild(qrImg);
 
@@ -111,7 +111,7 @@ function showSyncRequiredScreen() {
   // Logo (smaller per UI-SPEC: max-width 240px via .sync-required-logo)
   var logo = document.createElement('img');
   logo.className = 'sync-required-logo';
-  logo.src = '/assets/logo.svg';
+  logo.src = './assets/logo.svg';
   logo.alt = 'ID Card Factory';
   screen.appendChild(logo);
 

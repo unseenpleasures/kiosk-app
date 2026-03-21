@@ -2,31 +2,31 @@
 // Cache-first strategy with immediate activation (skipWaiting + clients.claim)
 // Cache version: bump CACHE_NAME to force cache refresh on next update
 
-var CACHE_NAME = 'kiosk-v8';
+var CACHE_NAME = 'kiosk-v9';
 
 var APP_SHELL_FILES = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/sw.js',
-  '/src/app.js',
-  '/src/config.js',
-  '/src/db.js',
-  '/src/sync.js',
-  '/src/catalogue.js',
-  '/src/admin.js',
-  '/src/email.js',
-  '/src/router.js',
-  '/src/idle.js',
-  '/styles/main.css',
-  '/styles/animations.css',
-  '/assets/logo.svg',
-  '/assets/qr-code.png',
-  '/assets/icons/icon-512.png',
-  '/assets/icons/icon-1024.png',
-  '/assets/fonts/bebas-neue.woff2',
-  '/assets/fonts/inter-400.woff2',
-  '/assets/fonts/inter-700.woff2'
+  './',
+  './index.html',
+  './manifest.json',
+  './sw.js',
+  './src/app.js',
+  './src/config.js',
+  './src/db.js',
+  './src/sync.js',
+  './src/catalogue.js',
+  './src/admin.js',
+  './src/email.js',
+  './src/router.js',
+  './src/idle.js',
+  './styles/main.css',
+  './styles/animations.css',
+  './assets/logo.svg',
+  './assets/qr-code.png',
+  './assets/icons/icon-512.png',
+  './assets/icons/icon-1024.png',
+  './assets/fonts/bebas-neue.woff2',
+  './assets/fonts/inter-400.woff2',
+  './assets/fonts/inter-700.woff2'
 ];
 // Note: splash images are NOT included — Safari loads them via apple-touch-startup-image
 // mechanism, not via fetch requests intercepted by the SW.
