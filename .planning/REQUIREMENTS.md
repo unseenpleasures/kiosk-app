@@ -13,9 +13,9 @@
 - [ ] **CAT-04**: All search queries including zero-result searches are logged with timestamp
 - [ ] **CAT-05**: Attendee can tap a card to view a larger image and card name
 - [ ] **CAT-06**: Cards added since the previous sync are badged "NEW"
-- [ ] **CAT-07**: QR code linking to https://theidcardfactory.co.uk is always visible on every screen
-- [ ] **CAT-08**: Floating home button fixed to top-left on every screen; tapping it resets search, filter, and returns to the catalogue grid
-- [ ] **CAT-09**: App automatically returns to home after 60 seconds of inactivity, preceded by a 10-second visual countdown with cancel option
+- [x] **CAT-07**: QR code linking to https://theidcardfactory.co.uk is always visible on every screen
+- [x] **CAT-08**: Floating home button fixed to top-left on every screen; tapping it resets search, filter, and returns to the catalogue grid
+- [x] **CAT-09**: App automatically returns to home after 60 seconds of inactivity, preceded by a 10-second visual countdown with cancel option
 - [ ] **CAT-10**: Email sign-up form has a separate 3-minute inactivity grace period to avoid interrupting mid-entry
 
 ### Sync
@@ -90,9 +90,9 @@
 | PWA-05 | Phase 1 | Complete |
 | PWA-03 | Phase 2 | Complete |
 | PWA-06 | Phase 2 | Complete |
-| CAT-07 | Phase 2 | Pending |
-| CAT-08 | Phase 2 | Pending |
-| CAT-09 | Phase 2 | Pending |
+| CAT-07 | Phase 2 | Complete |
+| CAT-08 | Phase 2 | Complete |
+| CAT-09 | Phase 2 | Complete |
 | SYNC-01 | Phase 3 | Pending |
 | SYNC-02 | Phase 3 | Pending |
 | SYNC-03 | Phase 3 | Pending |

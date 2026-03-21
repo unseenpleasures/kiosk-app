@@ -8,7 +8,7 @@
 ## Phases
 
 - [x] **Phase 1: PWA Foundation** - Installable offline shell with boot health check and kiosk lockdown (completed 2026-03-21)
-- [ ] **Phase 2: Data Layer and Navigation** - IndexedDB schema, hash router, inactivity timer, global UI chrome
+- [x] **Phase 2: Data Layer and Navigation** - IndexedDB schema, hash router, inactivity timer, global UI chrome (completed 2026-03-21)
 - [ ] **Phase 3: Sync Engine** - Shopify catalogue sync with cursor checkpointing, progress UI, and admin sync panel
 - [ ] **Phase 4: Customer Browse Experience** - Virtual-scrolled catalogue grid, search, filter, card detail, and analytics logging
 - [ ] **Phase 5: Email Capture and Export** - GDPR-compliant email sign-up, per-event tagging, and CSV export
@@ -19,7 +19,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
-| 2. Data Layer and Navigation | 1/2 | In Progress|  |
+| 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
@@ -57,7 +57,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 02-01-PLAN.md — IndexedDB schema with CRUD helpers (db.js) and localStorage config wrapper with SHA-256 hashing (config.js)
-- [ ] 02-02-PLAN.md — Hash router, inactivity timer, global chrome elements, and boot sequence refactor
+- [x] 02-02-PLAN.md — Hash router, inactivity timer, global chrome elements, and boot sequence refactor
 
 ### Phase 3: Sync Engine
 **Goal**: An admin can reliably download the full 950+ product catalogue from Shopify onto the device before an event, with transparent progress and safe failure recovery.
