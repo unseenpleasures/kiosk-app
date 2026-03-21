@@ -74,7 +74,7 @@ Notes:
 - GDPR consent label uses Inter 16px weight 400 (body role) — not label role. The text is a sentence, not a UI label, and must be legible at reading distance on the kiosk.
 - Countdown copy ("Returning to catalogue in 5…") uses Inter 16px weight 400 (body role).
 - Error state copy uses Inter 14px weight 700 (`--color-destructive`) — label role with semantic colour.
-- Admin export section heading uses 18px Inter 700 — matches the established `.admin-section-heading` rule (existing exception in main.css, do not change).
+- Admin export section heading uses `.admin-section-heading` — this is a pre-existing class defined in main.css (18px Inter 700) and is listed under Reused classes below. It is not a new Phase 5 type role.
 
 Source: Phase 1 UI-SPEC §Typography; main.css `:root` (verified)
 
@@ -256,7 +256,7 @@ Source: CONTEXT.md D-08, D-09, D-10, D-11; RESEARCH.md §Pattern 2 §Open Questi
 **Visual:** Matches all existing `admin-section` cards exactly — same `--color-surface` background, `border-radius: 8px`, `padding: var(--space-lg)`.
 
 **Section heading:** "Email Export"
-- `.admin-section-heading` — Inter 18px weight 700, `--color-text-primary` (existing class, unchanged)
+- `.admin-section-heading` — pre-existing class in main.css (Inter 18px weight 700, `--color-text-primary`); see Reused classes below
 
 **Export button:**
 - Text: "Export / Share Emails (CSV)"
@@ -360,7 +360,7 @@ The following new CSS classes must be added to `styles/main.css`. All reuse exis
 
 Reused classes (no new CSS needed):
 - `.btn-primary`, `.btn-secondary`, `.btn-large` — submit and early-dismiss buttons
-- `.admin-section`, `.admin-section-heading` — email export section in admin panel
+- `.admin-section`, `.admin-section-heading` — email export section in admin panel; `.admin-section-heading` is a pre-existing class (Inter 18px weight 700) defined in main.css and is not a Phase 5 type role
 - `.sync-result-detail` — export status messages
 - `.screen` — base screen class
 
