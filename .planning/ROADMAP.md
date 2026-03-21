@@ -20,7 +20,7 @@
 |-------|----------------|--------|-----------|
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
-| 3. Sync Engine | 0/2 | Planned | - |
+| 3. Sync Engine | 1/2 | In Progress|  |
 | 4. Customer Browse Experience | 0/? | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
@@ -72,7 +72,7 @@ Plans:
   6. After a successful sync, all product images and metadata are available with no network connection
 **Plans**: 2 plans
 Plans:
-- [ ] 03-01-PLAN.md — Shopify sync engine with cursor pagination, image caching, and progress callbacks
+- [x] 03-01-PLAN.md — Shopify sync engine with cursor pagination, image caching, and progress callbacks
 - [ ] 03-02-PLAN.md — Admin panel with passcode gate, event config, sync trigger, and wiring
 
 ### Phase 4: Customer Browse Experience

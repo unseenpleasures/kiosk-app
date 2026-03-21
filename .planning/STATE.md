@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 02-02-PLAN.md — navigation skeleton with router.js, idle.js, chrome elements complete
-last_updated: "2026-03-21T08:20:51.111Z"
+stopped_at: Completed 03-01-PLAN.md — sync.js Shopify sync engine with cursor pagination and image caching
+last_updated: "2026-03-21T08:44:31.955Z"
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 6
+  completed_plans: 5
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -17,14 +17,14 @@ progress:
 ## Project Reference
 
 **Core Value:** Customers can browse and discover ID cards with zero friction — fast, visual, and fully offline — while the business captures emails and analytics data that persist across every event.
-**Current Focus:** Phase 02 — data-layer-and-navigation
+**Current Focus:** Phase 03 — sync-engine
 
 ---
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
+Phase: 03 (sync-engine) — EXECUTING
+Plan: 2 of 2
 
 ## Phase Summary
 
@@ -52,6 +52,7 @@ Plan: Not started
 | Phase 01 P02 | 2 | 2 tasks | 3 files |
 | Phase 02 P01 | 2 | 2 tasks | 2 files |
 | Phase 02 P02 | 3 | 2 tasks | 6 files |
+| Phase 03-sync-engine P01 | 2 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,9 @@ Plan: Not started
 | function keyword throughout sw.js (no arrow functions) | Maximum Safari SW compatibility on A9X hardware — conservative ES2017 safety measure | Phase 01 P02 |
 | controllerchange reload guard uses controllerChanging boolean | Prevents infinite reload loops when controllerchange fires multiple times in iPadOS standalone mode | Phase 01 P02 |
 | onupgradeneeded resolves false for both fresh install and post-eviction states | Covers Safari 7-day silent eviction — same handling regardless of whether DB never existed or was evicted | Phase 01 P02 |
+| Shopify Storefront API version confirmed as 2026-01 | Research verified current stable version; endpoint updated from 2024-07 assumption during planning | Phase 03 P01 |
+| cacheImagesSequential uses reduce() chain for sequential image caching | Prevents parallel image fetch memory pressure on A9X chip; each image fetches/caches before next begins | Phase 03 P01 |
+| syncAll .catch() preserves cursor checkpoint on failure | Enables resume from last completed page — cursor cleared only on full sync success | Phase 03 P01 |
 
 ### Architecture Constraints (must carry forward)
 
@@ -93,13 +97,13 @@ Plan: Not started
 
 ### Research Flags for Implementation
 
-- **Phase 3**: Verify current Shopify Storefront API version at `https://shopify.dev/docs/api/storefront` before writing any sync code (research used 2024-07)
+- **Phase 3**: ~~Verify current Shopify Storefront API version~~ — Resolved: 2026-01 confirmed in RESEARCH.md (was 2024-07 in planning)
 - **Phase 1**: Validate `skipWaiting` + `clients.claim` + force-reload SW pattern on the actual A9X device early
 - **Phase 4**: Verify `content-visibility: auto` support on iPadOS 16 Safari before relying on it for scroll performance
 
 ### Open TODOs
 
-- [ ] Verify Shopify Storefront API stable version before Phase 3
+- [x] Verify Shopify Storefront API stable version before Phase 3 — confirmed 2026-01 in Phase 3 RESEARCH.md
 - [ ] Validate SW activation pattern on target A9X device in Phase 1
 - [ ] Check `content-visibility: auto` on iPadOS 16 (caniuse / WebKit release notes) before Phase 4
 - [ ] Confirm 7-day eviction window behaviour for installed (not in-browser) PWA on iPadOS 16.4+
@@ -108,15 +112,15 @@ Plan: Not started
 
 ## Session Continuity
 
-**Last session:** 2026-03-21T08:17:17.382Z
-**Stopped at:** Completed 02-02-PLAN.md — navigation skeleton with router.js, idle.js, chrome elements complete
-**Next action:** Phase 1 verification, then proceed to Phase 2 (Data Layer and Navigation)
+**Last session:** 2026-03-21T08:44:31.949Z
+**Stopped at:** Completed 03-01-PLAN.md — sync.js Shopify sync engine with cursor pagination and image caching
+**Next action:** Execute Phase 3 Plan 2 (admin.js — admin panel wired to syncAll)
 
 ### To Resume Work
 
 1. Read this STATE.md for current position and context
-2. Read `.planning/ROADMAP.md` for Phase 2 details
-3. Execute Phase 2 plans
+2. Read `.planning/ROADMAP.md` for Phase 3 details
+3. Execute Phase 3 Plan 2 (03-02-PLAN.md)
 
 ---
 *STATE.md created: 2026-03-21*

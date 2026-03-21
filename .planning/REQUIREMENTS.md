@@ -20,10 +20,10 @@
 
 ### Sync
 
-- [ ] **SYNC-01**: Admin can trigger a full Shopify Storefront API catalogue sync with one tap
-- [ ] **SYNC-02**: Sync displays a progress indicator while running
-- [ ] **SYNC-03**: Sync completion shows a status report (products updated, new cards added, any errors)
-- [ ] **SYNC-04**: Previous cached catalogue remains fully usable if sync fails or is interrupted
+- [x] **SYNC-01**: Admin can trigger a full Shopify Storefront API catalogue sync with one tap
+- [x] **SYNC-02**: Sync displays a progress indicator while running
+- [x] **SYNC-03**: Sync completion shows a status report (products updated, new cards added, any errors)
+- [x] **SYNC-04**: Previous cached catalogue remains fully usable if sync fails or is interrupted
 
 ### Email Capture
 
@@ -93,10 +93,10 @@
 | CAT-07 | Phase 2 | Complete |
 | CAT-08 | Phase 2 | Complete |
 | CAT-09 | Phase 2 | Complete |
-| SYNC-01 | Phase 3 | Pending |
-| SYNC-02 | Phase 3 | Pending |
-| SYNC-03 | Phase 3 | Pending |
-| SYNC-04 | Phase 3 | Pending |
+| SYNC-01 | Phase 3 | Complete |
+| SYNC-02 | Phase 3 | Complete |
+| SYNC-03 | Phase 3 | Complete |
+| SYNC-04 | Phase 3 | Complete |
 | ADMIN-01 | Phase 3 | Pending |
 | ADMIN-02 | Phase 3 | Pending |
 | ADMIN-03 | Phase 3 | Pending |
