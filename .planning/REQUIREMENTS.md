@@ -53,9 +53,9 @@
 ### PWA & Offline
 
 - [x] **PWA-01**: App installs as a PWA to iPad home screen with standalone display, landscape orientation, dark background theme, and 512×512 and 1024×1024 icons
-- [ ] **PWA-02**: Service worker caches the full app shell on first install; uses cache-first strategy for all app assets and product images
+- [x] **PWA-02**: Service worker caches the full app shell on first install; uses cache-first strategy for all app assets and product images
 - [ ] **PWA-03**: All product JSON and optimised images (≤400px width) are downloaded to device during sync; the app functions fully offline with no network dependency
-- [ ] **PWA-04**: On every launch, app checks whether catalogue data is present in IndexedDB; if storage was evicted, a "Sync required" blocking screen is shown before the catalogue
+- [x] **PWA-04**: On every launch, app checks whether catalogue data is present in IndexedDB; if storage was evicted, a "Sync required" blocking screen is shown before the catalogue
 - [x] **PWA-05**: Home screen loads in under 2 seconds from cache on A9X hardware (iPad Pro 12.9" 1st Gen)
 - [ ] **PWA-06**: Admin passcode stored hashed (SHA-256) in localStorage; event name, event date, and timer setting stored in localStorage
 
@@ -85,8 +85,8 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | PWA-01 | Phase 1 | Complete |
-| PWA-02 | Phase 1 | Pending |
-| PWA-04 | Phase 1 | Pending |
+| PWA-02 | Phase 1 | Complete |
+| PWA-04 | Phase 1 | Complete |
 | PWA-05 | Phase 1 | Complete |
 | PWA-03 | Phase 2 | Pending |
 | PWA-06 | Phase 2 | Pending |

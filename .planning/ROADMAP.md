@@ -7,7 +7,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: PWA Foundation** - Installable offline shell with boot health check and kiosk lockdown
+- [x] **Phase 1: PWA Foundation** - Installable offline shell with boot health check and kiosk lockdown (completed 2026-03-21)
 - [ ] **Phase 2: Data Layer and Navigation** - IndexedDB schema, hash router, inactivity timer, global UI chrome
 - [ ] **Phase 3: Sync Engine** - Shopify catalogue sync with cursor checkpointing, progress UI, and admin sync panel
 - [ ] **Phase 4: Customer Browse Experience** - Virtual-scrolled catalogue grid, search, filter, card detail, and analytics logging
@@ -18,7 +18,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. PWA Foundation | 1/2 | In Progress|  |
+| 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
 | 2. Data Layer and Navigation | 0/? | Not started | - |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
@@ -42,7 +42,7 @@
 **Plans**: 2 plans
 Plans:
 - [x] 01-01-PLAN.md — Project scaffolding: assets, manifest, HTML shell, CSS foundation
-- [ ] 01-02-PLAN.md — Service worker, boot health check, and screen rendering
+- [x] 01-02-PLAN.md — Service worker, boot health check, and screen rendering
 
 ### Phase 2: Data Layer and Navigation
 **Goal**: Every subsequent feature has a working foundation — persistent storage schema, hash-based navigation, inactivity timer, and the global UI chrome that appears on every screen.

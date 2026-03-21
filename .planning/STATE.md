@@ -3,12 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-21T07:39:10.391Z"
+stopped_at: Completed 01-02-PLAN.md — Phase 1 PWA Foundation complete, all plans executed
+last_updated: "2026-03-21T07:44:31.344Z"
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
+  completed_plans: 2
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -22,14 +23,14 @@ progress:
 
 ## Current Position
 
-Phase: 01 (pwa-foundation) — EXECUTING
-Plan: 2 of 2
+Phase: 01 (pwa-foundation) — COMPLETE
+Plan: 2 of 2 (all plans complete)
 
 ## Phase Summary
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | PWA Foundation | Not started |
+| 1 | PWA Foundation | Complete |
 | 2 | Data Layer and Navigation | Not started |
 | 3 | Sync Engine | Not started |
 | 4 | Customer Browse Experience | Not started |
@@ -48,6 +49,7 @@ Plan: 2 of 2
 | Max DOM card nodes (virtual scroll) | ~80 | — |
 
 ---
+| Phase 01 P02 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -61,6 +63,9 @@ Plan: 2 of 2
 | ADMIN-05/06 and ANALYTICS-04/05 deferred to Phase 6 | Adjustable timer, passcode change, and analytics summary all depend on data and features built in Phases 3-5 | Planning |
 | Node.js PNG encoder used for icon/splash generation | Python not available in execution environment; pure Node.js zlib/deflate encoder generates all PNG assets with no external deps | Phase 01 P01 |
 | Inter woff2 is a variable font | Google Fonts serves same file for weight 400 and 700; separate @font-face declarations with distinct font-weight values correctly select each weight at render time | Phase 01 P01 |
+| function keyword throughout sw.js (no arrow functions) | Maximum Safari SW compatibility on A9X hardware — conservative ES2017 safety measure | Phase 01 P02 |
+| controllerchange reload guard uses controllerChanging boolean | Prevents infinite reload loops when controllerchange fires multiple times in iPadOS standalone mode | Phase 01 P02 |
+| onupgradeneeded resolves false for both fresh install and post-eviction states | Covers Safari 7-day silent eviction — same handling regardless of whether DB never existed or was evicted | Phase 01 P02 |
 
 ### Architecture Constraints (must carry forward)
 
@@ -101,15 +106,15 @@ Plan: 2 of 2
 
 ## Session Continuity
 
-**Last session:** 2026-03-21T07:39:10.386Z
-**Stopped at:** Completed 01-01-PLAN.md — ready for Plan 02 (app.js, service worker, splash/sync screens)
-**Next action:** Execute Plan 02 (01-02-PLAN.md) — app.js, sw.js, boot health check, splash screen JS
+**Last session:** 2026-03-21T07:44:31.336Z
+**Stopped at:** Completed 01-02-PLAN.md — Phase 1 PWA Foundation complete, all plans executed
+**Next action:** Phase 1 verification, then proceed to Phase 2 (Data Layer and Navigation)
 
 ### To Resume Work
 
 1. Read this STATE.md for current position and context
-2. Read `.planning/ROADMAP.md` Phase 1 detail section
-3. Execute Plan 02: `01-02-PLAN.md`
+2. Read `.planning/ROADMAP.md` for Phase 2 details
+3. Execute Phase 2 plans
 
 ---
 *STATE.md created: 2026-03-21*
