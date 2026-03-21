@@ -11,12 +11,12 @@
 - [x] **CAT-02**: Attendee can filter the grid by one of 8 categories instantly (< 100ms response)
 - [x] **CAT-03**: Attendee can search cards in real-time by name or character (results appear < 300ms)
 - [x] **CAT-04**: All search queries including zero-result searches are logged with timestamp
-- [ ] **CAT-05**: Attendee can tap a card to view a larger image and card name
+- [x] **CAT-05**: Attendee can tap a card to view a larger image and card name
 - [x] **CAT-06**: Cards added since the previous sync are badged "NEW"
 - [x] **CAT-07**: QR code linking to https://theidcardfactory.co.uk is always visible on every screen
 - [x] **CAT-08**: Floating home button fixed to top-left on every screen; tapping it resets search, filter, and returns to the catalogue grid
 - [x] **CAT-09**: App automatically returns to home after 60 seconds of inactivity, preceded by a 10-second visual countdown with cancel option
-- [ ] **CAT-10**: Email sign-up form has a separate 3-minute inactivity grace period to avoid interrupting mid-entry
+- [x] **CAT-10**: Email sign-up form has a separate 3-minute inactivity grace period to avoid interrupting mid-entry
 
 ### Sync
 
@@ -44,7 +44,7 @@
 
 ### Analytics
 
-- [ ] **ANALYTICS-01**: Every card detail view is logged with card ID, card name, and timestamp
+- [x] **ANALYTICS-01**: Every card detail view is logged with card ID, card name, and timestamp
 - [x] **ANALYTICS-02**: Every category filter selection is logged with category name and timestamp
 - [x] **ANALYTICS-03**: Every search query is logged; zero-result searches are flagged separately from results-found searches
 - [ ] **ANALYTICS-04**: Admin event summary shows: top 10 most-viewed cards, most-searched terms, list of zero-result searches, and total emails captured — all scoped to the current event
@@ -105,10 +105,10 @@
 | CAT-02 | Phase 4 | Complete |
 | CAT-03 | Phase 4 | Complete |
 | CAT-04 | Phase 4 | Complete |
-| CAT-05 | Phase 4 | Pending |
+| CAT-05 | Phase 4 | Complete |
 | CAT-06 | Phase 4 | Complete |
-| CAT-10 | Phase 4 | Pending |
-| ANALYTICS-01 | Phase 4 | Pending |
+| CAT-10 | Phase 4 | Complete |
+| ANALYTICS-01 | Phase 4 | Complete |
 | ANALYTICS-02 | Phase 4 | Complete |
 | ANALYTICS-03 | Phase 4 | Complete |
 | EMAIL-01 | Phase 5 | Pending |

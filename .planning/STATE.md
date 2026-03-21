@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 04-01-PLAN.md — catalogue.js virtual scroll engine, search/filter, analytics
-last_updated: "2026-03-21T10:35:46.558Z"
+stopped_at: Completed 04-02-PLAN.md — card detail view, router wiring, boot sequence, email idle grace
+last_updated: "2026-03-21T10:40:20.355Z"
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -55,6 +55,7 @@ Plan: 2 of 2
 | Phase 03-sync-engine P01 | 2 | 1 tasks | 1 files |
 | Phase 03 P02 | 8 | 2 tasks | 6 files |
 | Phase 04-customer-browse-experience P01 | 30 | 2 tasks | 3 files |
+| Phase 04-customer-browse-experience P02 | 2 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,9 @@ Plan: 2 of 2
 | syncAll .catch() preserves cursor checkpoint on failure | Enables resume from last completed page — cursor cleared only on full sync success | Phase 03 P01 |
 | 7-tap hidden trigger on QR chrome element opens admin | Inconspicuous to customers, accessible to owner via muscle memory — no visible admin button needed | Phase 03 P02 |
 | catch() added to syncAll() promise in admin.js | Without it, any network error before first onProgress call leaves sync button permanently disabled | Phase 03 P02 |
+| renderCategory redirects to catalogue grid with chip pre-selected | No separate screen needed — simpler state management, same UX result | Phase 04 P02 |
+| _pausedForEmail flag isolated from admin panel pause | Allows admin and email screen to pause/resume the idle timer independently without clobbering each other | Phase 04 P02 |
+| detail-back button at top:72px | Chrome home fixed at top:16px + 48px height + 8px gap = 72px — avoids touch target overlap | Phase 04 P02 |
 
 ### Architecture Constraints (must carry forward)
 
@@ -116,8 +120,8 @@ Plan: 2 of 2
 
 ## Session Continuity
 
-**Last session:** 2026-03-21T10:35:46.552Z
-**Stopped at:** Completed 04-01-PLAN.md — catalogue.js virtual scroll engine, search/filter, analytics
+**Last session:** 2026-03-21T10:40:20.348Z
+**Stopped at:** Completed 04-02-PLAN.md — card detail view, router wiring, boot sequence, email idle grace
 **Next action:** Execute Phase 4 (Customer Browse Experience) — virtual-scrolled catalogue grid, search, filter, card detail, analytics logging
 
 ### To Resume Work
