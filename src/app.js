@@ -176,7 +176,39 @@ function initHomeButton() {
 }
 
 // ============================================================
-// 6. boot — main entry point
+// 6. initEmailButton — wires the global chrome email button click handler
+// Navigates to #/email on tap.
+// Source: EMAIL-01, D-21
+// ============================================================
+
+function initEmailButton() {
+  var emailBtn = document.getElementById('chrome-email');
+  if (emailBtn) {
+    emailBtn.addEventListener('click', function() {
+      window.location.hash = '#/email';
+    });
+  }
+}
+
+// ============================================================
+// 7. updateChromeEmailState — adds/removes active-screen class on chrome email button
+// Dims the button when already on #/email to give visual feedback.
+// Called on every hashchange and once on boot.
+// ============================================================
+
+function updateChromeEmailState() {
+  var emailBtn = document.getElementById('chrome-email');
+  if (emailBtn) {
+    if (window.location.hash === '#/email') {
+      emailBtn.classList.add('active-screen');
+    } else {
+      emailBtn.classList.remove('active-screen');
+    }
+  }
+}
+
+// ============================================================
+// 8. boot — main entry point
 // Opens DB at v2 via db.js, checks catalogue health, renders appropriate screen.
 // Wires router, idle timer, and chrome home button if catalogue is present.
 // ============================================================
@@ -210,11 +242,18 @@ async function boot() {
   // Wire up global chrome home button click handler
   initHomeButton();
 
+  // Wire up global chrome email button click handler (Phase 5)
+  initEmailButton();
+
   // Wire up hidden admin trigger (7 taps on QR code)
   initAdminTrigger();
 
   // Init hash-based router -- dispatches to correct screen stub
   initRouter();
+
+  // Wire active-screen state on chrome email button (Phase 5)
+  window.addEventListener('hashchange', updateChromeEmailState);
+  updateChromeEmailState();
 
   // Start inactivity timer (60s default, from Config)
   initIdleTimer();

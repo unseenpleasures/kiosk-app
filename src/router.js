@@ -1,6 +1,6 @@
 // router.js — Hash-based navigation dispatcher for ID Card Factory Kiosk PWA
 // Dispatches window.location.hash to the correct screen render function.
-// Phase 4 replaced catalogue/category/card stubs. Phase 5 will replace email stub.
+// Phase 4 replaced catalogue/category/card stubs. Phase 5 replaced email stub.
 // ES2017 syntax: function keyword throughout, var declarations, no arrow functions.
 
 // ============================================================
@@ -9,7 +9,7 @@
 
 var ROUTES = {
   '#/':      renderCatalogue,
-  '#/email': renderEmailStub,
+  '#/email': renderEmail,
   '#/admin': renderAdmin      // wired to admin.js renderAdmin — was renderAdminStub
 };
 
@@ -55,20 +55,3 @@ function initRouter() {
   handleRoute();
 }
 
-// ============================================================
-// Email stub render function
-// Phase 5 will replace this with the real email capture screen.
-// ============================================================
-
-function renderEmailStub() {
-  var app = document.getElementById('app');
-  app.innerHTML = '';
-  var screen = document.createElement('div');
-  screen.className = 'screen';
-  screen.id = 'screen-email';
-  var heading = document.createElement('h1');
-  heading.className = 'stub-heading';
-  heading.textContent = 'Email Sign Up';
-  screen.appendChild(heading);
-  app.appendChild(screen);
-}
