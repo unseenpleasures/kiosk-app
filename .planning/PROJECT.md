@@ -48,8 +48,8 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 ### Active
 
-- [ ] PWA hosted on GitHub Pages and accessible via public URL
-- [ ] App installed on both iPads via Add to Home Screen
+- [x] PWA hosted on GitHub Pages and accessible via public URL — Validated in Phase 08: Deploy and Install
+- [ ] App installed on both iPads via Add to Home Screen — awaiting physical iPad testing (08-HUMAN-UAT.md)
 
 ### Out of Scope
 
@@ -133,4 +133,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after v1.1 milestone started*
+*Last updated: 2026-03-21 after Phase 08 complete — PWA live at https://unseenpleasures.github.io/kiosk-app/*
