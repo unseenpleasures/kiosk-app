@@ -104,6 +104,17 @@ function renderEmailForm(card) {
   submitBtn.addEventListener('click', function() {
     validateAndSave(emailInput, checkbox, card);
   });
+
+  // Back to browsing link — lets customer dismiss without signing up
+  var backBtn = document.createElement('button');
+  backBtn.className = 'btn-secondary btn-large';
+  backBtn.type = 'button';
+  backBtn.textContent = 'Back to browsing';
+  backBtn.style.marginTop = 'var(--space-sm)';
+  backBtn.addEventListener('click', function() {
+    window.location.hash = '#/';
+  });
+  card.appendChild(backBtn);
 }
 
 // ============================================================
