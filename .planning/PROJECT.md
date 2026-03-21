@@ -12,63 +12,43 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 ### Validated
 
-**PWA & Offline (Phase 1: pwa-foundation)**
-- [x] Service worker with cache-first strategy for app shell — Validated in Phase 1: pwa-foundation
-- [x] App shell pre-cached on install — Validated in Phase 1: pwa-foundation
-- [x] manifest.json: standalone display, landscape orientation, dark theme, 512×512 and 1024×1024 icons — Validated in Phase 1: pwa-foundation
-- [x] Home screen load < 2 seconds from cache — Validated in Phase 1: pwa-foundation (requires human test on A9X hardware)
-
-**Data Layer & Navigation (Phase 2: data-layer-and-navigation)**
-- [x] IndexedDB schema with 4 object stores (products, emails, analytics, sync_meta) — Validated in Phase 2: data-layer-and-navigation
-- [x] Promise-wrapped CRUD helpers (openDB, dbGet, dbPut, dbDelete, dbCount, dbGetAll, dbGetAllByIndex, dbClear) — Validated in Phase 2: data-layer-and-navigation
-- [x] localStorage config wrapper with SHA-256 passcode hashing via Web Crypto API — Validated in Phase 2: data-layer-and-navigation
-- [x] Hash-based SPA router with all 5 route patterns — Validated in Phase 2: data-layer-and-navigation
-- [x] Inactivity timer with 10-second countdown overlay and pause/resume API — Validated in Phase 2: data-layer-and-navigation
-- [x] Persistent QR code (non-interactive div) and floating home button on every screen — Validated in Phase 2: data-layer-and-navigation
-
-### Validated
-
-**Catalogue (Customer-Facing) (Phase 4: customer-browse-experience)**
-- [x] Full-screen thumbnail grid displaying all 950+ cards with lazy loading — Validated in Phase 4: customer-browse-experience
-- [x] Category filter for 8 categories: Anime & Manga, Film & Cinema, Gaming, Horror, Novelty, UK TV, US & World TV, Law & Services — Validated in Phase 4: customer-browse-experience
-- [x] Real-time search by card name/character with all queries logged (including zero-result searches) — Validated in Phase 4: customer-browse-experience
-- [x] "NEW" badge on cards added since last sync — Validated in Phase 4: customer-browse-experience
-- [x] 3-minute inactivity grace period on email form — Validated in Phase 4: customer-browse-experience
-
-**Analytics (Phase 4: customer-browse-experience)**
-- [x] Card view logging with timestamp — Validated in Phase 4: customer-browse-experience
-- [x] Category browsing tracking — Validated in Phase 4: customer-browse-experience
-- [x] Search term logging with zero-result searches flagged separately — Validated in Phase 4: customer-browse-experience
-
-### Validated
-
-**Email Capture (Phase 5: email-capture-and-export)**
-- [x] Dedicated email sign-up screen (not a popup) accessible from anywhere — Validated in Phase 5: email-capture-and-export
-- [x] Email + mandatory GDPR consent checkbox only — Validated in Phase 5: email-capture-and-export
-- [x] Every captured email tagged with event name and date — Validated in Phase 5: email-capture-and-export
-- [x] All emails stored in IndexedDB (offline, persistent) — Validated in Phase 5: email-capture-and-export
-- [x] One-tap CSV export from admin panel (Mailchimp-ready) — Validated in Phase 5: email-capture-and-export
-
-**Analytics & Tracking (Phase 6: admin-polish-and-analytics)**
-- [x] Post-event summary in admin: top 10 cards, most searched terms, zero-result searches, emails captured — Validated in Phase 6: admin-polish-and-analytics
-- [x] Cumulative data persists across events — Validated in Phase 6: admin-polish-and-analytics
-
-**Admin Panel (Passcode Protected) (Phases 3-6)**
-- [x] Hidden/discreet trigger + passcode access — Validated in Phase 3: sync-engine
-- [x] Set event name and date before each show — Validated in Phase 3: sync-engine
-- [x] One-button Shopify Storefront API sync with progress indicator and status report — Validated in Phase 3: sync-engine
-- [x] Incremental sync (only new/changed products downloaded) — Validated in Phase 3: sync-engine
-- [x] Export current event email list as tagged CSV — Validated in Phase 5: email-capture-and-export
-- [x] In-app analytics summary — Validated in Phase 6: admin-polish-and-analytics
-- [x] Adjustable inactivity timer (default 60 seconds) — Validated in Phase 6: admin-polish-and-analytics
-- [x] Changeable admin passcode — Validated in Phase 6: admin-polish-and-analytics
+- ✓ PWA installs to home screen with standalone display, landscape, dark theme, 512/1024 icons — v1.0
+- ✓ Service worker cache-first for app shell and all product images/JSON — v1.0
+- ✓ App shell pre-cached on install — v1.0
+- ✓ Home screen load < 2 seconds from cache (requires A9X hardware test) — v1.0
+- ✓ Boot health check: "Sync Required" gate if IndexedDB evicted — v1.0
+- ✓ IndexedDB schema with 4 object stores (products, emails, analytics, sync_meta) — v1.0
+- ✓ Promise-wrapped CRUD helpers (openDB, dbGet, dbPut, dbDelete, dbCount, dbGetAll, dbGetAllByIndex, dbClear) — v1.0
+- ✓ localStorage config wrapper with SHA-256 passcode hashing via Web Crypto API — v1.0
+- ✓ Hash-based SPA router with 5 route patterns — v1.0
+- ✓ Inactivity timer with 10-second countdown overlay and pause/resume API — v1.0
+- ✓ Persistent QR code and floating home button on every screen — v1.0
+- ✓ Full-screen thumbnail grid with virtual scroll (~80 DOM nodes) for 950+ cards — v1.0
+- ✓ Category filter for 8 categories (< 100ms response) — v1.0
+- ✓ Real-time search by name/character (< 300ms) with zero-result logging — v1.0
+- ✓ "NEW" badge on cards added since previous sync — v1.0
+- ✓ Card detail view with larger image and card name — v1.0
+- ✓ 3-minute inactivity grace period on email form — v1.0
+- ✓ Card view, category filter, and search query analytics logging — v1.0
+- ✓ Dedicated email sign-up screen accessible from any screen — v1.0
+- ✓ GDPR consent checkbox (unchecked by default, submit blocked until ticked) — v1.0
+- ✓ Emails tagged with event name, date, and consent timestamp in IndexedDB — v1.0
+- ✓ 5-second confirmation countdown after submission — v1.0
+- ✓ One-tap Mailchimp-ready CSV export from admin panel — v1.0
+- ✓ Hidden 7-tap trigger + passcode gate for admin panel — v1.0
+- ✓ Admin event name and date configuration — v1.0
+- ✓ One-button Shopify sync with progress indicator and status report — v1.0
+- ✓ Cursor-based pagination with failure-safe checkpointing — v1.0
+- ✓ Admin analytics summary: top 10 cards, searches, zero-results, email count — v1.0
+- ✓ Cumulative analytics data persists across events — v1.0
+- ✓ Adjustable inactivity timer (10-600s) — v1.0
+- ✓ Changeable admin passcode with current-passcode verification — v1.0
+- ✓ Product images survive SW version bumps (sync cache excluded from activate cleanup) — v1.0
+- ✓ First-sync catalogue loads without page reload — v1.0
 
 ### Active
 
-**PWA & Offline**
-- [ ] Service worker with cache-first strategy for all product images and JSON (Phase 1 covers app shell; product images covered in Phase 2+)
-- [ ] Search results < 300ms
-- [ ] Category filter < 100ms
+(No active requirements — next milestone not yet planned)
 
 ### Out of Scope
 
@@ -78,17 +58,25 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - OAuth or multi-user authentication — single admin passcode is sufficient
 - Push notifications — out of scope for kiosk context
 - Video content — storage/bandwidth costs, not relevant to card catalogue
+- Cart / wishlist / purchase flow — QR code is the conversion path; commerce adds GDPR complexity
+- Favourites / bookmark list — no returning users on a shared kiosk
+- Live inventory / stock levels — requires network; offline-first means point-in-time data
+- Remote analytics / telemetry — all data stays on-device; third-party adds GDPR obligations
+- Incremental sync (delta detection) — deferred to v2.0; full resync is sufficient for v1
 
 ## Context
 
+- **Shipped:** v1.0 on 2026-03-21
+- **Codebase:** 4,326 LOC across 13 source files (vanilla HTML/CSS/JS)
 - **Platform**: iPadOS 16, Safari, PWA installed to home screen via "Add to Home Screen"
 - **Primary device**: iPad Pro 12.9" 1st Gen (A1652, A9X chip) — older hardware, performance targets set accordingly
 - **Kiosk lockdown**: Apple Guided Access (OS-level) + app-level admin passcode (two layers)
-- **Data source**: Shopify Storefront API (read-only, free tier) — `unauthenticated_read_product_listings` scope
+- **Data source**: Shopify Storefront API 2026-01 (read-only, free tier) — `unauthenticated_read_product_listings` scope
 - **Product scale**: 951 products as of March 2026, paginated 50 at a time via GraphQL cursor
-- **Image strategy**: Fetch compressed images (~400px wide) during sync, estimated total 200–400MB
-- **Branding reference**: https://theidcardfactory.co.uk — dark navy/black base, gold accent
+- **Image strategy**: Compressed images (~400px wide) cached in Cache API during sync
+- **Branding**: Dark navy/black base, gold accent (#c8a951), Inter variable font
 - **Category structure**: Anime & Manga / Film & Cinema / Gaming / Horror / Novelty / UK TV / US & World TV / Law & Services
+- **Known tech debt**: dbGetAll('emails') missing .catch() handler, splash images not in SW precache, 9 SUMMARY frontmatter documentation gaps
 
 ## Constraints
 
@@ -104,13 +92,19 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| PWA over native app | No App Store fees, no annual developer account, iPadOS 16 fully supports PWA + Guided Access | Implemented Phase 1 |
-| Vanilla JS over framework | No build toolchain, no node_modules, simpler deployment — serve directly from filesystem | Implemented Phase 1 |
-| No arrow functions in sw.js | Safari SW compatibility — older Safari versions had issues parsing arrow functions in SW context | Implemented Phase 1 |
-| Shopify Storefront API | Free, read-only, built into every Shopify store — no custom backend needed | — Pending |
-| IndexedDB for all persistent data | Browser-native, offline-capable, handles large datasets (950+ products + images metadata) | Implemented Phase 2 |
-| Shopify token in client code | Token is read-only and unauthenticated — Shopify's intended use case for storefronts | — Pending |
-| ES2017 syntax constraint in all modules | A9X chip / Safari 16.x safe upper bound — no arrow functions, no optional chaining, no nullish coalescing | Implemented Phase 2 |
+| PWA over native app | No App Store fees, no annual developer account, iPadOS 16 fully supports PWA + Guided Access | ✓ Good |
+| Vanilla JS over framework | No build toolchain, no node_modules, simpler deployment — serve directly from filesystem | ✓ Good |
+| No arrow functions in sw.js | Safari SW compatibility — older Safari versions had issues parsing arrow functions in SW context | ✓ Good |
+| Shopify Storefront API 2026-01 | Free, read-only, built into every Shopify store — no custom backend needed | ✓ Good |
+| IndexedDB for all persistent data | Browser-native, offline-capable, handles large datasets (950+ products) | ✓ Good |
+| Shopify token in client code | Token is read-only and unauthenticated — Shopify's intended use case for storefronts | ✓ Good |
+| ES2017 syntax constraint | A9X chip / Safari 16.x safe upper bound — no optional chaining, no nullish coalescing | ✓ Good |
+| Node.js PNG encoder for assets | Python unavailable; pure Node.js zlib/deflate generates all PNG icons/splash with no deps | ✓ Good |
+| 7-tap hidden trigger for admin | Inconspicuous to customers, accessible to owner via muscle memory | ✓ Good |
+| Sequential image caching | Prevents parallel fetch memory pressure on A9X chip — reduce() chain | ✓ Good |
+| Virtual scroll from day one | ~80 DOM nodes max for 950+ cards; IntersectionObserver sentinel pattern | ✓ Good |
+| Separate sync cache name | Product images in dedicated cache, excluded from SW activate cleanup | ✓ Good (fixed in Phase 7) |
+| prevSyncAt for NEW badge | Store previous lastSyncAt before overwriting to get correct badge timing | ✓ Good (fixed in Phase 7) |
 
 ## Evolution
 
@@ -130,4 +124,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 7: integration-bug-fixes complete — all 7 phases executed, 3 integration defects closed (SW cache, NEW badge, first-sync catalogue)*
+*Last updated: 2026-03-21 after v1.0 milestone*
