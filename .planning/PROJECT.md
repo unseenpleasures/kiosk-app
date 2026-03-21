@@ -48,7 +48,8 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 ### Active
 
-(No active requirements — next milestone not yet planned)
+- [ ] PWA hosted on GitHub Pages and accessible via public URL
+- [ ] App installed on both iPads via Add to Home Screen
 
 ### Out of Scope
 
@@ -63,6 +64,14 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - Live inventory / stock levels — requires network; offline-first means point-in-time data
 - Remote analytics / telemetry — all data stays on-device; third-party adds GDPR obligations
 - Incremental sync (delta detection) — deferred to v2.0; full resync is sufficient for v1
+
+## Current Milestone: v1.1 Live Deployment
+
+**Goal:** Get the PWA hosted on GitHub Pages and installed on both iPads.
+
+**Target features:**
+- GitHub Pages hosting
+- PWA installed on 2 iPads
 
 ## Context
 
@@ -124,4 +133,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after v1.0 milestone*
+*Last updated: 2026-03-21 after v1.1 milestone started*

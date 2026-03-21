@@ -1,15 +1,15 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: Event-Ready Kiosk
-status: shipped
-stopped_at: Milestone v1.0 complete
-last_updated: "2026-03-21T17:00:00.000Z"
+milestone: v1.1
+milestone_name: Live Deployment
+status: active
+stopped_at: null
+last_updated: "2026-03-21T18:00:00.000Z"
 progress:
-  total_phases: 7
-  completed_phases: 7
-  total_plans: 14
-  completed_plans: 14
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -19,14 +19,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Customers can browse and discover ID cards with zero friction — fast, visual, and fully offline — while the business captures emails and analytics data that persist across every event.
-**Current focus:** v1.0 shipped — planning next milestone
+**Current focus:** v1.1 Live Deployment
 
 ---
 
 ## Current Position
 
-Milestone: v1.0 Event-Ready Kiosk — SHIPPED 2026-03-21
-Next: `/gsd:new-milestone` to plan v1.1
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-21 — Milestone v1.1 started
 
 ## Phase Summary
 
