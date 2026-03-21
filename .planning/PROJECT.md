@@ -26,14 +26,21 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [x] Inactivity timer with 10-second countdown overlay and pause/resume API — Validated in Phase 2: data-layer-and-navigation
 - [x] Persistent QR code (non-interactive div) and floating home button on every screen — Validated in Phase 2: data-layer-and-navigation
 
-### Active
+### Validated
 
-**Catalogue (Customer-Facing)**
-- [ ] Full-screen thumbnail grid displaying all 950+ cards with lazy loading
-- [ ] Category filter for 8 categories: Anime & Manga, Film & Cinema, Gaming, Horror, Novelty, UK TV, US & World TV, Law & Services
-- [ ] Real-time search by card name/character with all queries logged (including zero-result searches)
-- [ ] "NEW" badge on cards added since last sync
-- [ ] 3-minute inactivity grace period on email form
+**Catalogue (Customer-Facing) (Phase 4: customer-browse-experience)**
+- [x] Full-screen thumbnail grid displaying all 950+ cards with lazy loading — Validated in Phase 4: customer-browse-experience
+- [x] Category filter for 8 categories: Anime & Manga, Film & Cinema, Gaming, Horror, Novelty, UK TV, US & World TV, Law & Services — Validated in Phase 4: customer-browse-experience
+- [x] Real-time search by card name/character with all queries logged (including zero-result searches) — Validated in Phase 4: customer-browse-experience
+- [x] "NEW" badge on cards added since last sync — Validated in Phase 4: customer-browse-experience
+- [x] 3-minute inactivity grace period on email form — Validated in Phase 4: customer-browse-experience
+
+**Analytics (Phase 4: customer-browse-experience)**
+- [x] Card view logging with timestamp — Validated in Phase 4: customer-browse-experience
+- [x] Category browsing tracking — Validated in Phase 4: customer-browse-experience
+- [x] Search term logging with zero-result searches flagged separately — Validated in Phase 4: customer-browse-experience
+
+### Active
 
 **Email Capture**
 - [ ] Dedicated email sign-up screen (not a popup) accessible from anywhere
@@ -43,9 +50,6 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [ ] One-tap CSV export from admin panel (Mailchimp-ready)
 
 **Analytics & Tracking**
-- [ ] Card view logging with timestamp
-- [ ] Category browsing tracking
-- [ ] Search term logging with zero-result searches flagged separately
 - [ ] Post-event summary in admin: top 10 cards, most searched terms, zero-result searches, emails captured
 - [ ] Cumulative data persists across events
 
@@ -124,4 +128,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 2: data-layer-and-navigation complete*
+*Last updated: 2026-03-21 after Phase 4: customer-browse-experience complete*
