@@ -23,7 +23,7 @@
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
 | 5. Email Capture and Export | 2/2 | Complete   | 2026-03-21 |
-| 6. Admin Polish and Analytics | 0/2 | Not started | - |
+| 6. Admin Polish and Analytics | 1/2 | In Progress|  |
 
 ---
 
@@ -117,7 +117,7 @@ Plans:
   4. Admin can change the passcode by entering the current passcode first; the new hashed passcode is saved without requiring a full sync
 **Plans**: 2 plans
 Plans:
-- [ ] 06-01-PLAN.md — Event analytics summary section (top cards, searches, zero-results, email count)
+- [x] 06-01-PLAN.md — Event analytics summary section (top cards, searches, zero-results, email count)
 - [ ] 06-02-PLAN.md — Idle timeout configuration and passcode change controls
 
 ---

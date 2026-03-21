@@ -47,8 +47,8 @@
 - [x] **ANALYTICS-01**: Every card detail view is logged with card ID, card name, and timestamp
 - [x] **ANALYTICS-02**: Every category filter selection is logged with category name and timestamp
 - [x] **ANALYTICS-03**: Every search query is logged; zero-result searches are flagged separately from results-found searches
-- [ ] **ANALYTICS-04**: Admin event summary shows: top 10 most-viewed cards, most-searched terms, list of zero-result searches, and total emails captured — all scoped to the current event
-- [ ] **ANALYTICS-05**: All analytics data persists across events in IndexedDB for longitudinal trend analysis
+- [x] **ANALYTICS-04**: Admin event summary shows: top 10 most-viewed cards, most-searched terms, list of zero-result searches, and total emails captured — all scoped to the current event
+- [x] **ANALYTICS-05**: All analytics data persists across events in IndexedDB for longitudinal trend analysis
 
 ### PWA & Offline
 
@@ -118,8 +118,8 @@
 | EMAIL-05 | Phase 5 | Complete |
 | ADMIN-05 | Phase 6 | Pending |
 | ADMIN-06 | Phase 6 | Pending |
-| ANALYTICS-04 | Phase 6 | Pending |
-| ANALYTICS-05 | Phase 6 | Pending |
+| ANALYTICS-04 | Phase 6 | Complete |
+| ANALYTICS-05 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 36 total
