@@ -134,7 +134,32 @@ function showSyncRequiredScreen() {
 }
 
 // ============================================================
-// 4. initHomeButton — wires the global chrome home button click handler
+// 4. initAdminTrigger — 7 rapid taps on QR chrome element opens admin
+// Tap counter resets after 3 seconds of no taps.
+// Source: ADMIN-01, RESEARCH.md Pattern 4
+// ============================================================
+
+var _adminTapCount = 0;
+var _adminTapTimer = null;
+
+function initAdminTrigger() {
+  var qrEl = document.getElementById('chrome-qr');
+  if (qrEl) {
+    qrEl.addEventListener('click', function() {
+      _adminTapCount++;
+      clearTimeout(_adminTapTimer);
+      if (_adminTapCount >= 7) {
+        _adminTapCount = 0;
+        window.location.hash = '#/admin';
+        return;
+      }
+      _adminTapTimer = setTimeout(function() { _adminTapCount = 0; }, 3000);
+    });
+  }
+}
+
+// ============================================================
+// 5. initHomeButton — wires the global chrome home button click handler
 // Sets hash to '#/' which triggers the router to render the catalogue stub.
 // Phase 4 will also reset in-memory filter/search state here.
 // ============================================================
@@ -150,7 +175,7 @@ function initHomeButton() {
 }
 
 // ============================================================
-// 5. boot — main entry point
+// 6. boot — main entry point
 // Opens DB at v2 via db.js, checks catalogue health, renders appropriate screen.
 // Wires router, idle timer, and chrome home button if catalogue is present.
 // ============================================================
@@ -165,6 +190,7 @@ async function boot() {
 
   if (!hasCatalogue) {
     showSyncRequiredScreen();
+    initAdminTrigger();  // Admin must be reachable to perform first sync
     // Do NOT start idle timer on sync-required screen -- admin needs unrestricted time
     return;
   }
@@ -174,6 +200,9 @@ async function boot() {
 
   // Wire up global chrome home button click handler
   initHomeButton();
+
+  // Wire up hidden admin trigger (7 taps on QR code)
+  initAdminTrigger();
 
   // Init hash-based router -- dispatches to correct screen stub
   initRouter();

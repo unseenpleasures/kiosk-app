@@ -10,7 +10,7 @@
 var ROUTES = {
   '#/':      renderCatalogueStub,
   '#/email': renderEmailStub,
-  '#/admin': renderAdminStub
+  '#/admin': renderAdmin      // wired to admin.js renderAdmin — was renderAdminStub
 };
 
 // ============================================================
@@ -83,19 +83,6 @@ function renderEmailStub() {
   var heading = document.createElement('h1');
   heading.className = 'stub-heading';
   heading.textContent = 'Email Sign Up';
-  screen.appendChild(heading);
-  app.appendChild(screen);
-}
-
-function renderAdminStub() {
-  var app = document.getElementById('app');
-  app.innerHTML = '';
-  var screen = document.createElement('div');
-  screen.className = 'screen';
-  screen.id = 'screen-admin';
-  var heading = document.createElement('h1');
-  heading.className = 'stub-heading';
-  heading.textContent = 'Admin Panel';
   screen.appendChild(heading);
   app.appendChild(screen);
 }
