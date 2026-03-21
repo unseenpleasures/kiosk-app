@@ -18,7 +18,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. PWA Foundation | 0/? | Not started | - |
+| 1. PWA Foundation | 0/2 | Planning complete | - |
 | 2. Data Layer and Navigation | 0/? | Not started | - |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
@@ -39,7 +39,10 @@
   3. On launch with an empty or evicted IndexedDB, a "Sync required" blocking screen appears before any catalogue content
   4. On launch with data present, the home screen renders in under 2 seconds from cache on the target A9X hardware
   5. The installed app icon displays correctly at both 512x512 and 1024x1024 resolutions on the iPad home screen
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffolding: assets, manifest, HTML shell, CSS foundation
+- [ ] 01-02-PLAN.md — Service worker, boot health check, and screen rendering
 
 ### Phase 2: Data Layer and Navigation
 **Goal**: Every subsequent feature has a working foundation — persistent storage schema, hash-based navigation, inactivity timer, and the global UI chrome that appears on every screen.
@@ -149,4 +152,4 @@
 
 ---
 *Roadmap created: 2026-03-21*
-*Last updated: 2026-03-21 after initial creation*
+*Last updated: 2026-03-21 after Phase 1 planning*
