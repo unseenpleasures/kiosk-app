@@ -1,5 +1,6 @@
 // admin.js — Admin panel for ID Card Factory Kiosk PWA
-// Passcode-gated panel with event configuration, sync trigger, and sync status.
+// Passcode-gated panel with event configuration, sync trigger, sync status,
+// email export, and event analytics summary.
 // ES2017 syntax: function keyword throughout, var declarations, no arrow functions.
 
 // ============================================================
@@ -312,6 +313,8 @@ function renderAdminPanel(screen) {
   renderEmailExportSection(panel);
 
   // ---- Exit Button ----
+  // Appended to panel first so that insertBefore(section, exitBtn) works in
+  // renderAnalyticsSummarySection and any future section-insert calls.
   var exitBtn = document.createElement('button');
   exitBtn.type = 'button';
   exitBtn.id = 'admin-exit-btn';
@@ -324,6 +327,10 @@ function renderAdminPanel(screen) {
   });
 
   panel.appendChild(exitBtn);
+
+  // ---- Analytics Summary Section ----
+  // Inserted before exitBtn so it appears between Email Export and Exit.
+  renderAnalyticsSummarySection(panel, exitBtn);
 
   screen.appendChild(panel);
 }
@@ -413,6 +420,179 @@ function renderEmailExportSection(panel) {
   });
 
   panel.appendChild(section);
+}
+
+// ============================================================
+// aggregateAnalytics — pure data aggregation over raw analytics records.
+// Takes the full analytics array and filters to currentEventName scope.
+//
+// ANALYTICS-05: Analytics records accumulate across events indefinitely.
+// No code path clears the analytics store. Records are scoped by eventName field.
+// Filtering by currentEventName provides per-event views; all historical data is preserved.
+//
+// Returns:
+//   {
+//     topCards:    [{ id, name, count }]  — top 10 most-viewed cards, descending
+//     topSearches: [{ query, count }]     — all unique queries, descending by count
+//     zeroResults: [string]               — unique query strings with zero results
+//   }
+// ============================================================
+
+function aggregateAnalytics(records, currentEventName) {
+  var eventRecords = records.filter(function(r) {
+    return r.eventName === currentEventName;
+  });
+
+  // Top 10 card views — count by cardId, track name, sort descending, take first 10
+  var cardViews = {};
+  var cardNames = {};
+  eventRecords.forEach(function(r) {
+    if (r.type === 'card_view') {
+      cardViews[r.cardId] = (cardViews[r.cardId] || 0) + 1;
+      cardNames[r.cardId] = r.cardName;
+    }
+  });
+  var topCards = Object.keys(cardViews)
+    .map(function(id) { return { id: id, name: cardNames[id], count: cardViews[id] }; })
+    .sort(function(a, b) { return b.count - a.count; })
+    .slice(0, 10);
+
+  // Most-searched terms — count by query, sort descending
+  var searchCounts = {};
+  eventRecords.forEach(function(r) {
+    if (r.type === 'search') {
+      searchCounts[r.query] = (searchCounts[r.query] || 0) + 1;
+    }
+  });
+  var topSearches = Object.keys(searchCounts)
+    .map(function(q) { return { query: q, count: searchCounts[q] }; })
+    .sort(function(a, b) { return b.count - a.count; });
+
+  // Zero-result searches — unique query strings that returned zero results
+  var zeroResultSet = {};
+  eventRecords.forEach(function(r) {
+    if (r.type === 'search' && r.zeroResult === true) {
+      zeroResultSet[r.query] = true;
+    }
+  });
+  var zeroResults = Object.keys(zeroResultSet);
+
+  return { topCards: topCards, topSearches: topSearches, zeroResults: zeroResults };
+}
+
+// ============================================================
+// renderAnalyticsSummarySection — builds the "Event Analytics" admin section
+// and inserts it into panel before exitBtn.
+// Reads dbGetAll('analytics') and dbGetAll('emails') asynchronously.
+// Called by renderAdminPanel() after exitBtn has been appended to panel.
+// ============================================================
+
+function renderAnalyticsSummarySection(panel, exitBtn) {
+  var section = document.createElement('div');
+  section.className = 'admin-section';
+
+  var heading = document.createElement('h2');
+  heading.className = 'admin-section-heading';
+  heading.textContent = 'Event Analytics';
+  section.appendChild(heading);
+
+  var eventName = Config.getEventName();
+
+  // Scope indicator
+  var scopeNote = document.createElement('p');
+  scopeNote.className = 'sync-result-detail';
+  scopeNote.textContent = eventName ? 'Showing data for: ' + eventName : 'No event configured';
+  section.appendChild(scopeNote);
+
+  // Loading indicator
+  var loading = document.createElement('p');
+  loading.className = 'sync-result-detail';
+  loading.textContent = 'Loading analytics...';
+  section.appendChild(loading);
+
+  // Insert section before exit button
+  panel.insertBefore(section, exitBtn);
+
+  Promise.all([
+    dbGetAll('analytics'),
+    dbGetAll('emails')
+  ]).then(function(results) {
+    var analyticsRecords = results[0];
+    var emailRecords = results[1];
+
+    loading.style.display = 'none';
+
+    // Email count for current event
+    var emailCount = emailRecords.filter(function(r) {
+      return r.eventName === eventName;
+    }).length;
+
+    // Aggregate analytics data
+    var agg = aggregateAnalytics(analyticsRecords, eventName);
+
+    // ---- Total Emails ----
+    var emailStat = document.createElement('p');
+    emailStat.className = 'admin-stat';
+    emailStat.textContent = 'Emails captured: ' + emailCount;
+    section.appendChild(emailStat);
+
+    // ---- Top 10 Most-Viewed Cards ----
+    var topCardsHeading = document.createElement('h3');
+    topCardsHeading.textContent = 'Top 10 Most-Viewed Cards';
+    section.appendChild(topCardsHeading);
+
+    if (agg.topCards.length === 0) {
+      var noCards = document.createElement('p');
+      noCards.textContent = 'No card views recorded.';
+      section.appendChild(noCards);
+    } else {
+      var cardsList = document.createElement('ol');
+      agg.topCards.forEach(function(item) {
+        var li = document.createElement('li');
+        li.textContent = item.name + ' \u2014 ' + item.count + ' views';
+        cardsList.appendChild(li);
+      });
+      section.appendChild(cardsList);
+    }
+
+    // ---- Most-Searched Terms ----
+    var topSearchesHeading = document.createElement('h3');
+    topSearchesHeading.textContent = 'Most-Searched Terms';
+    section.appendChild(topSearchesHeading);
+
+    if (agg.topSearches.length === 0) {
+      var noSearches = document.createElement('p');
+      noSearches.textContent = 'No searches recorded.';
+      section.appendChild(noSearches);
+    } else {
+      var searchList = document.createElement('ol');
+      agg.topSearches.forEach(function(item) {
+        var li = document.createElement('li');
+        li.textContent = item.query + ' \u2014 ' + item.count + ' searches';
+        searchList.appendChild(li);
+      });
+      section.appendChild(searchList);
+    }
+
+    // ---- Zero-Result Searches ----
+    var zeroHeading = document.createElement('h3');
+    zeroHeading.textContent = 'Zero-Result Searches';
+    section.appendChild(zeroHeading);
+
+    if (agg.zeroResults.length === 0) {
+      var noZero = document.createElement('p');
+      noZero.textContent = 'No zero-result searches.';
+      section.appendChild(noZero);
+    } else {
+      var zeroList = document.createElement('ul');
+      agg.zeroResults.forEach(function(query) {
+        var li = document.createElement('li');
+        li.textContent = query;
+        zeroList.appendChild(li);
+      });
+      section.appendChild(zeroList);
+    }
+  });
 }
 
 // ============================================================
