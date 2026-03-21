@@ -282,6 +282,14 @@ function renderAdminPanel(screen) {
         resultArea.appendChild(detail);
       }
 
+      // Warm in-memory product array after successful sync.
+      // Required for first-sync flow: boot() skips initCatalogue() when no catalogue
+      // exists, so the first sync must trigger it. Also correct for re-sync: keeps
+      // _products current without requiring a page reload.
+      if (!stats.aborted) {
+        initCatalogue();
+      }
+
       // Refresh sync status display after sync
       loadAndRenderSyncStatus(statusArea);
     }).catch(function(err) {
