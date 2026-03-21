@@ -21,7 +21,7 @@
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
-| 4. Customer Browse Experience | 0/2 | Not started | - |
+| 4. Customer Browse Experience | 1/2 | In Progress|  |
 | 5. Email Capture and Export | 0/? | Not started | - |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
 
@@ -88,7 +88,7 @@ Plans:
   6. The email sign-up form has a 3-minute inactivity grace period — the 60-second idle countdown does not interrupt an attendee mid-entry on that screen
 **Plans**: 2 plans
 Plans:
-- [ ] 04-01-PLAN.md — Catalogue module with virtual scroll grid, search, category filter, and analytics
+- [x] 04-01-PLAN.md — Catalogue module with virtual scroll grid, search, category filter, and analytics
 - [ ] 04-02-PLAN.md — Card detail view, router wiring, home button reset, and idle email grace period
 
 ### Phase 5: Email Capture and Export
