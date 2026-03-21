@@ -308,6 +308,9 @@ function renderAdminPanel(screen) {
   // Populate sync status on initial render
   loadAndRenderSyncStatus(statusArea);
 
+  // ---- Email Export Section ----
+  renderEmailExportSection(panel);
+
   // ---- Exit Button ----
   var exitBtn = document.createElement('button');
   exitBtn.type = 'button';
@@ -319,9 +322,6 @@ function renderAdminPanel(screen) {
     resumeIdleTimer();
     window.location.hash = '#/';
   });
-
-  // ---- Email Export Section (inserted before exit button) ----
-  renderEmailExportSection(panel, exitBtn);
 
   panel.appendChild(exitBtn);
 
@@ -352,11 +352,11 @@ function buildCsvFilename(eventName, eventDate) {
 
 // ============================================================
 // renderEmailExportSection — builds the Email Export admin section and
-// inserts it before exitBtn (direct reference, not panel.lastChild).
-// Called by renderAdminPanel() after the Sync Status section.
+// appends it to the panel. Called by renderAdminPanel() after the Sync Status section,
+// before the exit button is created.
 // ============================================================
 
-function renderEmailExportSection(panel, exitBtn) {
+function renderEmailExportSection(panel) {
   var section = document.createElement('div');
   section.className = 'admin-section';
 
@@ -412,7 +412,7 @@ function renderEmailExportSection(panel, exitBtn) {
     });
   });
 
-  panel.insertBefore(section, exitBtn);
+  panel.appendChild(section);
 }
 
 // ============================================================

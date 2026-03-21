@@ -707,7 +707,7 @@ html, body {
 
 .catalogue-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
   padding-bottom: 140px;  /* clear the fixed QR code chrome (96px + 24px + padding) */
@@ -877,6 +877,8 @@ html, body {
 
 .screen-email {
   overflow-y: auto;
+  justify-content: flex-start;
+  align-items: center;
   padding: var(--space-2xl) var(--space-md);
 }
 

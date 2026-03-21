@@ -15,8 +15,8 @@ var _lastSyncAt = null;       // ISO string from sync_meta, used for NEW badge d
 var _activeCategory = null;   // currently selected category chip (null = no filter)
 var _searchQuery = '';        // current search query ('' = no search)
 var _windowStart = 0;         // index into _filtered of first rendered card
-var _windowSize = 80;         // max DOM card nodes (5 cols x 16 rows)
-var _batchSize = 20;          // cards added/removed per scroll event (5 cols x 4 rows)
+var _windowSize = 112;        // max DOM card nodes (7 cols x 16 rows)
+var _batchSize = 28;          // cards added/removed per scroll event (7 cols x 4 rows)
 var _rowHeight = 0;           // measured from live DOM after first render
 var _observer = null;         // IntersectionObserver instance for sentinels
 var _topSentinel = null;      // sentinel element above visible window
@@ -114,9 +114,11 @@ function createCardTile(product) {
 // calculateSpacerHeight — height in px for a given item count
 // ============================================================
 
+var _colCount = 7;  // must match grid-template-columns repeat() count in main.css
+
 function calculateSpacerHeight(itemCount) {
   if (_rowHeight === 0) { return 0; }
-  var rows = Math.ceil(itemCount / 5);
+  var rows = Math.ceil(itemCount / _colCount);
   return rows * _rowHeight;
 }
 
