@@ -1,0 +1,133 @@
+# Requirements: ID Card Factory — Event Kiosk Catalogue App
+
+**Defined:** 2026-03-21
+**Core Value:** Customers can browse and discover ID cards with zero friction — fast, visual, and fully offline — while the business captures emails and analytics data that persist across every event.
+
+## v1 Requirements
+
+### Catalogue
+
+- [ ] **CAT-01**: Attendee can browse a full-screen thumbnail grid of all 950+ cards with lazy loading and virtual scrolling
+- [ ] **CAT-02**: Attendee can filter the grid by one of 8 categories instantly (< 100ms response)
+- [ ] **CAT-03**: Attendee can search cards in real-time by name or character (results appear < 300ms)
+- [ ] **CAT-04**: All search queries including zero-result searches are logged with timestamp
+- [ ] **CAT-05**: Attendee can tap a card to view a larger image and card name
+- [ ] **CAT-06**: Cards added since the previous sync are badged "NEW"
+- [ ] **CAT-07**: QR code linking to https://theidcardfactory.co.uk is always visible on every screen
+- [ ] **CAT-08**: Floating home button fixed to top-left on every screen; tapping it resets search, filter, and returns to the catalogue grid
+- [ ] **CAT-09**: App automatically returns to home after 60 seconds of inactivity, preceded by a 10-second visual countdown with cancel option
+- [ ] **CAT-10**: Email sign-up form has a separate 3-minute inactivity grace period to avoid interrupting mid-entry
+
+### Sync
+
+- [ ] **SYNC-01**: Admin can trigger a full Shopify Storefront API catalogue sync with one tap
+- [ ] **SYNC-02**: Sync displays a progress indicator while running
+- [ ] **SYNC-03**: Sync completion shows a status report (products updated, new cards added, any errors)
+- [ ] **SYNC-04**: Previous cached catalogue remains fully usable if sync fails or is interrupted
+
+### Email Capture
+
+- [ ] **EMAIL-01**: Attendee can access an email sign-up screen from anywhere in the app
+- [ ] **EMAIL-02**: Sign-up form contains email address field and a mandatory GDPR consent checkbox (unchecked by default); submission blocked until checkbox is ticked
+- [ ] **EMAIL-03**: Submitted email is stored in IndexedDB with event name, event date, and consent timestamp
+- [ ] **EMAIL-04**: Confirmation screen displays after successful submission and auto-dismisses to catalogue after 5 seconds
+- [ ] **EMAIL-05**: Admin can export the current event's email list as a tagged, Mailchimp-ready CSV
+
+### Admin Panel
+
+- [ ] **ADMIN-01**: Admin panel is accessible only via a hidden discreet trigger and a passcode entry
+- [ ] **ADMIN-02**: Admin can set event name and date before each show (used for email tagging and analytics labelling)
+- [ ] **ADMIN-03**: Admin can trigger a full catalogue sync from within the admin panel
+- [ ] **ADMIN-04**: Admin can view sync status: last sync time, product count, and any sync errors
+- [ ] **ADMIN-05**: Admin can adjust the idle inactivity timeout duration (default 60 seconds)
+- [ ] **ADMIN-06**: Admin can change the admin passcode (requires entry of current passcode)
+
+### Analytics
+
+- [ ] **ANALYTICS-01**: Every card detail view is logged with card ID, card name, and timestamp
+- [ ] **ANALYTICS-02**: Every category filter selection is logged with category name and timestamp
+- [ ] **ANALYTICS-03**: Every search query is logged; zero-result searches are flagged separately from results-found searches
+- [ ] **ANALYTICS-04**: Admin event summary shows: top 10 most-viewed cards, most-searched terms, list of zero-result searches, and total emails captured — all scoped to the current event
+- [ ] **ANALYTICS-05**: All analytics data persists across events in IndexedDB for longitudinal trend analysis
+
+### PWA & Offline
+
+- [ ] **PWA-01**: App installs as a PWA to iPad home screen with standalone display, landscape orientation, dark background theme, and 512×512 and 1024×1024 icons
+- [ ] **PWA-02**: Service worker caches the full app shell on first install; uses cache-first strategy for all app assets and product images
+- [ ] **PWA-03**: All product JSON and optimised images (≤400px width) are downloaded to device during sync; the app functions fully offline with no network dependency
+- [ ] **PWA-04**: On every launch, app checks whether catalogue data is present in IndexedDB; if storage was evicted, a "Sync required" blocking screen is shown before the catalogue
+- [ ] **PWA-05**: Home screen loads in under 2 seconds from cache on A9X hardware (iPad Pro 12.9" 1st Gen)
+- [ ] **PWA-06**: Admin passcode stored hashed (SHA-256) in localStorage; event name, event date, and timer setting stored in localStorage
+
+## v2 Requirements
+
+### Sync
+
+- **SYNC-V2-01**: Incremental sync — only downloads new or changed products since the last sync; stores `updatedAt` per product to enable delta detection. Full resync is the v1 approach; this optimises pre-event setup time for future versions.
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Cart / wishlist / purchase flow | Catalogue only — QR code is the intended conversion path; commerce adds GDPR complexity |
+| User accounts / login | No use case on a shared kiosk; single admin passcode is sufficient |
+| Video content | A9X GPU ceiling; cache size impact; convention hall audio environment |
+| Push notifications | Kiosk context; iOS PWA notification support unreliable |
+| Social sharing buttons | External network dependency; risk of attendees leaving the kiosk |
+| Favourites / bookmark list | No returning users on a shared kiosk; session state complexity for zero value |
+| Live inventory / stock levels | Requires network; offline-first design means data is always point-in-time |
+| Remote analytics / telemetry | All data stays on-device; third-party service adds GDPR data processor obligations |
+| Native iOS app | PWA + Guided Access achieves the same kiosk lockdown without App Store fees |
+| Keyboard navigation / screen reader tree | Guided Access kiosk is not an accessibility-compliant public terminal; basic visual contrast and touch targets are still required |
+
+## Traceability
+
+*Populated during roadmap creation.*
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| CAT-01 | — | Pending |
+| CAT-02 | — | Pending |
+| CAT-03 | — | Pending |
+| CAT-04 | — | Pending |
+| CAT-05 | — | Pending |
+| CAT-06 | — | Pending |
+| CAT-07 | — | Pending |
+| CAT-08 | — | Pending |
+| CAT-09 | — | Pending |
+| CAT-10 | — | Pending |
+| SYNC-01 | — | Pending |
+| SYNC-02 | — | Pending |
+| SYNC-03 | — | Pending |
+| SYNC-04 | — | Pending |
+| EMAIL-01 | — | Pending |
+| EMAIL-02 | — | Pending |
+| EMAIL-03 | — | Pending |
+| EMAIL-04 | — | Pending |
+| EMAIL-05 | — | Pending |
+| ADMIN-01 | — | Pending |
+| ADMIN-02 | — | Pending |
+| ADMIN-03 | — | Pending |
+| ADMIN-04 | — | Pending |
+| ADMIN-05 | — | Pending |
+| ADMIN-06 | — | Pending |
+| ANALYTICS-01 | — | Pending |
+| ANALYTICS-02 | — | Pending |
+| ANALYTICS-03 | — | Pending |
+| ANALYTICS-04 | — | Pending |
+| ANALYTICS-05 | — | Pending |
+| PWA-01 | — | Pending |
+| PWA-02 | — | Pending |
+| PWA-03 | — | Pending |
+| PWA-04 | — | Pending |
+| PWA-05 | — | Pending |
+| PWA-06 | — | Pending |
+
+**Coverage:**
+- v1 requirements: 36 total
+- Mapped to phases: 0
+- Unmapped: 36 ⚠️ (fill during roadmap creation)
+
+---
+*Requirements defined: 2026-03-21*
+*Last updated: 2026-03-21 after initial definition*
