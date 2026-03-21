@@ -1,6 +1,6 @@
 // router.js — Hash-based navigation dispatcher for ID Card Factory Kiosk PWA
 // Dispatches window.location.hash to the correct screen render function.
-// Phase 3-5 will replace stub render functions with real implementations.
+// Phase 4 replaced catalogue/category/card stubs. Phase 5 will replace email stub.
 // ES2017 syntax: function keyword throughout, var declarations, no arrow functions.
 
 // ============================================================
@@ -8,7 +8,7 @@
 // ============================================================
 
 var ROUTES = {
-  '#/':      renderCatalogueStub,
+  '#/':      renderCatalogue,
   '#/email': renderEmailStub,
   '#/admin': renderAdmin      // wired to admin.js renderAdmin — was renderAdminStub
 };
@@ -30,14 +30,14 @@ function handleRoute() {
   // 2. Prefix match: #/category/:id
   if (hash.indexOf('#/category/') === 0) {
     var categoryId = hash.replace('#/category/', '');
-    renderCategoryStub(categoryId);
+    renderCategory(categoryId);
     return;
   }
 
   // 3. Prefix match: #/card/:id
   if (hash.indexOf('#/card/') === 0) {
     var cardId = hash.replace('#/card/', '');
-    renderCardStub(cardId);
+    renderCard(cardId);
     return;
   }
 
@@ -56,23 +56,9 @@ function initRouter() {
 }
 
 // ============================================================
-// Screen stub render functions
-// Phase 3-5 will replace these with real implementations.
-// Each stub creates a div.screen with a unique id for testability.
+// Email stub render function
+// Phase 5 will replace this with the real email capture screen.
 // ============================================================
-
-function renderCatalogueStub() {
-  var app = document.getElementById('app');
-  app.innerHTML = '';
-  var screen = document.createElement('div');
-  screen.className = 'screen';
-  screen.id = 'screen-catalogue';
-  var heading = document.createElement('h1');
-  heading.className = 'stub-heading';
-  heading.textContent = 'Catalogue';
-  screen.appendChild(heading);
-  app.appendChild(screen);
-}
 
 function renderEmailStub() {
   var app = document.getElementById('app');
@@ -83,32 +69,6 @@ function renderEmailStub() {
   var heading = document.createElement('h1');
   heading.className = 'stub-heading';
   heading.textContent = 'Email Sign Up';
-  screen.appendChild(heading);
-  app.appendChild(screen);
-}
-
-function renderCategoryStub(categoryId) {
-  var app = document.getElementById('app');
-  app.innerHTML = '';
-  var screen = document.createElement('div');
-  screen.className = 'screen';
-  screen.id = 'screen-category';
-  var heading = document.createElement('h1');
-  heading.className = 'stub-heading';
-  heading.textContent = 'Category: ' + categoryId;
-  screen.appendChild(heading);
-  app.appendChild(screen);
-}
-
-function renderCardStub(cardId) {
-  var app = document.getElementById('app');
-  app.innerHTML = '';
-  var screen = document.createElement('div');
-  screen.className = 'screen';
-  screen.id = 'screen-card';
-  var heading = document.createElement('h1');
-  heading.className = 'stub-heading';
-  heading.textContent = 'Card: ' + cardId;
   screen.appendChild(heading);
   app.appendChild(screen);
 }

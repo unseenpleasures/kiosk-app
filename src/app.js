@@ -160,8 +160,8 @@ function initAdminTrigger() {
 
 // ============================================================
 // 5. initHomeButton — wires the global chrome home button click handler
-// Sets hash to '#/' which triggers the router to render the catalogue stub.
-// Phase 4 will also reset in-memory filter/search state here.
+// Sets hash to '#/' and resets in-memory filter/search state via catalogue.js.
+// Source: D-21
 // ============================================================
 
 function initHomeButton() {
@@ -169,7 +169,8 @@ function initHomeButton() {
   if (homeBtn) {
     homeBtn.addEventListener('click', function() {
       window.location.hash = '#/';
-      // Phase 4 will also reset in-memory filter/search state here
+      // Phase 4: reset in-memory filter/search state
+      resetCatalogueState();
     });
   }
 }
@@ -199,6 +200,9 @@ async function boot() {
     // Do NOT start idle timer on sync-required screen -- admin needs unrestricted time
     return;
   }
+
+  // Phase 4: warm in-memory product array before rendering any catalogue screen
+  await initCatalogue();
 
   // Show splash screen briefly, then init navigation
   showSplashScreen();

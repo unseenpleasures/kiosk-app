@@ -12,6 +12,7 @@ var _countdownTimer = null;
 var _countdownEl = null;
 var _countdownRemaining = 10;
 var _active = false;
+var _pausedForEmail = false;  // tracks email-screen pause separately from admin pauses
 
 // ============================================================
 // resetIdleTimer — clears existing timer and starts a fresh one
@@ -117,6 +118,27 @@ function initIdleTimer() {
   document.addEventListener('touchend', resetIdleTimer, { passive: true });
   document.addEventListener('pointerdown', resetIdleTimer, { passive: true });
   resetIdleTimer();
+  initEmailGracePeriod();  // Phase 4: wire email screen grace period
+}
+
+// ============================================================
+// initEmailGracePeriod — suppresses idle timer on #/email screen
+// 3-minute grace period: timer does not start until user leaves email screen.
+// Uses _pausedForEmail boolean to avoid conflicting with admin panel pauses.
+// Source: CAT-10, D-15
+// ============================================================
+
+function initEmailGracePeriod() {
+  window.addEventListener('hashchange', function() {
+    var hash = window.location.hash;
+    if (hash === '#/email') {
+      _pausedForEmail = true;
+      pauseIdleTimer();
+    } else if (_pausedForEmail) {
+      _pausedForEmail = false;
+      resumeIdleTimer();
+    }
+  });
 }
 
 // ============================================================
