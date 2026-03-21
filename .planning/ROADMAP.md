@@ -18,7 +18,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. PWA Foundation | 0/2 | Planning complete | - |
+| 1. PWA Foundation | 1/2 | In Progress|  |
 | 2. Data Layer and Navigation | 0/? | Not started | - |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
@@ -41,7 +41,7 @@
   5. The installed app icon displays correctly at both 512x512 and 1024x1024 resolutions on the iPad home screen
 **Plans**: 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — Project scaffolding: assets, manifest, HTML shell, CSS foundation
+- [x] 01-01-PLAN.md — Project scaffolding: assets, manifest, HTML shell, CSS foundation
 - [ ] 01-02-PLAN.md — Service worker, boot health check, and screen rendering
 
 ### Phase 2: Data Layer and Navigation
