@@ -1,0 +1,129 @@
+<svg height="280" width="440" viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg">
+  <rect fill="#0D0F1A" rx="16" height="240" width="400" y="20" x="20"></rect>
+  <rect fill="#F5C842" rx="3" height="5" width="368" y="20" x="36"></rect>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M28 28 L28 44"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M28 28 L44 28"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M412 28 L412 44"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M412 28 L396 28"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M28 252 L28 236"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M28 252 L44 252"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M412 252 L412 236"></path>
+  <path opacity="0.7" stroke-width="1.5" stroke="#F5C842" d="M412 252 L396 252"></path>
+  <rect stroke-width="1.8" stroke="#F5C842" fill="none" rx="5" height="42" width="58" y="68" x="52"></rect>
+  <rect opacity="0.9" fill="#F5C842" rx="8" height="16" width="16" y="74" x="58"></rect>
+  <rect opacity="0.65" fill="#F5C842" rx="1.5" height="3" width="24" y="76" x="79"></rect>
+  <rect opacity="0.4" fill="#F5C842" rx="1" height="2.5" width="18" y="83" x="79"></rect>
+  <rect opacity="0.3" fill="#F5C842" rx="1" height="2" width="34" y="96" x="58"></rect>
+  <text letter-spacing="2" fill="#F0F0F0" font-weight="900" font-size="28" font-family="Arial Black, Arial, sans-serif" y="94" x="124">ID CARD</text>
+  <text letter-spacing="5" fill="#F5C842" font-weight="900" font-size="28" font-family="Arial Black, Arial, sans-serif" y="126" x="124">FACTORY</text>
+  <line opacity="0.35" stroke-width="0.75" stroke="#F5C842" y2="146" x2="388" y1="146" x1="52"></line>
+  <text opacity="0.55" letter-spacing="3" fill="#F0F0F0" font-size="11" font-family="Arial, sans-serif" text-anchor="middle" y="168" x="220">FANDOM CREDENTIALS. PRO PRINTED.</text>
+  <rect fill="#F5C842" height="48" width="2.5" y="182" x="52"></rect>
+  <rect fill="#0D0F1A" height="48" width="1.5" y="182" x="57"></rect>
+  <rect fill="#F5C842" height="48" width="2.5" y="182" x="58.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="63"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="67"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="69.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="72.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="74.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="78.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="81"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="84"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="88"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="90.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="93.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="97.5"></rect>
+  <rect fill="#F5C842" height="42" width="2.5" y="182" x="99.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="103"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="105"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="109"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="112"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="114.5"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="118.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="120.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="123.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="127.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="129.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="132.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="135"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="139"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="142"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="144"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="148"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="151"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="153"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="157"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="159.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="162.5"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="166.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="168.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="171.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="175.5"></rect>
+  <rect fill="#F5C842" height="42" width="2.5" y="182" x="177.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="181"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="184"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="186"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="190"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="193"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="195.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="199.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="201.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="204.5"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="208.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="211"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="214"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="218"></rect>
+  <rect fill="#F5C842" height="42" width="2.5" y="182" x="220"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="223.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="226"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="230"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="233"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="235"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="239"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="241.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="244.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="248.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="250.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="253.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="256"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="260"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="263"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="265"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="269"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="272"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="274.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="278.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="280.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="283.5"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="287.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="290"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="293"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="297"></rect>
+  <rect fill="#F5C842" height="42" width="2.5" y="182" x="299"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="302.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="305"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="309"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="312"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="314"></rect>
+  <rect fill="#F5C842" height="42" width="1.5" y="182" x="318"></rect>
+  <rect fill="#0D0F1A" height="42" width="2" y="182" x="320.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="323.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="327.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="329.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="332.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="336.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="339.5"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="341.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1.5" y="182" x="345.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="348"></rect>
+  <rect fill="#0D0F1A" height="42" width="3" y="182" x="351"></rect>
+  <rect fill="#F5C842" height="42" width="1" y="182" x="355"></rect>
+  <rect fill="#0D0F1A" height="42" width="2.5" y="182" x="357"></rect>
+  <rect fill="#F5C842" height="42" width="3" y="182" x="360.5"></rect>
+  <rect fill="#0D0F1A" height="42" width="1" y="182" x="364.5"></rect>
+  <rect fill="#F5C842" height="42" width="2" y="182" x="366.5"></rect>
+  <rect fill="#F5C842" height="48" width="2.5" y="182" x="370.5"></rect>
+  <rect fill="#0D0F1A" height="48" width="1.5" y="182" x="375"></rect>
+  <rect fill="#F5C842" height="48" width="2.5" y="182" x="376.5"></rect>
+  <text opacity="0.65" letter-spacing="3" fill="#F5C842" font-size="9" font-family="Arial, sans-serif" text-anchor="middle" y="242" x="220">ID CARD FACTORY · 0001</text>
+</svg>
