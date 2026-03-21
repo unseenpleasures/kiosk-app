@@ -37,7 +37,7 @@ var _searchDebounceTimer = null;
 function initCatalogue() {
   return Promise.all([
     dbGetAll('products'),
-    dbGet('sync_meta', 'lastSyncAt')
+    dbGet('sync_meta', 'prevSyncAt')  // Read previous sync time for NEW badge — see sync.js prevSyncAt write
   ]).then(function(results) {
     _products = results[0];
     var syncMeta = results[1];

@@ -11,7 +11,7 @@ var SHOPIFY_STORE_DOMAIN = 'the-id-card-factory.myshopify.com';
 var STOREFRONT_TOKEN = '59555f141fc16dafc1dae943acaf21ad';
 var API_VERSION = '2026-01';
 var PRODUCTS_PER_PAGE = 250;
-var SYNC_CACHE_NAME = 'kiosk-v3';
+var SYNC_CACHE_NAME = 'kiosk-v3'; // MUST match the SYNC_CACHE_NAME constant in sw.js activate handler
 
 // ============================================================
 // GraphQL query — cursor-based pagination, featuredImage.url (not src — deprecated)
@@ -152,21 +152,26 @@ function syncAll(onProgress) {
         }
 
         // All pages done — write final metadata and clear resume checkpoint
-        return dbPut('sync_meta', { key: 'lastSyncAt', value: new Date().toISOString() })
-          .then(function() {
-            return dbPut('sync_meta', { key: 'productCount', value: totalProducts });
-          })
-          .then(function() {
-            // Clear cursor checkpoint — sync completed successfully, no resume needed
-            return dbPut('sync_meta', { key: 'currentCursor', value: null });
-          })
-          .then(function() {
-            // Clear page progress checkpoint
-            return dbPut('sync_meta', { key: 'pagesComplete', value: null });
-          })
-          .then(function() {
-            return { total: totalProducts, newProducts: newProducts, errors: errors };
-          });
+        // Capture current lastSyncAt as prevSyncAt BEFORE overwriting.
+        // catalogue.js reads prevSyncAt to determine which products are "NEW"
+        // relative to the previous sync, not the current sync.
+        // MUST match the key read in catalogue.js initCatalogue().
+        return dbGet('sync_meta', 'lastSyncAt').then(function(prev) {
+          var prevValue = prev ? prev.value : null;
+          return dbPut('sync_meta', { key: 'prevSyncAt', value: prevValue });
+        }).then(function() {
+          return dbPut('sync_meta', { key: 'lastSyncAt', value: new Date().toISOString() });
+        }).then(function() {
+          return dbPut('sync_meta', { key: 'productCount', value: totalProducts });
+        }).then(function() {
+          // Clear cursor checkpoint — sync completed successfully, no resume needed
+          return dbPut('sync_meta', { key: 'currentCursor', value: null });
+        }).then(function() {
+          // Clear page progress checkpoint
+          return dbPut('sync_meta', { key: 'pagesComplete', value: null });
+        }).then(function() {
+          return { total: totalProducts, newProducts: newProducts, errors: errors };
+        });
       });
     });
   }
