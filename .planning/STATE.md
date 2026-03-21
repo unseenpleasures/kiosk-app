@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Live Deployment
-status: active
-stopped_at: null
-last_updated: "2026-03-21T18:00:00.000Z"
+status: unknown
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-03-21T18:19:33.517Z"
 progress:
   total_phases: 1
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -19,27 +19,25 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** Customers can browse and discover ID cards with zero friction — fast, visual, and fully offline — while the business captures emails and analytics data that persist across every event.
-**Current focus:** v1.1 Live Deployment — Phase 8: Deploy and Install
+**Current focus:** Phase 08 — deploy-and-install
 
 ---
 
 ## Current Position
 
-Phase: 8 of 8 (Deploy and Install)
-Plan: — of — (not yet planned)
-Status: Ready to plan
-Last activity: 2026-03-21 — Roadmap created for v1.1 milestone
-
-Progress: [░░░░░░░░░░] 0% (v1.1)
+Phase: 08 (deploy-and-install) — EXECUTING
+Plan: 2 of 2
 
 ## Performance Metrics
 
 **v1.0 Velocity (reference):**
+
 - Total plans completed: 14
 - Total execution time: ~1 day
 - Average duration: ~40 min/plan
 
 **v1.1 Velocity:**
+
 - Total plans completed: 0
 - In progress: —
 
@@ -54,6 +52,8 @@ Recent decisions affecting current work:
 
 - [Phase 7]: Separate sync cache name — product images excluded from SW activate cleanup
 - [Phase 7]: prevSyncAt stored before overwrite for correct NEW badge timing
+- [Phase 08-01]: Use ./ relative paths (not /absolute) for all PWA asset references to support GitHub Pages subdirectory hosting
+- [Phase 08-01]: Bump CACHE_NAME to kiosk-v9 after path changes; preserve SYNC_CACHE_NAME at kiosk-v3 to protect product image cache
 
 ### Pending Todos
 
@@ -66,6 +66,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21
-Stopped at: Roadmap created — Phase 8 defined, ready for plan-phase
+Last session: 2026-03-21T18:19:33.511Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None

@@ -10,7 +10,7 @@ Requirements for Live Deployment milestone. Each maps to roadmap phases.
 ### Hosting
 
 - [ ] **HOST-01**: PWA files deployed to GitHub Pages with a public URL
-- [ ] **HOST-02**: Service worker and manifest serve correctly from GitHub Pages (correct MIME types, paths)
+- [x] **HOST-02**: Service worker and manifest serve correctly from GitHub Pages (correct MIME types, paths)
 
 ### Installation
 
@@ -36,7 +36,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | HOST-01 | Phase 8 | Pending |
-| HOST-02 | Phase 8 | Pending |
+| HOST-02 | Phase 8 | Complete |
 | INST-01 | Phase 8 | Pending |
 | INST-02 | Phase 8 | Pending |
 
