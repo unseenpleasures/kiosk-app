@@ -39,8 +39,8 @@
 - [x] **ADMIN-02**: Admin can set event name and date before each show (used for email tagging and analytics labelling)
 - [x] **ADMIN-03**: Admin can trigger a full catalogue sync from within the admin panel
 - [x] **ADMIN-04**: Admin can view sync status: last sync time, product count, and any sync errors
-- [ ] **ADMIN-05**: Admin can adjust the idle inactivity timeout duration (default 60 seconds)
-- [ ] **ADMIN-06**: Admin can change the admin passcode (requires entry of current passcode)
+- [x] **ADMIN-05**: Admin can adjust the idle inactivity timeout duration (default 60 seconds)
+- [x] **ADMIN-06**: Admin can change the admin passcode (requires entry of current passcode)
 
 ### Analytics
 
@@ -116,8 +116,8 @@
 | EMAIL-03 | Phase 5 | Complete |
 | EMAIL-04 | Phase 5 | Complete |
 | EMAIL-05 | Phase 5 | Complete |
-| ADMIN-05 | Phase 6 | Pending |
-| ADMIN-06 | Phase 6 | Pending |
+| ADMIN-05 | Phase 6 | Complete |
+| ADMIN-06 | Phase 6 | Complete |
 | ANALYTICS-04 | Phase 6 | Complete |
 | ANALYTICS-05 | Phase 6 | Complete |
 

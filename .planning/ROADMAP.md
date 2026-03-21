@@ -12,7 +12,7 @@
 - [x] **Phase 3: Sync Engine** - Shopify catalogue sync with cursor checkpointing, progress UI, and admin sync panel (completed 2026-03-21)
 - [x] **Phase 4: Customer Browse Experience** - Virtual-scrolled catalogue grid, search, filter, card detail, and analytics logging (completed 2026-03-21)
 - [x] **Phase 5: Email Capture and Export** - GDPR-compliant email sign-up, per-event tagging, and CSV export (completed 2026-03-21)
-- [ ] **Phase 6: Admin Polish and Analytics** - Analytics summary, admin configuration, passcode change, cumulative data
+- [x] **Phase 6: Admin Polish and Analytics** - Analytics summary, admin configuration, passcode change, cumulative data (completed 2026-03-21)
 
 ## Progress
 
@@ -23,7 +23,7 @@
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
 | 5. Email Capture and Export | 2/2 | Complete   | 2026-03-21 |
-| 6. Admin Polish and Analytics | 1/2 | In Progress|  |
+| 6. Admin Polish and Analytics | 2/2 | Complete   | 2026-03-21 |
 
 ---
 
@@ -118,7 +118,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 06-01-PLAN.md — Event analytics summary section (top cards, searches, zero-results, email count)
-- [ ] 06-02-PLAN.md — Idle timeout configuration and passcode change controls
+- [x] 06-02-PLAN.md — Idle timeout configuration and passcode change controls
 
 ---
 
