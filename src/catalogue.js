@@ -531,17 +531,21 @@ function renderCard(cardId) {
   var pricing = document.createElement('div');
   pricing.className = 'detail-pricing';
 
+  // Convention prices are fixed at £7 (standard) and £10 (personalised).
+  // Shopify online prices differ — we use variant titles from Shopify to know
+  // which options exist, then map to convention prices by ascending price order:
+  // cheapest variant = £7, next = £10, any further variants also £10.
+  var CONVENTION_PRICES = [7, 10];
   var variants = (product.variants && product.variants.length) ? product.variants : null;
   if (variants) {
-    variants.forEach(function(v) {
+    var sorted = variants.slice().sort(function(a, b) {
+      return parseFloat(a.price || 0) - parseFloat(b.price || 0);
+    });
+    sorted.forEach(function(v, i) {
+      var conventionPrice = CONVENTION_PRICES[Math.min(i, CONVENTION_PRICES.length - 1)];
       var line = document.createElement('p');
       line.className = 'detail-price-line';
-      var priceStr = '';
-      if (v.price !== null && v.price !== undefined) {
-        var n = parseFloat(v.price);
-        priceStr = ' \u2014 \u00A3' + (isNaN(n) ? v.price : (n % 1 === 0 ? String(Math.round(n)) : n.toFixed(2)));
-      }
-      line.textContent = v.title + priceStr;
+      line.textContent = v.title + ' \u2014 \u00A3' + conventionPrice;
       pricing.appendChild(line);
     });
   } else {
