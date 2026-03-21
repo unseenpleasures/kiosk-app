@@ -19,7 +19,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
-| 2. Data Layer and Navigation | 0/? | Not started | - |
+| 2. Data Layer and Navigation | 0/2 | Not started | - |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
@@ -54,7 +54,10 @@ Plans:
   3. After 60 seconds of no input, a 10-second visible countdown appears; if not dismissed, the app returns to the home screen
   4. The admin passcode and app configuration values (event name, event date, timer setting) persist across app restarts
   5. All IndexedDB object stores (products, emails, analytics, sync metadata) are created and accessible without errors on a fresh install
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — IndexedDB schema with CRUD helpers (db.js) and localStorage config wrapper with SHA-256 hashing (config.js)
+- [ ] 02-02-PLAN.md — Hash router, inactivity timer, global chrome elements, and boot sequence refactor
 
 ### Phase 3: Sync Engine
 **Goal**: An admin can reliably download the full 950+ product catalogue from Shopify onto the device before an event, with transparent progress and safe failure recovery.
@@ -152,4 +155,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-21*
-*Last updated: 2026-03-21 after Phase 1 planning*
+*Last updated: 2026-03-21 after Phase 2 planning*
