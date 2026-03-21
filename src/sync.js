@@ -19,7 +19,7 @@ var SYNC_CACHE_NAME = 'kiosk-v3';
 // Source: https://shopify.dev/docs/api/usage/pagination-graphql
 // ============================================================
 
-var PRODUCTS_QUERY = 'query ($cursor: String) { products(first: 250, after: $cursor) { nodes { id title handle productType tags createdAt updatedAt featuredImage { url altText width height } } pageInfo { hasNextPage endCursor } } }';
+var PRODUCTS_QUERY = 'query ($cursor: String) { products(first: 250, after: $cursor) { nodes { id title handle productType tags createdAt updatedAt featuredImage { url altText width height } variants(first: 10) { nodes { title price { amount currencyCode } } } } pageInfo { hasNextPage endCursor } } }';
 
 // ============================================================
 // fetchProductPage — POST one page of products from Shopify Storefront API
@@ -108,6 +108,10 @@ function syncAll(onProgress) {
             newProducts++;
           }
           totalProducts++;
+          var variantNodes = (product.variants && product.variants.nodes) ? product.variants.nodes : [];
+          var variants = variantNodes.map(function(v) {
+            return { title: v.title, price: v.price ? v.price.amount : null };
+          });
           return dbPut('products', {
             id: product.id,
             title: product.title,
@@ -117,7 +121,8 @@ function syncAll(onProgress) {
             imageUrl: product.featuredImage ? product.featuredImage.url : null,
             imageAlt: product.featuredImage ? product.featuredImage.altText : null,
             createdAt: product.createdAt,
-            updatedAt: product.updatedAt
+            updatedAt: product.updatedAt,
+            variants: variants
           });
         });
       });

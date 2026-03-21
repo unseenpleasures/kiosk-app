@@ -527,19 +527,31 @@ function renderCard(cardId) {
   title.textContent = product.title;
   screen.appendChild(title);
 
-  // Fixed pricing lines (D-11, D-12)
+  // Pricing — read from synced variants (title + price per variant)
   var pricing = document.createElement('div');
   pricing.className = 'detail-pricing';
 
-  var line1 = document.createElement('p');
-  line1.className = 'detail-price-line';
-  line1.textContent = 'Standard \u2014 \u00A37';
-  pricing.appendChild(line1);
-
-  var line2 = document.createElement('p');
-  line2.className = 'detail-price-line';
-  line2.textContent = 'Personalised \u2014 \u00A310';
-  pricing.appendChild(line2);
+  var variants = (product.variants && product.variants.length) ? product.variants : null;
+  if (variants) {
+    variants.forEach(function(v) {
+      var line = document.createElement('p');
+      line.className = 'detail-price-line';
+      var priceStr = '';
+      if (v.price !== null && v.price !== undefined) {
+        var n = parseFloat(v.price);
+        priceStr = ' \u2014 \u00A3' + (isNaN(n) ? v.price : (n % 1 === 0 ? String(Math.round(n)) : n.toFixed(2)));
+      }
+      line.textContent = v.title + priceStr;
+      pricing.appendChild(line);
+    });
+  } else {
+    // Fallback for products synced before variant data was added — re-sync to get accurate prices
+    var fallback = document.createElement('p');
+    fallback.className = 'detail-price-line';
+    fallback.textContent = 'Re-sync catalogue to see pricing';
+    fallback.style.color = 'var(--color-text-secondary)';
+    pricing.appendChild(fallback);
+  }
 
   screen.appendChild(pricing);
   app.appendChild(screen);
