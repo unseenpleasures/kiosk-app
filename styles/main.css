@@ -781,3 +781,91 @@ html, body {
   color: var(--color-text-secondary);
   font-size: var(--text-body);
 }
+
+/* ---------------------------------------------------------------------------
+   Card Detail View — Screen 4
+   Source: Phase 4, CAT-05, D-10 through D-14
+   --------------------------------------------------------------------------- */
+
+.screen-card-detail {
+  justify-content: flex-start;
+  align-items: center;
+  padding: var(--space-lg);
+  padding-top: 100px;  /* clear chrome home button (top:16px + 48px + gap) + back button */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.detail-back {
+  position: absolute;
+  top: 72px;   /* below chrome home: 16px top + 48px height + 8px gap */
+  left: var(--space-md);
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+  padding: var(--space-sm) var(--space-md);
+  min-height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.detail-back:active {
+  opacity: 0.7;
+}
+
+.detail-image-container {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.detail-badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-bold);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading);
+  color: var(--color-text-primary);
+  line-height: var(--leading-snug);
+  margin-top: var(--space-lg);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-pricing {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.detail-price-line {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin-top: var(--space-xs);
+}

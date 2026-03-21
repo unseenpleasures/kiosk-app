@@ -457,6 +457,136 @@ function onChipClick(event) {
 }
 
 // ============================================================
+// renderCard — full-screen card detail view
+// Finds product in memory, renders large image, name, fixed pricing.
+// Logs card_view analytics on every open.
+// Source: Phase 4, CAT-05, D-10, D-11, D-12, D-13, D-14, D-17, ANALYTICS-01
+// ============================================================
+
+function renderCard(cardId) {
+  // Find product in in-memory array
+  var product = null;
+  for (var i = 0; i < _products.length; i++) {
+    if (_products[i].id === cardId) {
+      product = _products[i];
+      break;
+    }
+  }
+  if (!product) {
+    window.location.hash = '#/';
+    return;
+  }
+
+  var app = document.getElementById('app');
+  app.innerHTML = '';
+
+  var screen = document.createElement('div');
+  screen.className = 'screen screen-card-detail';
+  screen.id = 'screen-card';
+
+  // Back button — positioned below chrome home button to avoid overlap
+  // Home button is fixed at top:16px left:16px 48x48px — place back at top:72px left:16px
+  var backBtn = document.createElement('button');
+  backBtn.className = 'detail-back';
+  backBtn.type = 'button';
+  backBtn.innerHTML = '&#8249; Back to browse';
+  backBtn.addEventListener('click', function() {
+    window.location.hash = '#/';
+  });
+  screen.appendChild(backBtn);
+
+  // Card image — large, centred, portrait
+  var imgContainer = document.createElement('div');
+  imgContainer.className = 'detail-image-container';
+
+  var img = document.createElement('img');
+  img.className = 'detail-image';
+  img.src = product.imageUrl;
+  img.alt = product.imageAlt || product.title;
+  imgContainer.appendChild(img);
+
+  // NEW badge on detail view (per D-04 — "in both the grid and detail views")
+  if (isNewCard(product)) {
+    var badge = document.createElement('span');
+    badge.className = 'detail-badge';
+    badge.textContent = 'NEW';
+    imgContainer.appendChild(badge);
+  }
+
+  screen.appendChild(imgContainer);
+
+  // Card name
+  var title = document.createElement('h2');
+  title.className = 'detail-title';
+  title.textContent = product.title;
+  screen.appendChild(title);
+
+  // Fixed pricing lines (D-11, D-12)
+  var pricing = document.createElement('div');
+  pricing.className = 'detail-pricing';
+
+  var line1 = document.createElement('p');
+  line1.className = 'detail-price-line';
+  line1.textContent = 'Standard \u2014 \u00A37';
+  pricing.appendChild(line1);
+
+  var line2 = document.createElement('p');
+  line2.className = 'detail-price-line';
+  line2.textContent = 'Personalised \u2014 \u00A310';
+  pricing.appendChild(line2);
+
+  screen.appendChild(pricing);
+  app.appendChild(screen);
+
+  // Log card view analytics (ANALYTICS-01, D-17) — fire and forget
+  dbAdd('analytics', {
+    type: 'card_view',
+    cardId: product.id,
+    cardName: product.title,
+    timestamp: new Date().toISOString(),
+    eventName: Config.getEventName()
+  });
+}
+
+// ============================================================
+// renderCategory — pre-selects a category chip and renders catalogue
+// Decodes the category from the URL, sets _activeCategory, then renders
+// the catalogue grid. Uses redirect to #/ pattern rather than a separate screen.
+// Source: Phase 4, RESEARCH.md recommendation
+// ============================================================
+
+function renderCategory(categoryId) {
+  // Decode the category ID (it may be URI-encoded in the hash)
+  var category = decodeURIComponent(categoryId);
+  // Check if this category exists in our derived categories
+  var found = false;
+  for (var i = 0; i < _categories.length; i++) {
+    if (_categories[i] === category) {
+      found = true;
+      break;
+    }
+  }
+  if (found) {
+    _activeCategory = category;
+    _searchQuery = '';
+    var searchInput = document.getElementById('catalogue-search');
+    if (searchInput) { searchInput.value = ''; }
+    applyFilters();
+  }
+  // Render catalogue with the category pre-selected
+  renderCatalogue();
+  // After render, mark the correct chip as active
+  if (found) {
+    var chips = document.querySelectorAll('.chip');
+    for (var j = 0; j < chips.length; j++) {
+      if (chips[j].dataset.category === category) {
+        chips[j].classList.add('chip--active');
+      }
+    }
+  }
+}
+
+// ============================================================
 // resetCatalogueState — called from app.js home button handler
 // Clears all filter/search state and re-renders the grid from scratch.
 // Source: D-21
