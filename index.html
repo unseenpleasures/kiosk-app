@@ -21,6 +21,21 @@
 </head>
 <body style="background-color: #0d0f1a;">
   <div id="app"></div>
+
+  <!-- Global chrome -- fixed position, always visible on every screen -->
+  <div id="chrome-qr" class="chrome-qr" role="img" aria-label="QR code to theidcardfactory.co.uk">
+    <img src="/assets/qr-code.png" alt="Visit theidcardfactory.co.uk" width="96" height="96">
+    <span class="chrome-qr-label">Visit our website</span>
+  </div>
+
+  <button id="chrome-home" class="chrome-home" type="button" aria-label="Return to catalogue home">
+    <span class="chrome-home-icon">&#8962;</span>
+  </button>
+
+  <script src="/src/db.js" defer></script>
+  <script src="/src/config.js" defer></script>
+  <script src="/src/router.js" defer></script>
+  <script src="/src/idle.js" defer></script>
   <script src="/src/app.js" defer></script>
 </body>
 </html>

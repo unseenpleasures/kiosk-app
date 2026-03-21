@@ -29,49 +29,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // ============================================================
-// 2. checkCatalogueHealth
-// Opens IndexedDB kiosk-db and checks whether the products object store
-// exists and contains at least one record.
-// Returns Promise<boolean> — true if catalogue data is ready.
-// ============================================================
-
-function checkCatalogueHealth() {
-  return new Promise(function(resolve) {
-    var req = indexedDB.open('kiosk-db', 1);
-
-    req.onupgradeneeded = function() {
-      // DB did not exist — fresh install or post-eviction
-      resolve(false);
-    };
-
-    req.onsuccess = function(event) {
-      var db = event.target.result;
-      if (!db.objectStoreNames.contains('products')) {
-        db.close();
-        resolve(false);
-        return;
-      }
-      var tx = db.transaction('products', 'readonly');
-      var store = tx.objectStore('products');
-      var countReq = store.count();
-      countReq.onsuccess = function() {
-        db.close();
-        resolve(countReq.result > 0);
-      };
-      countReq.onerror = function() {
-        db.close();
-        resolve(false);
-      };
-    };
-
-    req.onerror = function() {
-      resolve(false);
-    };
-  });
-}
-
-// ============================================================
-// 3. showSplashScreen
+// 2. showSplashScreen
 // Renders the branded splash screen into #app.
 // Shows: logo, app title, CTA button, QR code corner.
 // Entry animation: fade-in via .visible class added on next frame.
@@ -138,7 +96,7 @@ function showSplashScreen() {
 }
 
 // ============================================================
-// 4. showSyncRequiredScreen
+// 3. showSyncRequiredScreen
 // Renders a blocking "Sync Required" screen when catalogue data is missing.
 // No QR code, no sync button (admin panel built in a later phase).
 // ============================================================
@@ -176,19 +134,52 @@ function showSyncRequiredScreen() {
 }
 
 // ============================================================
+// 4. initHomeButton — wires the global chrome home button click handler
+// Sets hash to '#/' which triggers the router to render the catalogue stub.
+// Phase 4 will also reset in-memory filter/search state here.
+// ============================================================
+
+function initHomeButton() {
+  var homeBtn = document.getElementById('chrome-home');
+  if (homeBtn) {
+    homeBtn.addEventListener('click', function() {
+      window.location.hash = '#/';
+      // Phase 4 will also reset in-memory filter/search state here
+    });
+  }
+}
+
+// ============================================================
 // 5. boot — main entry point
-// Checks IndexedDB health and renders the appropriate screen.
-// In Phase 1, the products store is never populated, so "Sync Required"
-// is always shown. Splash screen will be the default once Phase 3 sync runs.
+// Opens DB at v2 via db.js, checks catalogue health, renders appropriate screen.
+// Wires router, idle timer, and chrome home button if catalogue is present.
 // ============================================================
 
 async function boot() {
-  var hasCatalogue = await checkCatalogueHealth();
-  if (hasCatalogue) {
-    showSplashScreen();
-  } else {
+  // Phase 2: open DB at v2 (creates all stores if needed) before health check
+  await openDB();
+
+  // Check catalogue health using db.js (v2 schema, replaces the old inline db check)
+  var productCount = await dbCount('products');
+  var hasCatalogue = productCount > 0;
+
+  if (!hasCatalogue) {
     showSyncRequiredScreen();
+    // Do NOT start idle timer on sync-required screen -- admin needs unrestricted time
+    return;
   }
+
+  // Show splash screen briefly, then init navigation
+  showSplashScreen();
+
+  // Wire up global chrome home button click handler
+  initHomeButton();
+
+  // Init hash-based router -- dispatches to correct screen stub
+  initRouter();
+
+  // Start inactivity timer (60s default, from Config)
+  initIdleTimer();
 }
 
 // Run boot when DOM is ready

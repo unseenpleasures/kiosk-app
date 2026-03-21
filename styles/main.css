@@ -246,3 +246,115 @@ html, body {
   max-width: 480px;
   text-align: center;
 }
+
+/* ---------------------------------------------------------------------------
+   Global Chrome — QR Code (bottom-right, fixed, z-index 100)
+   Always visible on every screen. div not anchor — tapping does nothing.
+   Source: Plan 02-02, CAT-07 (no navigation away on QR tap)
+   --------------------------------------------------------------------------- */
+
+.chrome-qr {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  z-index: 100;
+}
+
+.chrome-qr img {
+  width: 96px;
+  height: 96px;
+}
+
+.chrome-qr-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   Global Chrome — Home Button (top-left, fixed, z-index 100)
+   Always visible on every screen. Click handler wired in app.js.
+   Source: Plan 02-02, CAT-08
+   --------------------------------------------------------------------------- */
+
+.chrome-home {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  width: 48px;
+  height: 48px;
+  min-height: var(--touch-target-min);
+  background: rgba(14, 27, 77, 0.85);
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  color: var(--color-accent);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.chrome-home:active {
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------------------
+   Stub Screen Heading
+   Used by router.js stub render functions until Phase 3-5 replace them.
+   --------------------------------------------------------------------------- */
+
+.stub-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  color: var(--color-accent);
+  text-align: center;
+  padding-top: 40vh;
+}
+
+/* ---------------------------------------------------------------------------
+   Idle Overlay — countdown overlay (z-index 200, above chrome at 100)
+   Appended to document.body by idle.js, not #app.
+   Source: Plan 02-02, CAT-09
+   --------------------------------------------------------------------------- */
+
+.idle-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 15, 26, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  z-index: 200;
+}
+
+.idle-message {
+  font-family: var(--font-body);
+  font-size: var(--text-heading);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.idle-cancel {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-bold);
+  border: none;
+  border-radius: 4px;
+  padding: 0 var(--space-xl);
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+}
