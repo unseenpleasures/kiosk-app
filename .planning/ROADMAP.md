@@ -11,7 +11,7 @@
 - [x] **Phase 2: Data Layer and Navigation** - IndexedDB schema, hash router, inactivity timer, global UI chrome (completed 2026-03-21)
 - [x] **Phase 3: Sync Engine** - Shopify catalogue sync with cursor checkpointing, progress UI, and admin sync panel (completed 2026-03-21)
 - [x] **Phase 4: Customer Browse Experience** - Virtual-scrolled catalogue grid, search, filter, card detail, and analytics logging (completed 2026-03-21)
-- [ ] **Phase 5: Email Capture and Export** - GDPR-compliant email sign-up, per-event tagging, and CSV export
+- [x] **Phase 5: Email Capture and Export** - GDPR-compliant email sign-up, per-event tagging, and CSV export (completed 2026-03-21)
 - [ ] **Phase 6: Admin Polish and Analytics** - Analytics summary, admin configuration, passcode change, cumulative data
 
 ## Progress
@@ -22,7 +22,7 @@
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
-| 5. Email Capture and Export | 1/2 | In Progress|  |
+| 5. Email Capture and Export | 2/2 | Complete   | 2026-03-21 |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
 
 ---
@@ -104,7 +104,7 @@ Plans:
 **Plans**: 2 plans
 Plans:
 - [x] 05-01-PLAN.md — Email sign-up screen with GDPR form, confirmation countdown, chrome button, and app wiring
-- [ ] 05-02-PLAN.md — Admin panel CSV export section with Mailchimp-format download
+- [x] 05-02-PLAN.md — Admin panel CSV export section with Mailchimp-format download
 
 ### Phase 6: Admin Polish and Analytics
 **Goal**: The business owner has the operational tools to configure each event, understand what customers are interested in, manage the app reliably, and accumulate intelligence across every event.

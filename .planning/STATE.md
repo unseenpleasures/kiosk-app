@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-21T11:34:38.083Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-21T12:29:41.605Z"
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 10
-  completed_plans: 9
+  completed_plans: 10
 ---
 
 # Project State: ID Card Factory — Event Kiosk Catalogue App
@@ -31,10 +31,10 @@ Plan: 2 of 2
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | PWA Foundation | Complete |
-| 2 | Data Layer and Navigation | Not started |
-| 3 | Sync Engine | Not started |
-| 4 | Customer Browse Experience | Not started |
-| 5 | Email Capture and Export | Not started |
+| 2 | Data Layer and Navigation | Complete |
+| 3 | Sync Engine | Complete |
+| 4 | Customer Browse Experience | Complete |
+| 5 | Email Capture and Export | Complete |
 | 6 | Admin Polish and Analytics | Not started |
 
 ---
@@ -57,6 +57,7 @@ Plan: 2 of 2
 | Phase 04-customer-browse-experience P01 | 30 | 2 tasks | 3 files |
 | Phase 04-customer-browse-experience P02 | 2 | 2 tasks | 5 files |
 | Phase 05 P01 | 25 | 2 tasks | 6 files |
+| Phase 05 P02 | 5 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -81,6 +82,9 @@ Plan: 2 of 2
 | renderCategory redirects to catalogue grid with chip pre-selected | No separate screen needed — simpler state management, same UX result | Phase 04 P02 |
 | _pausedForEmail flag isolated from admin panel pause | Allows admin and email screen to pause/resume the idle timer independently without clobbering each other | Phase 04 P02 |
 | detail-back button at top:72px | Chrome home fixed at top:16px + 48px height + 8px gap = 72px — avoids touch target overlap | Phase 04 P02 |
+| CSV TAGS column filled with event name | Standard Mailchimp segmentation practice — imported contacts immediately tagged by event for targeted sends | Phase 05 P02 |
+| Export filtered by Config.getEventName() | Owner exports per-event, not all-time accumulated emails — scoped by current event name match | Phase 05 P02 |
+| Blob + createObjectURL + hidden anchor + revokeObjectURL | Safari-compatible CSV download pattern with no memory leak — works on iPadOS share sheet | Phase 05 P02 |
 
 ### Architecture Constraints (must carry forward)
 
@@ -121,13 +125,13 @@ Plan: 2 of 2
 
 ## Session Continuity
 
-**Last session:** 2026-03-21T11:34:38.078Z
-**Stopped at:** Completed 05-01-PLAN.md
-**Next action:** Execute Phase 4 (Customer Browse Experience) — virtual-scrolled catalogue grid, search, filter, card detail, analytics logging
+**Last session:** 2026-03-21T12:29:41.600Z
+**Stopped at:** Completed 05-02-PLAN.md
+**Next action:** Execute Phase 6 (Admin Polish and Analytics) — analytics summary, adjustable idle timer, passcode change, cumulative event data
 
 ### To Resume Work
 
-1. Run `gsd:execute-phase` for Phase 4 (customer browse experience)
+1. Run `gsd:execute-phase` for Phase 6 (admin polish and analytics)
 
 ---
 *STATE.md created: 2026-03-21*
