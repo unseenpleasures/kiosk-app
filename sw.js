@@ -41,13 +41,16 @@ self.addEventListener('install', function(event) {
   self.skipWaiting();
 });
 
+// SYNC_CACHE_NAME — MUST match SYNC_CACHE_NAME in src/sync.js
+var SYNC_CACHE_NAME = 'kiosk-v3';
+
 // Activate event — delete old caches and claim all clients immediately
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(keys) {
       return Promise.all(
         keys
-          .filter(function(key) { return key !== CACHE_NAME; })
+          .filter(function(key) { return key !== CACHE_NAME && key !== SYNC_CACHE_NAME; })
           .map(function(key) { return caches.delete(key); })
       );
     })
