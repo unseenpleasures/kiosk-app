@@ -82,52 +82,50 @@
 
 ## Traceability
 
-*Populated during roadmap creation.*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CAT-01 | — | Pending |
-| CAT-02 | — | Pending |
-| CAT-03 | — | Pending |
-| CAT-04 | — | Pending |
-| CAT-05 | — | Pending |
-| CAT-06 | — | Pending |
-| CAT-07 | — | Pending |
-| CAT-08 | — | Pending |
-| CAT-09 | — | Pending |
-| CAT-10 | — | Pending |
-| SYNC-01 | — | Pending |
-| SYNC-02 | — | Pending |
-| SYNC-03 | — | Pending |
-| SYNC-04 | — | Pending |
-| EMAIL-01 | — | Pending |
-| EMAIL-02 | — | Pending |
-| EMAIL-03 | — | Pending |
-| EMAIL-04 | — | Pending |
-| EMAIL-05 | — | Pending |
-| ADMIN-01 | — | Pending |
-| ADMIN-02 | — | Pending |
-| ADMIN-03 | — | Pending |
-| ADMIN-04 | — | Pending |
-| ADMIN-05 | — | Pending |
-| ADMIN-06 | — | Pending |
-| ANALYTICS-01 | — | Pending |
-| ANALYTICS-02 | — | Pending |
-| ANALYTICS-03 | — | Pending |
-| ANALYTICS-04 | — | Pending |
-| ANALYTICS-05 | — | Pending |
-| PWA-01 | — | Pending |
-| PWA-02 | — | Pending |
-| PWA-03 | — | Pending |
-| PWA-04 | — | Pending |
-| PWA-05 | — | Pending |
-| PWA-06 | — | Pending |
+| PWA-01 | Phase 1 | Pending |
+| PWA-02 | Phase 1 | Pending |
+| PWA-04 | Phase 1 | Pending |
+| PWA-05 | Phase 1 | Pending |
+| PWA-03 | Phase 2 | Pending |
+| PWA-06 | Phase 2 | Pending |
+| CAT-07 | Phase 2 | Pending |
+| CAT-08 | Phase 2 | Pending |
+| CAT-09 | Phase 2 | Pending |
+| SYNC-01 | Phase 3 | Pending |
+| SYNC-02 | Phase 3 | Pending |
+| SYNC-03 | Phase 3 | Pending |
+| SYNC-04 | Phase 3 | Pending |
+| ADMIN-01 | Phase 3 | Pending |
+| ADMIN-02 | Phase 3 | Pending |
+| ADMIN-03 | Phase 3 | Pending |
+| ADMIN-04 | Phase 3 | Pending |
+| CAT-01 | Phase 4 | Pending |
+| CAT-02 | Phase 4 | Pending |
+| CAT-03 | Phase 4 | Pending |
+| CAT-04 | Phase 4 | Pending |
+| CAT-05 | Phase 4 | Pending |
+| CAT-06 | Phase 4 | Pending |
+| CAT-10 | Phase 4 | Pending |
+| ANALYTICS-01 | Phase 4 | Pending |
+| ANALYTICS-02 | Phase 4 | Pending |
+| ANALYTICS-03 | Phase 4 | Pending |
+| EMAIL-01 | Phase 5 | Pending |
+| EMAIL-02 | Phase 5 | Pending |
+| EMAIL-03 | Phase 5 | Pending |
+| EMAIL-04 | Phase 5 | Pending |
+| EMAIL-05 | Phase 5 | Pending |
+| ADMIN-05 | Phase 6 | Pending |
+| ADMIN-06 | Phase 6 | Pending |
+| ANALYTICS-04 | Phase 6 | Pending |
+| ANALYTICS-05 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 36 total
-- Mapped to phases: 0
-- Unmapped: 36 ⚠️ (fill during roadmap creation)
+- Mapped to phases: 36
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after initial definition*
+*Last updated: 2026-03-21 after roadmap creation — all 36 requirements mapped*
