@@ -72,7 +72,7 @@ completed: 2026-03-21
 - **Duration:** ~8 min
 - **Started:** 2026-03-21T08:46:19Z
 - **Completed:** 2026-03-21T08:54:00Z
-- **Tasks:** 2 of 3 complete (Task 3 is human-verify checkpoint — awaiting user)
+- **Tasks:** 3 of 3 complete (Task 3 human-verify: PASSED — 951 products synced)
 - **Files modified:** 6
 
 ## Accomplishments
@@ -87,7 +87,7 @@ Each task was committed atomically:
 
 1. **Task 1: Create src/admin.js** - `ba10827` (feat)
 2. **Task 2: Wire admin into routing, script tags, SW cache, CSS** - `d074799` (feat)
-3. **Task 3: Human verify checkpoint** - awaiting verification
+3. **Task 3: Human verify checkpoint** - `bd81f7d` (fix) — PASSED (951 products synced)
 
 ## Files Created/Modified
 
@@ -97,6 +97,8 @@ Each task was committed atomically:
 - `index.html` — sync.js and admin.js script tags added before router.js
 - `sw.js` — CACHE_NAME bumped to kiosk-v3; sync.js and admin.js added to APP_SHELL_FILES
 - `styles/main.css` — 249 lines added: passcode overlay, admin panel, form inputs, btn-primary, btn-secondary, btn-large, progress bar, sync result, admin-status-list
+- `src/app.js` — hashchange listener added to sync-required boot path; immediate dispatch if hash already `#/admin` on load (Task 3 fix, commit bd81f7d)
+- `src/sync.js` — placeholder store domain and storefront token replaced with real credentials; confirmed working (951 products synced)
 
 ## Decisions Made
 
@@ -107,7 +109,22 @@ Each task was committed atomically:
 
 ### Auto-fixed Issues
 
-**1. [Rule 2 - Missing Critical] Added .catch() handler to syncAll() promise chain**
+**1. [Rule 3 - Blocking] Fixed admin routing unreachable from sync-required screen**
+- **Found during:** Task 3 (human verification — admin panel not reachable on first install)
+- **Issue:** The sync-required boot path in app.js set up the 7-tap trigger but did not add a hashchange listener or handle the case where `#/admin` was already in the URL on load. Navigating to `#/admin` from the sync-required screen did nothing.
+- **Fix:** Added `window.addEventListener('hashchange', handleRoute)` and an immediate `handleRoute()` call when hash is already `#/admin` in the sync-required boot branch.
+- **Files modified:** src/app.js
+- **Commit:** bd81f7d
+
+**2. [Rule 3 - Blocking] Added real Shopify credentials to sync.js**
+- **Found during:** Task 3 (human verification — sync returned errors with placeholder token)
+- **Issue:** sync.js had `REPLACE_WITH_STOREFRONT_TOKEN` and `TODO: confirm exact domain` placeholders. Verification required real credentials.
+- **Fix:** Updated `SHOPIFY_STORE_DOMAIN` to `the-id-card-factory.myshopify.com` and `STOREFRONT_TOKEN` to the real read-only storefront token.
+- **Files modified:** src/sync.js
+- **Commit:** bd81f7d
+- **Result:** 951 products synced successfully
+
+**3. [Rule 2 - Missing Critical] Added .catch() handler to syncAll() promise chain**
 - **Found during:** Task 1 (admin.js sync button handler)
 - **Issue:** Plan specified only `.then()` on the syncAll() promise. If syncAll throws before calling onProgress (e.g. network error, API error on first fetch), the catch path was missing — the sync button would remain disabled forever.
 - **Fix:** Added `.catch(function(err) { ... })` after `.then()` in sync button click handler; re-enables button, shows error message in result area.
@@ -117,7 +134,7 @@ Each task was committed atomically:
 
 ---
 
-**Total deviations:** 1 auto-fixed (1 missing critical)
+**Total deviations:** 3 auto-fixed (1 missing critical, 2 blocking)
 **Impact on plan:** Essential for correct error handling — without it, a single network failure would permanently disable the sync button requiring a page reload.
 
 ## Issues Encountered
@@ -133,7 +150,7 @@ None — admin panel is fully wired. Sync will return errors with placeholder Sh
 - Admin panel and sync engine complete — catalogue can be synced to device before Phase 4
 - Phase 4 (browse experience) can now assume products exist in IndexedDB after operator sync
 - btn-primary / btn-secondary CSS classes available for reuse in email capture (Phase 5)
-- Pending: human verification of admin panel UI and flow (Task 3 checkpoint)
+- Human verification passed — 951 products synced, catalogue stub shown, passcode gate and event config confirmed working
 
 ---
 *Phase: 03-sync-engine*

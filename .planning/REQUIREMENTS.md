@@ -35,10 +35,10 @@
 
 ### Admin Panel
 
-- [ ] **ADMIN-01**: Admin panel is accessible only via a hidden discreet trigger and a passcode entry
-- [ ] **ADMIN-02**: Admin can set event name and date before each show (used for email tagging and analytics labelling)
-- [ ] **ADMIN-03**: Admin can trigger a full catalogue sync from within the admin panel
-- [ ] **ADMIN-04**: Admin can view sync status: last sync time, product count, and any sync errors
+- [x] **ADMIN-01**: Admin panel is accessible only via a hidden discreet trigger and a passcode entry
+- [x] **ADMIN-02**: Admin can set event name and date before each show (used for email tagging and analytics labelling)
+- [x] **ADMIN-03**: Admin can trigger a full catalogue sync from within the admin panel
+- [x] **ADMIN-04**: Admin can view sync status: last sync time, product count, and any sync errors
 - [ ] **ADMIN-05**: Admin can adjust the idle inactivity timeout duration (default 60 seconds)
 - [ ] **ADMIN-06**: Admin can change the admin passcode (requires entry of current passcode)
 
@@ -97,10 +97,10 @@
 | SYNC-02 | Phase 3 | Complete |
 | SYNC-03 | Phase 3 | Complete |
 | SYNC-04 | Phase 3 | Complete |
-| ADMIN-01 | Phase 3 | Pending |
-| ADMIN-02 | Phase 3 | Pending |
-| ADMIN-03 | Phase 3 | Pending |
-| ADMIN-04 | Phase 3 | Pending |
+| ADMIN-01 | Phase 3 | Complete |
+| ADMIN-02 | Phase 3 | Complete |
+| ADMIN-03 | Phase 3 | Complete |
+| ADMIN-04 | Phase 3 | Complete |
 | CAT-01 | Phase 4 | Pending |
 | CAT-02 | Phase 4 | Pending |
 | CAT-03 | Phase 4 | Pending |
