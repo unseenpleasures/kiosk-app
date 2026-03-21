@@ -660,6 +660,7 @@ function renderIdleTimeoutSection(panel, exitBtn) {
     }
     timeoutError.style.display = 'none';
     Config.setIdleTimeout(val);
+    timeoutConfirm.textContent = 'Timeout updated to ' + val + ' seconds';
     timeoutConfirm.style.display = 'block';
     setTimeout(function() { timeoutConfirm.style.display = 'none'; }, 2000);
   });
