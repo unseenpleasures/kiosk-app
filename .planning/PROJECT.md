@@ -18,6 +18,14 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [x] manifest.json: standalone display, landscape orientation, dark theme, 512×512 and 1024×1024 icons — Validated in Phase 1: pwa-foundation
 - [x] Home screen load < 2 seconds from cache — Validated in Phase 1: pwa-foundation (requires human test on A9X hardware)
 
+**Data Layer & Navigation (Phase 2: data-layer-and-navigation)**
+- [x] IndexedDB schema with 4 object stores (products, emails, analytics, sync_meta) — Validated in Phase 2: data-layer-and-navigation
+- [x] Promise-wrapped CRUD helpers (openDB, dbGet, dbPut, dbDelete, dbCount, dbGetAll, dbGetAllByIndex, dbClear) — Validated in Phase 2: data-layer-and-navigation
+- [x] localStorage config wrapper with SHA-256 passcode hashing via Web Crypto API — Validated in Phase 2: data-layer-and-navigation
+- [x] Hash-based SPA router with all 5 route patterns — Validated in Phase 2: data-layer-and-navigation
+- [x] Inactivity timer with 10-second countdown overlay and pause/resume API — Validated in Phase 2: data-layer-and-navigation
+- [x] Persistent QR code (non-interactive div) and floating home button on every screen — Validated in Phase 2: data-layer-and-navigation
+
 ### Active
 
 **Catalogue (Customer-Facing)**
@@ -25,9 +33,6 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [ ] Category filter for 8 categories: Anime & Manga, Film & Cinema, Gaming, Horror, Novelty, UK TV, US & World TV, Law & Services
 - [ ] Real-time search by card name/character with all queries logged (including zero-result searches)
 - [ ] "NEW" badge on cards added since last sync
-- [ ] Persistent QR code linking to https://theidcardfactory.co.uk always visible on screen
-- [ ] Floating home button fixed to top-left on every screen
-- [ ] Auto-return to home after 60 seconds of inactivity (with 10-second visual countdown)
 - [ ] 3-minute inactivity grace period on email form
 
 **Email Capture**
@@ -56,8 +61,6 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 
 **PWA & Offline**
 - [ ] Service worker with cache-first strategy for all product images and JSON (Phase 1 covers app shell; product images covered in Phase 2+)
-- [ ] IndexedDB for: product catalogue, captured emails, analytics events, sync metadata
-- [ ] localStorage for: admin passcode (hashed), event name, timer setting
 - [ ] Search results < 300ms
 - [ ] Category filter < 100ms
 
@@ -99,8 +102,9 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 | Vanilla JS over framework | No build toolchain, no node_modules, simpler deployment — serve directly from filesystem | Implemented Phase 1 |
 | No arrow functions in sw.js | Safari SW compatibility — older Safari versions had issues parsing arrow functions in SW context | Implemented Phase 1 |
 | Shopify Storefront API | Free, read-only, built into every Shopify store — no custom backend needed | — Pending |
-| IndexedDB for all persistent data | Browser-native, offline-capable, handles large datasets (950+ products + images metadata) | — Pending |
+| IndexedDB for all persistent data | Browser-native, offline-capable, handles large datasets (950+ products + images metadata) | Implemented Phase 2 |
 | Shopify token in client code | Token is read-only and unauthenticated — Shopify's intended use case for storefronts | — Pending |
+| ES2017 syntax constraint in all modules | A9X chip / Safari 16.x safe upper bound — no arrow functions, no optional chaining, no nullish coalescing | Implemented Phase 2 |
 
 ## Evolution
 
@@ -120,4 +124,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 1: pwa-foundation complete*
+*Last updated: 2026-03-21 after Phase 2: data-layer-and-navigation complete*
