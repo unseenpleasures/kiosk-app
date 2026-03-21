@@ -7,8 +7,8 @@
 // Constants
 // ============================================================
 
-var SHOPIFY_STORE_DOMAIN = 'theidcardfactory.myshopify.com'; // TODO: confirm exact domain
-var STOREFRONT_TOKEN = 'REPLACE_WITH_STOREFRONT_TOKEN';       // TODO: replace with real token
+var SHOPIFY_STORE_DOMAIN = 'the-id-card-factory.myshopify.com';
+var STOREFRONT_TOKEN = '59555f141fc16dafc1dae943acaf21ad';
 var API_VERSION = '2026-01';
 var PRODUCTS_PER_PAGE = 250;
 var SYNC_CACHE_NAME = 'kiosk-v3';

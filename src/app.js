@@ -191,6 +191,11 @@ async function boot() {
   if (!hasCatalogue) {
     showSyncRequiredScreen();
     initAdminTrigger();  // Admin must be reachable to perform first sync
+    window.addEventListener('hashchange', handleRoute);  // Handle #/admin trigger
+    // If page loaded with #/admin already in URL (e.g. after refresh), dispatch immediately
+    if (window.location.hash === '#/admin') {
+      handleRoute();
+    }
     // Do NOT start idle timer on sync-required screen -- admin needs unrestricted time
     return;
   }
