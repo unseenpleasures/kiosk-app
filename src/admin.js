@@ -332,6 +332,9 @@ function renderAdminPanel(screen) {
   // Inserted before exitBtn so it appears between Email Export and Exit.
   renderAnalyticsSummarySection(panel, exitBtn);
 
+  // ---- Idle Timeout Section ----
+  renderIdleTimeoutSection(panel, exitBtn);
+
   screen.appendChild(panel);
 }
 
@@ -593,6 +596,72 @@ function renderAnalyticsSummarySection(panel, exitBtn) {
       section.appendChild(zeroList);
     }
   });
+}
+
+// ============================================================
+// renderIdleTimeoutSection — builds the "Idle Timeout" admin section and inserts
+// it into panel before exitBtn. Allows admin to set the inactivity timeout
+// between 10 and 600 seconds. New value takes effect on next resetIdleTimer()
+// call (triggered by any user interaction after admin exits the panel).
+// Called by renderAdminPanel() after renderAnalyticsSummarySection().
+// ============================================================
+
+function renderIdleTimeoutSection(panel, exitBtn) {
+  var section = document.createElement('div');
+  section.className = 'admin-section';
+
+  var heading = document.createElement('h2');
+  heading.className = 'admin-section-heading';
+  heading.textContent = 'Idle Timeout';
+  section.appendChild(heading);
+
+  var timeoutLabel = document.createElement('label');
+  timeoutLabel.className = 'admin-label';
+  timeoutLabel.textContent = 'Inactivity timeout (seconds)';
+  section.appendChild(timeoutLabel);
+
+  var timeoutInput = document.createElement('input');
+  timeoutInput.type = 'number';
+  timeoutInput.className = 'admin-input';
+  timeoutInput.min = '10';
+  timeoutInput.max = '600';
+  timeoutInput.value = String(Config.getIdleTimeout());
+  timeoutInput.id = 'admin-idle-timeout';
+  section.appendChild(timeoutInput);
+
+  var timeoutError = document.createElement('p');
+  timeoutError.className = 'passcode-error';
+  timeoutError.style.display = 'none';
+  timeoutError.id = 'idle-timeout-error';
+  section.appendChild(timeoutError);
+
+  var saveTimeoutBtn = document.createElement('button');
+  saveTimeoutBtn.type = 'button';
+  saveTimeoutBtn.className = 'btn-primary';
+  saveTimeoutBtn.textContent = 'Save Timeout';
+  section.appendChild(saveTimeoutBtn);
+
+  var timeoutConfirm = document.createElement('p');
+  timeoutConfirm.className = 'sync-result-success';
+  timeoutConfirm.style.display = 'none';
+  timeoutConfirm.textContent = 'Timeout updated!';
+  section.appendChild(timeoutConfirm);
+
+  saveTimeoutBtn.addEventListener('click', function() {
+    var val = parseInt(timeoutInput.value, 10);
+    if (isNaN(val) || val < 10 || val > 600) {
+      timeoutError.textContent = 'Enter a value between 10 and 600 seconds';
+      timeoutError.style.display = 'block';
+      timeoutConfirm.style.display = 'none';
+      return;
+    }
+    timeoutError.style.display = 'none';
+    Config.setIdleTimeout(val);
+    timeoutConfirm.style.display = 'block';
+    setTimeout(function() { timeoutConfirm.style.display = 'none'; }, 2000);
+  });
+
+  panel.insertBefore(section, exitBtn);
 }
 
 // ============================================================
