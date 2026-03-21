@@ -614,6 +614,14 @@ html, body {
   color: var(--color-accent);
 }
 
+/* admin.js analytics summary — email count stat paragraph */
+.admin-stat {
+  color: var(--color-accent);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-body);
+  margin-top: var(--space-sm);
+}
+
 /* ---------------------------------------------------------------------------
    Catalogue Screen — Screen 3
    Source: Phase 4, CAT-01, D-01, D-02, D-03
