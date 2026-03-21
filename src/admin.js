@@ -1,0 +1,383 @@
+// admin.js — Admin panel for ID Card Factory Kiosk PWA
+// Passcode-gated panel with event configuration, sync trigger, and sync status.
+// ES2017 syntax: function keyword throughout, var declarations, no arrow functions.
+
+// ============================================================
+// renderAdmin — main entry point called by the router for #/admin
+// Pauses idle timer, shows passcode gate, then renders admin panel.
+// ============================================================
+
+function renderAdmin() {
+  pauseIdleTimer();
+
+  var app = document.getElementById('app');
+  app.innerHTML = '';
+
+  var screen = document.createElement('div');
+  screen.className = 'screen';
+  screen.id = 'screen-admin';
+
+  app.appendChild(screen);
+
+  // Check whether a passcode has been set
+  if (Config.getPasscodeHash() === null) {
+    // First run: no passcode set — prompt user to create one
+    showPasscodeOverlay(true, function() {
+      renderAdminPanel(screen);
+    });
+  } else {
+    // Subsequent runs: require entry of existing passcode
+    showPasscodeOverlay(false, function() {
+      renderAdminPanel(screen);
+    });
+  }
+}
+
+// ============================================================
+// showPasscodeOverlay — full-screen gate overlay
+// isSetup: true = create passcode (first run), false = enter passcode
+// onSuccess: callback invoked after valid passcode entered/created
+// ============================================================
+
+function showPasscodeOverlay(isSetup, onSuccess) {
+  var app = document.getElementById('app');
+
+  var overlay = document.createElement('div');
+  overlay.className = 'passcode-overlay';
+
+  // Title
+  var title = document.createElement('h2');
+  title.textContent = isSetup ? 'Set Admin Passcode' : 'Enter Passcode';
+  overlay.appendChild(title);
+
+  // Passcode input
+  var input = document.createElement('input');
+  input.type = 'password';
+  input.className = 'passcode-input';
+  input.placeholder = 'Enter passcode';
+  overlay.appendChild(input);
+
+  // Error message (hidden initially)
+  var errorMsg = document.createElement('p');
+  errorMsg.className = 'passcode-error';
+  errorMsg.style.display = 'none';
+  overlay.appendChild(errorMsg);
+
+  // Submit button
+  var submitBtn = document.createElement('button');
+  submitBtn.type = 'button';
+  submitBtn.className = 'passcode-submit btn-primary';
+  submitBtn.textContent = isSetup ? 'Set Passcode' : 'Unlock';
+  overlay.appendChild(submitBtn);
+
+  // Cancel/back button
+  var backBtn = document.createElement('button');
+  backBtn.type = 'button';
+  backBtn.className = 'passcode-back btn-secondary';
+  backBtn.textContent = 'Cancel';
+  overlay.appendChild(backBtn);
+
+  app.appendChild(overlay);
+
+  // Focus input after render
+  setTimeout(function() { input.focus(); }, 50);
+
+  // Cancel: go home and resume idle timer
+  backBtn.addEventListener('click', function() {
+    resumeIdleTimer();
+    window.location.hash = '#/';
+  });
+
+  // Submit handler
+  submitBtn.addEventListener('click', function() {
+    var value = input.value.trim();
+    if (!value) { return; }
+
+    if (isSetup) {
+      hashPasscode(value).then(function(hash) {
+        Config.setPasscodeHash(hash);
+        overlay.parentNode.removeChild(overlay);
+        onSuccess();
+      });
+    } else {
+      verifyPasscode(value).then(function(valid) {
+        if (valid) {
+          overlay.parentNode.removeChild(overlay);
+          onSuccess();
+        } else {
+          input.value = '';
+          errorMsg.textContent = 'Incorrect passcode';
+          errorMsg.style.display = 'block';
+        }
+      });
+    }
+  });
+
+  // Enter key shortcut
+  input.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') { submitBtn.click(); }
+  });
+}
+
+// ============================================================
+// renderAdminPanel — builds the full admin panel inside screen div
+// Called after passcode is verified/created.
+// ============================================================
+
+function renderAdminPanel(screen) {
+  // Wrap in scrollable panel container
+  var panel = document.createElement('div');
+  panel.className = 'admin-panel';
+
+  // ---- Header ----
+  var title = document.createElement('h1');
+  title.className = 'admin-title';
+  title.textContent = 'Admin Panel';
+  panel.appendChild(title);
+
+  // ---- Event Configuration Section ----
+  var eventSection = document.createElement('div');
+  eventSection.className = 'admin-section';
+
+  var eventHeading = document.createElement('h2');
+  eventHeading.className = 'admin-section-heading';
+  eventHeading.textContent = 'Event Configuration';
+  eventSection.appendChild(eventHeading);
+
+  // Event Name
+  var nameLabel = document.createElement('label');
+  nameLabel.className = 'admin-label';
+  nameLabel.textContent = 'Event Name';
+  eventSection.appendChild(nameLabel);
+
+  var nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.id = 'admin-event-name';
+  nameInput.className = 'admin-input';
+  nameInput.value = Config.getEventName();
+  nameInput.placeholder = 'e.g. MCM London May 2026';
+  eventSection.appendChild(nameInput);
+
+  // Event Date
+  var dateLabel = document.createElement('label');
+  dateLabel.className = 'admin-label';
+  dateLabel.textContent = 'Event Date';
+  eventSection.appendChild(dateLabel);
+
+  var dateInput = document.createElement('input');
+  dateInput.type = 'date';
+  dateInput.id = 'admin-event-date';
+  dateInput.className = 'admin-input';
+  dateInput.value = Config.getEventDate();
+  eventSection.appendChild(dateInput);
+
+  // Save button + feedback
+  var saveBtn = document.createElement('button');
+  saveBtn.type = 'button';
+  saveBtn.className = 'btn-primary';
+  saveBtn.textContent = 'Save';
+  eventSection.appendChild(saveBtn);
+
+  var saveConfirm = document.createElement('p');
+  saveConfirm.className = 'sync-result-success';
+  saveConfirm.style.display = 'none';
+  saveConfirm.textContent = 'Saved!';
+  eventSection.appendChild(saveConfirm);
+
+  saveBtn.addEventListener('click', function() {
+    Config.setEventName(nameInput.value);
+    Config.setEventDate(dateInput.value);
+    saveConfirm.style.display = 'block';
+    setTimeout(function() { saveConfirm.style.display = 'none'; }, 2000);
+  });
+
+  panel.appendChild(eventSection);
+
+  // ---- Sync Section ----
+  var syncSection = document.createElement('div');
+  syncSection.className = 'admin-section';
+
+  var syncHeading = document.createElement('h2');
+  syncHeading.className = 'admin-section-heading';
+  syncHeading.textContent = 'Catalogue Sync';
+  syncSection.appendChild(syncHeading);
+
+  var syncBtn = document.createElement('button');
+  syncBtn.type = 'button';
+  syncBtn.id = 'admin-sync-btn';
+  syncBtn.className = 'btn-primary btn-large';
+  syncBtn.textContent = 'Sync Catalogue';
+  syncSection.appendChild(syncBtn);
+
+  // Progress area (hidden until sync starts)
+  var progressArea = document.createElement('div');
+  progressArea.id = 'admin-sync-progress';
+  progressArea.className = 'admin-sync-progress';
+  progressArea.style.display = 'none';
+  syncSection.appendChild(progressArea);
+
+  var progressTrack = document.createElement('div');
+  progressTrack.className = 'progress-bar-track';
+  progressArea.appendChild(progressTrack);
+
+  var progressFill = document.createElement('div');
+  progressFill.id = 'admin-progress-fill';
+  progressFill.className = 'progress-bar-fill';
+  progressTrack.appendChild(progressFill);
+
+  var progressText = document.createElement('p');
+  progressText.id = 'admin-progress-text';
+  progressText.className = 'admin-progress-text';
+  progressText.textContent = 'Starting sync...';
+  progressArea.appendChild(progressText);
+
+  // Result area (hidden until sync completes)
+  var resultArea = document.createElement('div');
+  resultArea.id = 'admin-sync-result';
+  resultArea.className = 'admin-sync-result';
+  resultArea.style.display = 'none';
+  syncSection.appendChild(resultArea);
+
+  // Sync button click handler
+  syncBtn.addEventListener('click', function() {
+    syncBtn.disabled = true;
+    syncBtn.textContent = 'Syncing...';
+    progressArea.style.display = 'block';
+    resultArea.style.display = 'none';
+
+    syncAll(function(progress) {
+      // Estimate total pages: 950 products at 250 per page = ~4 pages
+      var estimatedPages = Math.max(4, progress.page);
+      var pct = Math.min(100, Math.round((progress.page / estimatedPages) * 100));
+      progressFill.style.width = pct + '%';
+      progressText.textContent = 'Page ' + progress.page + ' \u2014 ' + progress.products + ' products fetched';
+    }).then(function(stats) {
+      progressArea.style.display = 'none';
+      resultArea.style.display = 'block';
+      syncBtn.disabled = false;
+      syncBtn.textContent = 'Sync Catalogue';
+
+      resultArea.innerHTML = '';
+
+      if (stats.aborted) {
+        var errHeading = document.createElement('p');
+        errHeading.className = 'sync-result-error';
+        errHeading.textContent = 'Sync interrupted: ' + stats.abortReason;
+        resultArea.appendChild(errHeading);
+
+        var errDetail = document.createElement('p');
+        errDetail.className = 'sync-result-detail';
+        errDetail.textContent = stats.total + ' products saved before interruption. Resume by tapping Sync again.';
+        resultArea.appendChild(errDetail);
+      } else {
+        var successHeading = document.createElement('p');
+        successHeading.className = 'sync-result-success';
+        successHeading.textContent = 'Sync complete!';
+        resultArea.appendChild(successHeading);
+
+        var detail = document.createElement('p');
+        detail.className = 'sync-result-detail';
+        detail.textContent = 'Total: ' + stats.total + ' products | New: ' + stats.newProducts + ' | Errors: ' + stats.errors.length;
+        resultArea.appendChild(detail);
+      }
+
+      // Refresh sync status display after sync
+      loadAndRenderSyncStatus(statusArea);
+    }).catch(function(err) {
+      progressArea.style.display = 'none';
+      resultArea.style.display = 'block';
+      syncBtn.disabled = false;
+      syncBtn.textContent = 'Sync Catalogue';
+
+      resultArea.innerHTML = '';
+      var errHeading = document.createElement('p');
+      errHeading.className = 'sync-result-error';
+      errHeading.textContent = 'Sync failed: ' + (err.message || 'Unknown error');
+      resultArea.appendChild(errHeading);
+    });
+  });
+
+  panel.appendChild(syncSection);
+
+  // ---- Sync Status Section ----
+  var statusArea = document.createElement('div');
+  statusArea.id = 'admin-sync-status';
+  statusArea.className = 'admin-section';
+  panel.appendChild(statusArea);
+
+  // Populate sync status on initial render
+  loadAndRenderSyncStatus(statusArea);
+
+  // ---- Exit Button ----
+  var exitBtn = document.createElement('button');
+  exitBtn.type = 'button';
+  exitBtn.className = 'btn-secondary btn-large';
+  exitBtn.textContent = 'Exit Admin';
+
+  exitBtn.addEventListener('click', function() {
+    resumeIdleTimer();
+    window.location.hash = '#/';
+  });
+
+  panel.appendChild(exitBtn);
+
+  screen.appendChild(panel);
+}
+
+// ============================================================
+// loadAndRenderSyncStatus — reads sync_meta from IndexedDB and renders status
+// Called on initial admin panel render and after sync completes.
+// ============================================================
+
+function loadAndRenderSyncStatus(container) {
+  Promise.all([
+    dbGet('sync_meta', 'lastSyncAt'),
+    dbGet('sync_meta', 'productCount'),
+    dbGet('sync_meta', 'currentCursor'),
+    dbCount('products')
+  ]).then(function(results) {
+    var lastSync = results[0] ? results[0].value : null;
+    var syncedCount = results[1] ? results[1].value : 0;
+    var interrupted = results[2] ? results[2].value : null;
+    var liveCount = results[3];
+
+    container.innerHTML = '';
+
+    var heading = document.createElement('h2');
+    heading.className = 'admin-section-heading';
+    heading.textContent = 'Sync Status';
+    container.appendChild(heading);
+
+    var statusList = document.createElement('dl');
+    statusList.className = 'admin-status-list';
+
+    // Last Sync row
+    var dtSync = document.createElement('dt');
+    dtSync.textContent = 'Last Sync';
+    var ddSync = document.createElement('dd');
+    ddSync.textContent = lastSync ? new Date(lastSync).toLocaleString() : 'Never';
+    statusList.appendChild(dtSync);
+    statusList.appendChild(ddSync);
+
+    // Product Count row
+    var dtCount = document.createElement('dt');
+    dtCount.textContent = 'Products in Database';
+    var ddCount = document.createElement('dd');
+    ddCount.textContent = String(liveCount);
+    statusList.appendChild(dtCount);
+    statusList.appendChild(ddCount);
+
+    // Interrupted indicator (show only if cursor is present — means sync was interrupted)
+    if (interrupted) {
+      var dtInt = document.createElement('dt');
+      dtInt.textContent = 'Status';
+      var ddInt = document.createElement('dd');
+      ddInt.className = 'sync-status-warning';
+      ddInt.textContent = 'Previous sync was interrupted \u2014 tap Sync to resume';
+      statusList.appendChild(dtInt);
+      statusList.appendChild(ddInt);
+    }
+
+    container.appendChild(statusList);
+  });
+}
