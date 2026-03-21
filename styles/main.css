@@ -110,23 +110,16 @@ html, body {
 }
 
 /* ---------------------------------------------------------------------------
-   Landscape Orientation Enforcement (CSS workaround)
-   Safari/iPadOS ignores manifest orientation field — rotate viewport instead.
-   Source: RESEARCH.md §Pattern 3
+   Landscape Orientation Enforcement
+   manifest.json sets "orientation": "landscape" — Safari 16 / iPadOS 16
+   respects this for installed standalone PWAs and locks the device to landscape.
+   The previous CSS rotation hack (body { transform: rotate(90deg) }) has been
+   removed: applying a CSS transform to body creates a new containing block for
+   position:fixed descendants (CSS spec §9.3), which misaligns hit-test regions
+   for chrome-home and chrome-email even though they appear visually correct.
+   Result: taps on fixed chrome elements register in the wrong coordinates and
+   are silently ignored. Manifest orientation is the correct mechanism.
    --------------------------------------------------------------------------- */
-
-@media (orientation: portrait) {
-  body {
-    transform: rotate(90deg);
-    transform-origin: bottom left;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: -100vw;
-    left: 0;
-  }
-}
 
 /* ---------------------------------------------------------------------------
    Screen Base Styles
@@ -672,7 +665,10 @@ html, body {
   display: flex;
   gap: var(--space-sm);
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch removed — deprecated in iOS 13+, now default
+     behaviour. Keeping it creates a native UIScrollView layer that swallows
+     touchstart/touchend events and prevents them from propagating to document,
+     breaking the idle timer reset in idle.js */
   flex: 1;
   padding: var(--space-xs) 0;
   scrollbar-width: none;
@@ -715,7 +711,7 @@ html, body {
 .catalogue-scroll {
   flex: 1;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch removed — see .catalogue-chips comment above */
   position: relative;
 }
 
@@ -809,7 +805,7 @@ html, body {
   padding: var(--space-lg);
   padding-top: 100px;  /* clear chrome home button (top:16px + 48px + gap) + back button */
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch removed — see .catalogue-chips comment above */
 }
 
 .detail-back {
