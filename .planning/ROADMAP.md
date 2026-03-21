@@ -21,7 +21,7 @@
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
-| 4. Customer Browse Experience | 0/? | Not started | - |
+| 4. Customer Browse Experience | 0/2 | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
 
@@ -86,7 +86,10 @@ Plans:
   4. Tapping a card opens a full-screen detail view showing the larger card image and card name
   5. Cards added since the last sync display a "NEW" badge in both the grid and detail views
   6. The email sign-up form has a 3-minute inactivity grace period — the 60-second idle countdown does not interrupt an attendee mid-entry on that screen
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 04-01-PLAN.md — Catalogue module with virtual scroll grid, search, category filter, and analytics
+- [ ] 04-02-PLAN.md — Card detail view, router wiring, home button reset, and idle email grace period
 
 ### Phase 5: Email Capture and Export
 **Goal**: Attendees can sign up for email updates with proper GDPR consent, and the business owner can export every event's captured emails ready for Mailchimp import.
@@ -158,4 +161,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-21*
-*Last updated: 2026-03-21 after Phase 3 planning*
+*Last updated: 2026-03-21 after Phase 4 planning*
