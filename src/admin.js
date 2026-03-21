@@ -335,6 +335,9 @@ function renderAdminPanel(screen) {
   // ---- Idle Timeout Section ----
   renderIdleTimeoutSection(panel, exitBtn);
 
+  // ---- Change Passcode Section ----
+  renderChangePasscodeSection(panel, exitBtn);
+
   screen.appendChild(panel);
 }
 
@@ -659,6 +662,124 @@ function renderIdleTimeoutSection(panel, exitBtn) {
     Config.setIdleTimeout(val);
     timeoutConfirm.style.display = 'block';
     setTimeout(function() { timeoutConfirm.style.display = 'none'; }, 2000);
+  });
+
+  panel.insertBefore(section, exitBtn);
+}
+
+// ============================================================
+// renderChangePasscodeSection — builds the "Change Passcode" admin section and
+// inserts it into panel before exitBtn. Requires the admin to enter the correct
+// current passcode before the new passcode is accepted. New and confirm inputs
+// must match to prevent touchscreen fat-finger lockout (Pitfall 2 in RESEARCH.md).
+// Called by renderAdminPanel() after renderIdleTimeoutSection().
+// ============================================================
+
+function renderChangePasscodeSection(panel, exitBtn) {
+  var section = document.createElement('div');
+  section.className = 'admin-section';
+
+  var heading = document.createElement('h2');
+  heading.className = 'admin-section-heading';
+  heading.textContent = 'Change Passcode';
+  section.appendChild(heading);
+
+  // Current passcode
+  var currentLabel = document.createElement('label');
+  currentLabel.className = 'admin-label';
+  currentLabel.textContent = 'Current Passcode';
+  section.appendChild(currentLabel);
+
+  var currentInput = document.createElement('input');
+  currentInput.type = 'password';
+  currentInput.className = 'admin-input';
+  currentInput.id = 'admin-current-passcode';
+  currentInput.placeholder = 'Enter current passcode';
+  section.appendChild(currentInput);
+
+  // New passcode
+  var newLabel = document.createElement('label');
+  newLabel.className = 'admin-label';
+  newLabel.textContent = 'New Passcode';
+  section.appendChild(newLabel);
+
+  var newInput = document.createElement('input');
+  newInput.type = 'password';
+  newInput.className = 'admin-input';
+  newInput.id = 'admin-new-passcode';
+  newInput.placeholder = 'Enter new passcode';
+  section.appendChild(newInput);
+
+  // Confirm new passcode
+  var confirmLabel = document.createElement('label');
+  confirmLabel.className = 'admin-label';
+  confirmLabel.textContent = 'Confirm New Passcode';
+  section.appendChild(confirmLabel);
+
+  var confirmInput = document.createElement('input');
+  confirmInput.type = 'password';
+  confirmInput.className = 'admin-input';
+  confirmInput.id = 'admin-confirm-passcode';
+  confirmInput.placeholder = 'Confirm new passcode';
+  section.appendChild(confirmInput);
+
+  // Error message (hidden initially)
+  var passcodeError = document.createElement('p');
+  passcodeError.className = 'passcode-error';
+  passcodeError.style.display = 'none';
+  passcodeError.id = 'change-passcode-error';
+  section.appendChild(passcodeError);
+
+  // Change button
+  var changeBtn = document.createElement('button');
+  changeBtn.type = 'button';
+  changeBtn.className = 'btn-primary';
+  changeBtn.textContent = 'Update Passcode';
+  section.appendChild(changeBtn);
+
+  // Success message (hidden initially)
+  var passcodeSuccess = document.createElement('p');
+  passcodeSuccess.className = 'sync-result-success';
+  passcodeSuccess.style.display = 'none';
+  passcodeSuccess.textContent = 'Passcode updated!';
+  passcodeSuccess.id = 'change-passcode-success';
+  section.appendChild(passcodeSuccess);
+
+  changeBtn.addEventListener('click', function() {
+    var current = currentInput.value.trim();
+    var next = newInput.value.trim();
+    var confirm = confirmInput.value.trim();
+
+    passcodeError.style.display = 'none';
+    passcodeSuccess.style.display = 'none';
+
+    if (!current || !next || !confirm) {
+      passcodeError.textContent = 'All fields are required';
+      passcodeError.style.display = 'block';
+      return;
+    }
+
+    if (next !== confirm) {
+      passcodeError.textContent = 'New passcodes do not match';
+      passcodeError.style.display = 'block';
+      return;
+    }
+
+    verifyPasscode(current).then(function(valid) {
+      if (!valid) {
+        passcodeError.textContent = 'Incorrect current passcode';
+        passcodeError.style.display = 'block';
+        return;
+      }
+      return hashPasscode(next).then(function(hash) {
+        Config.setPasscodeHash(hash);
+        passcodeSuccess.style.display = 'block';
+        currentInput.value = '';
+        newInput.value = '';
+        confirmInput.value = '';
+        setTimeout(function() { passcodeSuccess.style.display = 'none'; }, 3000);
+      });
+    });
   });
 
   panel.insertBefore(section, exitBtn);
