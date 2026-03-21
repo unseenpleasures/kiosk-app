@@ -22,7 +22,7 @@
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
-| 5. Email Capture and Export | 0/? | Not started | - |
+| 5. Email Capture and Export | 0/2 | Not started | - |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
 
 ---
@@ -101,7 +101,10 @@ Plans:
   3. After successful submission, a confirmation screen displays briefly and then returns to the catalogue automatically after 5 seconds
   4. Submitted emails are stored offline in IndexedDB tagged with event name, event date, and a consent timestamp — data survives app restart and device power cycle
   5. From the admin panel, one tap exports the current event's email list as a CSV file formatted for Mailchimp import
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 05-01-PLAN.md — Email sign-up screen with GDPR form, confirmation countdown, chrome button, and app wiring
+- [ ] 05-02-PLAN.md — Admin panel CSV export section with Mailchimp-format download
 
 ### Phase 6: Admin Polish and Analytics
 **Goal**: The business owner has the operational tools to configure each event, understand what customers are interested in, manage the app reliably, and accumulate intelligence across every event.
@@ -161,4 +164,4 @@ Plans:
 
 ---
 *Roadmap created: 2026-03-21*
-*Last updated: 2026-03-21 after Phase 4 planning*
+*Last updated: 2026-03-21 after Phase 5 planning*
