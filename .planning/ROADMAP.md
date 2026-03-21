@@ -22,7 +22,7 @@
 | 2. Data Layer and Navigation | 2/2 | Complete   | 2026-03-21 |
 | 3. Sync Engine | 2/2 | Complete   | 2026-03-21 |
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
-| 5. Email Capture and Export | 0/2 | Not started | - |
+| 5. Email Capture and Export | 1/2 | In Progress|  |
 | 6. Admin Polish and Analytics | 0/? | Not started | - |
 
 ---
@@ -103,7 +103,7 @@ Plans:
   5. From the admin panel, one tap exports the current event's email list as a CSV file formatted for Mailchimp import
 **Plans**: 2 plans
 Plans:
-- [ ] 05-01-PLAN.md — Email sign-up screen with GDPR form, confirmation countdown, chrome button, and app wiring
+- [x] 05-01-PLAN.md — Email sign-up screen with GDPR form, confirmation countdown, chrome button, and app wiring
 - [ ] 05-02-PLAN.md — Admin panel CSV export section with Mailchimp-format download
 
 ### Phase 6: Admin Polish and Analytics

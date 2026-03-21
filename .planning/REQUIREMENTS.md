@@ -27,10 +27,10 @@
 
 ### Email Capture
 
-- [ ] **EMAIL-01**: Attendee can access an email sign-up screen from anywhere in the app
-- [ ] **EMAIL-02**: Sign-up form contains email address field and a mandatory GDPR consent checkbox (unchecked by default); submission blocked until checkbox is ticked
-- [ ] **EMAIL-03**: Submitted email is stored in IndexedDB with event name, event date, and consent timestamp
-- [ ] **EMAIL-04**: Confirmation screen displays after successful submission and auto-dismisses to catalogue after 5 seconds
+- [x] **EMAIL-01**: Attendee can access an email sign-up screen from anywhere in the app
+- [x] **EMAIL-02**: Sign-up form contains email address field and a mandatory GDPR consent checkbox (unchecked by default); submission blocked until checkbox is ticked
+- [x] **EMAIL-03**: Submitted email is stored in IndexedDB with event name, event date, and consent timestamp
+- [x] **EMAIL-04**: Confirmation screen displays after successful submission and auto-dismisses to catalogue after 5 seconds
 - [ ] **EMAIL-05**: Admin can export the current event's email list as a tagged, Mailchimp-ready CSV
 
 ### Admin Panel
@@ -111,10 +111,10 @@
 | ANALYTICS-01 | Phase 4 | Complete |
 | ANALYTICS-02 | Phase 4 | Complete |
 | ANALYTICS-03 | Phase 4 | Complete |
-| EMAIL-01 | Phase 5 | Pending |
-| EMAIL-02 | Phase 5 | Pending |
-| EMAIL-03 | Phase 5 | Pending |
-| EMAIL-04 | Phase 5 | Pending |
+| EMAIL-01 | Phase 5 | Complete |
+| EMAIL-02 | Phase 5 | Complete |
+| EMAIL-03 | Phase 5 | Complete |
+| EMAIL-04 | Phase 5 | Complete |
 | EMAIL-05 | Phase 5 | Pending |
 | ADMIN-05 | Phase 6 | Pending |
 | ADMIN-06 | Phase 6 | Pending |
