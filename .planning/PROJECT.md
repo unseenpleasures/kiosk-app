@@ -40,28 +40,30 @@ Customers can browse and discover ID cards with zero friction — fast, visual, 
 - [x] Category browsing tracking — Validated in Phase 4: customer-browse-experience
 - [x] Search term logging with zero-result searches flagged separately — Validated in Phase 4: customer-browse-experience
 
+### Validated
+
+**Email Capture (Phase 5: email-capture-and-export)**
+- [x] Dedicated email sign-up screen (not a popup) accessible from anywhere — Validated in Phase 5: email-capture-and-export
+- [x] Email + mandatory GDPR consent checkbox only — Validated in Phase 5: email-capture-and-export
+- [x] Every captured email tagged with event name and date — Validated in Phase 5: email-capture-and-export
+- [x] All emails stored in IndexedDB (offline, persistent) — Validated in Phase 5: email-capture-and-export
+- [x] One-tap CSV export from admin panel (Mailchimp-ready) — Validated in Phase 5: email-capture-and-export
+
+**Analytics & Tracking (Phase 6: admin-polish-and-analytics)**
+- [x] Post-event summary in admin: top 10 cards, most searched terms, zero-result searches, emails captured — Validated in Phase 6: admin-polish-and-analytics
+- [x] Cumulative data persists across events — Validated in Phase 6: admin-polish-and-analytics
+
+**Admin Panel (Passcode Protected) (Phases 3-6)**
+- [x] Hidden/discreet trigger + passcode access — Validated in Phase 3: sync-engine
+- [x] Set event name and date before each show — Validated in Phase 3: sync-engine
+- [x] One-button Shopify Storefront API sync with progress indicator and status report — Validated in Phase 3: sync-engine
+- [x] Incremental sync (only new/changed products downloaded) — Validated in Phase 3: sync-engine
+- [x] Export current event email list as tagged CSV — Validated in Phase 5: email-capture-and-export
+- [x] In-app analytics summary — Validated in Phase 6: admin-polish-and-analytics
+- [x] Adjustable inactivity timer (default 60 seconds) — Validated in Phase 6: admin-polish-and-analytics
+- [x] Changeable admin passcode — Validated in Phase 6: admin-polish-and-analytics
+
 ### Active
-
-**Email Capture**
-- [ ] Dedicated email sign-up screen (not a popup) accessible from anywhere
-- [ ] Email + mandatory GDPR consent checkbox only
-- [ ] Every captured email tagged with event name and date
-- [ ] All emails stored in IndexedDB (offline, persistent)
-- [ ] One-tap CSV export from admin panel (Mailchimp-ready)
-
-**Analytics & Tracking**
-- [ ] Post-event summary in admin: top 10 cards, most searched terms, zero-result searches, emails captured
-- [ ] Cumulative data persists across events
-
-**Admin Panel (Passcode Protected)**
-- [ ] Hidden/discreet trigger + passcode access
-- [ ] Set event name and date before each show
-- [ ] One-button Shopify Storefront API sync with progress indicator and status report
-- [ ] Incremental sync (only new/changed products downloaded)
-- [ ] Export current event email list as tagged CSV
-- [ ] In-app analytics summary
-- [ ] Adjustable inactivity timer (default 60 seconds)
-- [ ] Changeable admin passcode
 
 **PWA & Offline**
 - [ ] Service worker with cache-first strategy for all product images and JSON (Phase 1 covers app shell; product images covered in Phase 2+)
@@ -128,4 +130,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-21 after Phase 4: customer-browse-experience complete*
+*Last updated: 2026-03-21 after Phase 6: admin-polish-and-analytics complete — all 6 phases executed*
