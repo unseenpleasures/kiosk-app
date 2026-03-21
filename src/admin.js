@@ -311,6 +311,7 @@ function renderAdminPanel(screen) {
   // ---- Exit Button ----
   var exitBtn = document.createElement('button');
   exitBtn.type = 'button';
+  exitBtn.id = 'admin-exit-btn';
   exitBtn.className = 'btn-secondary btn-large';
   exitBtn.textContent = 'Exit Admin';
 
@@ -319,9 +320,99 @@ function renderAdminPanel(screen) {
     window.location.hash = '#/';
   });
 
+  // ---- Email Export Section (inserted before exit button) ----
+  renderEmailExportSection(panel, exitBtn);
+
   panel.appendChild(exitBtn);
 
   screen.appendChild(panel);
+}
+
+// ============================================================
+// escapeCsvField — wraps a CSV field value in quotes if it contains
+// commas, double-quotes, or newlines (RFC 4180 safe quoting).
+// ============================================================
+
+function escapeCsvField(value) {
+  if (value.indexOf(',') !== -1 || value.indexOf('"') !== -1 || value.indexOf('\n') !== -1) {
+    return '"' + value.replace(/"/g, '""') + '"';
+  }
+  return value;
+}
+
+// ============================================================
+// buildCsvFilename — generates a safe CSV filename from event name and date.
+// Pattern: emails-{sanitized-event-name}-{event-date}.csv
+// ============================================================
+
+function buildCsvFilename(eventName, eventDate) {
+  var safeName = eventName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return 'emails-' + safeName + '-' + eventDate + '.csv';
+}
+
+// ============================================================
+// renderEmailExportSection — builds the Email Export admin section and
+// inserts it before exitBtn (direct reference, not panel.lastChild).
+// Called by renderAdminPanel() after the Sync Status section.
+// ============================================================
+
+function renderEmailExportSection(panel, exitBtn) {
+  var section = document.createElement('div');
+  section.className = 'admin-section';
+
+  var heading = document.createElement('h2');
+  heading.className = 'admin-section-heading';
+  heading.textContent = 'Email Export';
+  section.appendChild(heading);
+
+  var exportBtn = document.createElement('button');
+  exportBtn.type = 'button';
+  exportBtn.className = 'btn-primary btn-large';
+  exportBtn.textContent = 'Export / Share Emails (CSV)';
+  section.appendChild(exportBtn);
+
+  var statusMsg = document.createElement('p');
+  statusMsg.className = 'sync-result-detail';
+  statusMsg.style.display = 'none';
+  section.appendChild(statusMsg);
+
+  exportBtn.addEventListener('click', function() {
+    var eventName = Config.getEventName();
+    var eventDate = Config.getEventDate();
+
+    dbGetAll('emails').then(function(allEmails) {
+      var filtered = allEmails.filter(function(r) {
+        return r.eventName === eventName;
+      });
+
+      if (filtered.length === 0) {
+        statusMsg.textContent = 'No emails captured for this event yet.';
+        statusMsg.style.display = 'block';
+        return;
+      }
+
+      var csvRows = ['Email Address,TAGS'];
+      filtered.forEach(function(r) {
+        csvRows.push(escapeCsvField(r.email) + ',' + escapeCsvField(eventName));
+      });
+      var csvString = csvRows.join('\n');
+
+      var blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = buildCsvFilename(eventName, eventDate);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      statusMsg.textContent = 'Exported ' + filtered.length + ' email(s).';
+      statusMsg.style.display = 'block';
+    });
+  });
+
+  panel.insertBefore(section, exitBtn);
 }
 
 // ============================================================
