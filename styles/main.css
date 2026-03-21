@@ -869,3 +869,171 @@ html, body {
   line-height: var(--leading-normal);
   margin-top: var(--space-xs);
 }
+
+/* ---------------------------------------------------------------------------
+   Email Screen — Phase 5
+   Source: 05-UI-SPEC.md, EMAIL-01 through EMAIL-04
+   --------------------------------------------------------------------------- */
+
+.screen-email {
+  overflow-y: auto;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.email-form-card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: var(--space-xl);
+  width: 100%;
+  max-width: 560px;
+}
+
+.email-screen-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.email-screen-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.email-input {
+  width: 100%;
+  min-height: var(--touch-target-min);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-text-secondary);
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: var(--space-sm);
+}
+
+.email-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.email-validation-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-destructive);
+  min-height: 20px;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.email-consent-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 48px;
+  cursor: pointer;
+  margin-bottom: var(--space-lg);
+}
+
+.email-consent-checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.email-confirmation-icon {
+  display: block;
+  font-size: 48px;
+  color: var(--color-accent);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.email-confirmation-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.email-confirmation-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.email-confirmation-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.email-countdown {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.email-save-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-destructive);
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.chrome-email {
+  position: fixed;
+  bottom: var(--space-md);
+  left: var(--space-md);
+  width: 48px;
+  height: 48px;
+  min-height: var(--touch-target-min);
+  background: rgba(14, 27, 77, 0.85);
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  color: var(--color-accent);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.chrome-email:active {
+  opacity: 0.8;
+}
+
+.chrome-email.active-screen {
+  opacity: 0.5;
+}
