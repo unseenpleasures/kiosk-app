@@ -1,0 +1,14 @@
+/* =============================================================================
+   ID Card Factory Kiosk — Animations CSS
+   Opacity transitions only. CSS opacity transition, A9X GPU safe.
+   Source: UI-SPEC.md §Screen 1 Entry Animation, §Interaction Constraints
+   ============================================================================= */
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-in.visible {
+  opacity: 1;
+}

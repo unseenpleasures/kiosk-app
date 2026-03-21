@@ -1,0 +1,248 @@
+/* =============================================================================
+   ID Card Factory Kiosk — Main CSS
+   Source: UI-SPEC.md §CSS Custom Property Declarations, RESEARCH.md Patterns 3, 6, 7
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   @font-face — Self-hosted woff2 fonts (no CDN)
+   Source: RESEARCH.md §Pattern 7
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/bebas-neue.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/inter-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/inter-700.woff2') format('woff2');
+}
+
+/* ---------------------------------------------------------------------------
+   CSS Custom Properties — single source of truth for all design tokens
+   Source: UI-SPEC.md §CSS Custom Property Declarations
+   Verified from theidcardfactory.co.uk — fetched 2026-03-21
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* Color */
+  --color-bg:             #0d0f1a;
+  --color-surface:        #0e1b4d;
+  --color-accent:         #f5c842;
+  --color-text-primary:   #f0f0f0;
+  --color-text-secondary: #a0a8c0;
+  --color-destructive:    #e53e3e;
+
+  /* Spacing — 4px base scale */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  --text-display: 48px;
+  --text-heading: 28px;
+  --text-body:    16px;
+  --text-label:   14px;
+
+  --weight-regular: 400;
+  --weight-bold:    700;
+
+  --leading-tight:  1.1;
+  --leading-snug:   1.2;
+  --leading-normal: 1.5;
+
+  /* Touch */
+  --touch-target-min: 48px;
+}
+
+/* ---------------------------------------------------------------------------
+   Base Reset
+   --------------------------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------------
+   Landscape Orientation Enforcement (CSS workaround)
+   Safari/iPadOS ignores manifest orientation field — rotate viewport instead.
+   Source: RESEARCH.md §Pattern 3
+   --------------------------------------------------------------------------- */
+
+@media (orientation: portrait) {
+  body {
+    transform: rotate(90deg);
+    transform-origin: bottom left;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: -100vw;
+    left: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Screen Base Styles
+   --------------------------------------------------------------------------- */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Splash Screen — Screen 1
+   Source: UI-SPEC.md §Screen 1, CONTEXT.md D-08, D-09, D-10
+   --------------------------------------------------------------------------- */
+
+.splash-screen {
+  cursor: pointer;
+}
+
+.splash-logo {
+  max-width: 320px;
+  height: auto;
+}
+
+.splash-title {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  margin-top: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.splash-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  padding: 0 var(--space-lg);
+  min-height: var(--touch-target-min);
+  border: none;
+  border-radius: 4px;
+  margin-top: var(--space-xl);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.splash-cta:active {
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------------------
+   QR Code Corner Placement
+   Source: UI-SPEC.md §Screen 1, CONTEXT.md D-09
+   --------------------------------------------------------------------------- */
+
+.qr-corner {
+  position: absolute;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.qr-corner img {
+  width: 96px;
+  height: 96px;
+}
+
+.qr-corner-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+   Sync Required Screen — Screen 2
+   Source: UI-SPEC.md §Screen 2, CONTEXT.md D-11
+   --------------------------------------------------------------------------- */
+
+.sync-required-logo {
+  max-width: 240px;
+  height: auto;
+}
+
+.sync-required-heading {
+  font-family: var(--font-body);
+  font-size: var(--text-heading);
+  font-weight: var(--weight-bold);
+  color: var(--color-accent);
+  line-height: var(--leading-snug);
+  margin-top: var(--space-lg);
+}
+
+.sync-required-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  line-height: var(--leading-normal);
+  margin-top: var(--space-md);
+  max-width: 480px;
+  text-align: center;
+}
