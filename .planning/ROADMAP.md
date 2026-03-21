@@ -13,6 +13,7 @@
 - [x] **Phase 4: Customer Browse Experience** - Virtual-scrolled catalogue grid, search, filter, card detail, and analytics logging (completed 2026-03-21)
 - [x] **Phase 5: Email Capture and Export** - GDPR-compliant email sign-up, per-event tagging, and CSV export (completed 2026-03-21)
 - [x] **Phase 6: Admin Polish and Analytics** - Analytics summary, admin configuration, passcode change, cumulative data (completed 2026-03-21)
+- [ ] **Phase 7: Integration Bug Fixes** - Fix cache name mismatch, NEW badge logic, first-sync empty catalogue, missing CSS rule (gap closure)
 
 ## Progress
 
@@ -24,6 +25,7 @@
 | 4. Customer Browse Experience | 2/2 | Complete   | 2026-03-21 |
 | 5. Email Capture and Export | 2/2 | Complete   | 2026-03-21 |
 | 6. Admin Polish and Analytics | 2/2 | Complete   | 2026-03-21 |
+| 7. Integration Bug Fixes | 0/0 | Pending | — |
 
 ---
 
@@ -120,6 +122,18 @@ Plans:
 - [x] 06-01-PLAN.md — Event analytics summary section (top cards, searches, zero-results, email count)
 - [x] 06-02-PLAN.md — Idle timeout configuration and passcode change controls
 
+### Phase 7: Integration Bug Fixes
+**Goal**: Fix cross-phase integration defects found by milestone audit — cache name mismatch, NEW badge timing, first-sync empty catalogue, and missing CSS rule.
+**Depends on**: Phase 6
+**Requirements**: CAT-06, PWA-03, SYNC-04
+**Gap Closure:** Closes gaps from v1.0 audit
+**Success Criteria** (what must be TRUE):
+  1. Product images survive a service worker version bump — sync cache is excluded from SW activate cleanup
+  2. Cards added since the *previous* sync display a "NEW" badge; cards present before that sync do not
+  3. After first-ever sync from the sync-required screen, navigating to `#/` shows the full catalogue without needing a page reload
+  4. The email count paragraph in admin analytics renders with the `.admin-stat` CSS class applied
+**Plans**: 0 plans (pending)
+
 ---
 
 ## Requirement Coverage
@@ -163,7 +177,11 @@ Plans:
 | ANALYTICS-04 | Phase 6 |
 | ANALYTICS-05 | Phase 6 |
 
-**Coverage: 36/36 requirements mapped. No orphans.**
+| CAT-06 | Phase 7 (gap closure) |
+| PWA-03 | Phase 7 (gap closure) |
+| SYNC-04 | Phase 7 (gap closure) |
+
+**Coverage: 36/36 requirements mapped. No orphans. 3 requirements remapped to Phase 7 for gap closure.**
 
 ---
 *Roadmap created: 2026-03-21*

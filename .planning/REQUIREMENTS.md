@@ -12,7 +12,7 @@
 - [x] **CAT-03**: Attendee can search cards in real-time by name or character (results appear < 300ms)
 - [x] **CAT-04**: All search queries including zero-result searches are logged with timestamp
 - [x] **CAT-05**: Attendee can tap a card to view a larger image and card name
-- [x] **CAT-06**: Cards added since the previous sync are badged "NEW"
+- [ ] **CAT-06**: Cards added since the previous sync are badged "NEW"
 - [x] **CAT-07**: QR code linking to https://theidcardfactory.co.uk is always visible on every screen
 - [x] **CAT-08**: Floating home button fixed to top-left on every screen; tapping it resets search, filter, and returns to the catalogue grid
 - [x] **CAT-09**: App automatically returns to home after 60 seconds of inactivity, preceded by a 10-second visual countdown with cancel option
@@ -23,7 +23,7 @@
 - [x] **SYNC-01**: Admin can trigger a full Shopify Storefront API catalogue sync with one tap
 - [x] **SYNC-02**: Sync displays a progress indicator while running
 - [x] **SYNC-03**: Sync completion shows a status report (products updated, new cards added, any errors)
-- [x] **SYNC-04**: Previous cached catalogue remains fully usable if sync fails or is interrupted
+- [ ] **SYNC-04**: Previous cached catalogue remains fully usable if sync fails or is interrupted
 
 ### Email Capture
 
@@ -54,7 +54,7 @@
 
 - [x] **PWA-01**: App installs as a PWA to iPad home screen with standalone display, landscape orientation, dark background theme, and 512×512 and 1024×1024 icons
 - [x] **PWA-02**: Service worker caches the full app shell on first install; uses cache-first strategy for all app assets and product images
-- [x] **PWA-03**: All product JSON and optimised images (≤400px width) are downloaded to device during sync; the app functions fully offline with no network dependency
+- [ ] **PWA-03**: All product JSON and optimised images (≤400px width) are downloaded to device during sync; the app functions fully offline with no network dependency
 - [x] **PWA-04**: On every launch, app checks whether catalogue data is present in IndexedDB; if storage was evicted, a "Sync required" blocking screen is shown before the catalogue
 - [x] **PWA-05**: Home screen loads in under 2 seconds from cache on A9X hardware (iPad Pro 12.9" 1st Gen)
 - [x] **PWA-06**: Admin passcode stored hashed (SHA-256) in localStorage; event name, event date, and timer setting stored in localStorage
@@ -88,7 +88,7 @@
 | PWA-02 | Phase 1 | Complete |
 | PWA-04 | Phase 1 | Complete |
 | PWA-05 | Phase 1 | Complete |
-| PWA-03 | Phase 2 | Complete |
+| PWA-03 | Phase 7 | Pending |
 | PWA-06 | Phase 2 | Complete |
 | CAT-07 | Phase 2 | Complete |
 | CAT-08 | Phase 2 | Complete |
@@ -96,7 +96,7 @@
 | SYNC-01 | Phase 3 | Complete |
 | SYNC-02 | Phase 3 | Complete |
 | SYNC-03 | Phase 3 | Complete |
-| SYNC-04 | Phase 3 | Complete |
+| SYNC-04 | Phase 7 | Pending |
 | ADMIN-01 | Phase 3 | Complete |
 | ADMIN-02 | Phase 3 | Complete |
 | ADMIN-03 | Phase 3 | Complete |
@@ -106,7 +106,7 @@
 | CAT-03 | Phase 4 | Complete |
 | CAT-04 | Phase 4 | Complete |
 | CAT-05 | Phase 4 | Complete |
-| CAT-06 | Phase 4 | Complete |
+| CAT-06 | Phase 7 | Pending |
 | CAT-10 | Phase 4 | Complete |
 | ANALYTICS-01 | Phase 4 | Complete |
 | ANALYTICS-02 | Phase 4 | Complete |
@@ -124,6 +124,8 @@
 **Coverage:**
 - v1 requirements: 36 total
 - Mapped to phases: 36
+- Complete: 33
+- Pending (gap closure): 3 (CAT-06, PWA-03, SYNC-04 → Phase 7)
 - Unmapped: 0
 
 ---
