@@ -19,7 +19,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. PWA Foundation | 2/2 | Complete   | 2026-03-21 |
-| 2. Data Layer and Navigation | 0/2 | Not started | - |
+| 2. Data Layer and Navigation | 1/2 | In Progress|  |
 | 3. Sync Engine | 0/? | Not started | - |
 | 4. Customer Browse Experience | 0/? | Not started | - |
 | 5. Email Capture and Export | 0/? | Not started | - |
@@ -56,7 +56,7 @@ Plans:
   5. All IndexedDB object stores (products, emails, analytics, sync metadata) are created and accessible without errors on a fresh install
 **Plans**: 2 plans
 Plans:
-- [ ] 02-01-PLAN.md — IndexedDB schema with CRUD helpers (db.js) and localStorage config wrapper with SHA-256 hashing (config.js)
+- [x] 02-01-PLAN.md — IndexedDB schema with CRUD helpers (db.js) and localStorage config wrapper with SHA-256 hashing (config.js)
 - [ ] 02-02-PLAN.md — Hash router, inactivity timer, global chrome elements, and boot sequence refactor
 
 ### Phase 3: Sync Engine
