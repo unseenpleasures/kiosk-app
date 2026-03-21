@@ -15,8 +15,8 @@ var _lastSyncAt = null;       // ISO string from sync_meta, used for NEW badge d
 var _activeCategory = null;   // currently selected category chip (null = no filter)
 var _searchQuery = '';        // current search query ('' = no search)
 var _windowStart = 0;         // index into _filtered of first rendered card
-var _windowSize = 96;         // max DOM card nodes (6 cols x 16 rows)
-var _batchSize = 24;          // cards added/removed per scroll event (6 cols x 4 rows)
+var _windowSize = 80;         // max DOM card nodes (5 cols x 16 rows)
+var _batchSize = 20;          // cards added/removed per scroll event (5 cols x 4 rows)
 var _rowHeight = 0;           // measured from live DOM after first render
 var _observer = null;         // IntersectionObserver instance for sentinels
 var _topSentinel = null;      // sentinel element above visible window
@@ -114,7 +114,7 @@ function createCardTile(product) {
 // calculateSpacerHeight — height in px for a given item count
 // ============================================================
 
-var _colCount = 6;  // must match grid-template-columns repeat() count in main.css
+var _colCount = 5;  // must match grid-template-columns repeat() count in main.css
 
 function calculateSpacerHeight(itemCount) {
   if (_rowHeight === 0) { return 0; }
@@ -329,11 +329,15 @@ function renderCatalogue() {
   _bottomSentinel = document.createElement('div');
   _bottomSentinel.className = 'scroll-sentinel scroll-sentinel--bottom';
 
+  // Sentinel order: sentinels bracket the RENDERED cards, not the spacers.
+  // Bottom sentinel must come BEFORE the bottom spacer so it fires as soon as
+  // the user reaches the end of rendered cards — not after scrolling through
+  // thousands of px of virtual spacer space.
   _scrollContainer.appendChild(_topSentinel);
   _scrollContainer.appendChild(_topSpacer);
   _scrollContainer.appendChild(_gridContainer);
-  _scrollContainer.appendChild(_bottomSpacer);
   _scrollContainer.appendChild(_bottomSentinel);
+  _scrollContainer.appendChild(_bottomSpacer);
 
   screen.appendChild(_scrollContainer);
   app.appendChild(screen);

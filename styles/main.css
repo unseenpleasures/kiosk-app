@@ -707,10 +707,10 @@ html, body {
 
 .catalogue-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-md);
-  padding: var(--space-md);
-  padding-bottom: 140px;  /* clear the fixed QR code chrome (96px + 24px + padding) */
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  padding-bottom: 160px;  /* clear the fixed QR code chrome (96px + 24px + padding) */
 }
 
 .scroll-spacer {
