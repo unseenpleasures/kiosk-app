@@ -9,13 +9,13 @@ Requirements for Live Deployment milestone. Each maps to roadmap phases.
 
 ### Hosting
 
-- [ ] **HOST-01**: PWA files deployed to GitHub Pages with a public URL
+- [x] **HOST-01**: PWA files deployed to GitHub Pages with a public URL
 - [x] **HOST-02**: Service worker and manifest serve correctly from GitHub Pages (correct MIME types, paths)
 
 ### Installation
 
-- [ ] **INST-01**: PWA loads and installs via "Add to Home Screen" on iPad #1
-- [ ] **INST-02**: PWA loads and installs via "Add to Home Screen" on iPad #2
+- [x] **INST-01**: PWA loads and installs via "Add to Home Screen" on iPad #1
+- [x] **INST-02**: PWA loads and installs via "Add to Home Screen" on iPad #2
 
 ## Future Requirements
 
@@ -35,10 +35,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| HOST-01 | Phase 8 | Pending |
+| HOST-01 | Phase 8 | Complete |
 | HOST-02 | Phase 8 | Complete |
-| INST-01 | Phase 8 | Pending |
-| INST-02 | Phase 8 | Pending |
+| INST-01 | Phase 8 | Complete |
+| INST-02 | Phase 8 | Complete |
 
 **Coverage:**
 - v1.1 requirements: 4 total
