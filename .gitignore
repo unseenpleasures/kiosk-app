@@ -1,0 +1,16 @@
+# Development and planning files — not part of the deployed PWA
+.planning/
+generate-assets.js
+project/
+
+# Debug artifacts
+.planning/debug/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
