@@ -26,6 +26,7 @@ var _topSpacer = null;        // spacer div above rendered cards (simulates scro
 var _bottomSpacer = null;     // spacer div below rendered cards
 var _scrollContainer = null;  // the .catalogue-scroll element (scrolling parent)
 var _searchDebounceTimer = null;
+var _scrollSafetyTimer = null;  // throttle timer for scroll safety net
 
 // ============================================================
 // initCatalogue — called once at app boot
@@ -222,6 +223,37 @@ function onSentinelIntersect(entries) {
 }
 
 // ============================================================
+// onScrollSafetyNet — recalculates window when scroll outruns IntersectionObserver
+// During fast momentum scrolling on iPad, the observer can miss batches, leaving
+// the grid empty or showing the wrong cards. This throttled handler detects when
+// the scroll position is outside the rendered window and jumps directly to the
+// correct position.
+// ============================================================
+
+function onScrollSafetyNet() {
+  if (_scrollSafetyTimer) { return; }
+  _scrollSafetyTimer = setTimeout(function() {
+    _scrollSafetyTimer = null;
+    if (!_scrollContainer || _rowHeight === 0) { return; }
+
+    var scrollTop = _scrollContainer.scrollTop;
+    var visibleRow = Math.floor(scrollTop / _rowHeight);
+    var visibleStart = visibleRow * _colCount;
+    var windowEnd = _windowStart + _windowSize;
+
+    // If current scroll position is outside the rendered window, jump
+    if (visibleStart < _windowStart || visibleStart >= windowEnd - _colCount * 2) {
+      // Center the window on the current scroll position
+      var targetStart = Math.max(0, visibleStart - Math.floor(_windowSize / 2));
+      // Snap to batch boundary
+      targetStart = Math.floor(targetStart / _batchSize) * _batchSize;
+      _windowStart = targetStart;
+      renderGridWindow();
+    }
+  }, 150);
+}
+
+// ============================================================
 // setupObserver — creates and wires the IntersectionObserver on sentinels
 // Source: Pattern 2 from RESEARCH.md, Pitfall 2
 // ============================================================
@@ -358,15 +390,24 @@ function renderCatalogue() {
   // Defer row height measurement and observer setup until after first paint
   // Source: Pitfall 2 and Pitfall 3 from RESEARCH.md
   requestAnimationFrame(function() {
-    var firstCard = _gridContainer.querySelector('.card-tile');
-    if (firstCard) {
-      _rowHeight = firstCard.offsetHeight;
+    // Measure row height INCLUDING grid gap by comparing two rows' positions
+    var cards = _gridContainer.querySelectorAll('.card-tile');
+    if (cards.length > _colCount) {
+      _rowHeight = cards[_colCount].offsetTop - cards[0].offsetTop;
+    } else if (cards.length > 0) {
+      _rowHeight = cards[0].offsetHeight + 32; // fallback: card height + grid gap
+    }
+    if (_rowHeight > 0) {
       // Recompute spacers now that we have a measured row height
       var end = Math.min(_windowStart + _windowSize, _filtered.length);
       _topSpacer.style.height = calculateSpacerHeight(_windowStart) + 'px';
       _bottomSpacer.style.height = calculateSpacerHeight(_filtered.length - end) + 'px';
     }
     setupObserver();
+
+    // Safety net: throttled scroll listener recalculates window on fast scrolling
+    // IntersectionObserver can miss batches during iPad momentum scroll
+    _scrollContainer.addEventListener('scroll', onScrollSafetyNet, { passive: true });
   });
 }
 
