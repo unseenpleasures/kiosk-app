@@ -320,7 +320,40 @@ async function boot() {
   initIdleTimer();
 }
 
-// No debug overlays — touch routing handled by initChromeTouchRouter()
+// ============================================================
+// Top-level touch routing for iPad Safari standalone mode
+// Safari standalone does not deliver touch events to position:fixed buttons
+// over scroll areas. This document-level listener checks touch coordinates
+// against button bounding rects and triggers navigation directly.
+// MUST be top-level (not inside boot()) to run before any async code.
+// ============================================================
+
+document.addEventListener('touchstart', function(e) {
+  var t = e.touches[0];
+  var x = t.clientX;
+  var y = t.clientY;
+
+  var hb = document.getElementById('chrome-home');
+  if (hb) {
+    var hr = hb.getBoundingClientRect();
+    if (x >= hr.left && x <= hr.right && y >= hr.top && y <= hr.bottom) {
+      e.preventDefault();
+      window.location.hash = '#/';
+      if (typeof resetCatalogueState === 'function') { resetCatalogueState(); }
+      return;
+    }
+  }
+
+  var eb = document.getElementById('chrome-email');
+  if (eb) {
+    var er = eb.getBoundingClientRect();
+    if (x >= er.left && x <= er.right && y >= er.top && y <= er.bottom) {
+      e.preventDefault();
+      window.location.hash = '#/email';
+      return;
+    }
+  }
+}, { passive: false });
 
 // Run boot when DOM is ready
 if (document.readyState === 'loading') {
