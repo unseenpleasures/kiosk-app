@@ -298,6 +298,12 @@ async function boot() {
   initIdleTimer();
 }
 
+// Debug: version indicator — remove after iPad issues resolved
+var _vTag = document.createElement('div');
+_vTag.textContent = 'v15';
+_vTag.style.cssText = 'position:fixed;top:0;right:0;background:red;color:white;padding:4px 10px;font-size:18px;font-weight:bold;z-index:9999;pointer-events:none;';
+document.body.appendChild(_vTag);
+
 // Run boot when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', boot);

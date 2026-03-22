@@ -2,7 +2,7 @@
 // Cache-first strategy with immediate activation (skipWaiting + clients.claim)
 // Cache version: bump CACHE_NAME to force cache refresh on next update
 
-var CACHE_NAME = 'kiosk-v14';
+var CACHE_NAME = 'kiosk-v15';
 
 var APP_SHELL_FILES = [
   './',
