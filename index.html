@@ -22,20 +22,25 @@
 <body style="background-color: #0d0f1a;">
   <div id="app"></div>
 
-  <!-- Global chrome -- fixed position, always visible on every screen -->
-  <div id="chrome-qr" class="chrome-qr" role="img" aria-label="QR code to theidcardfactory.co.uk">
-    <img src="./assets/qr-code.png" alt="Visit theidcardfactory.co.uk" width="96" height="96">
-    <span class="chrome-qr-label">Visit our website</span>
+  <!-- Chrome overlay — pointer-events:none container lets touches pass through to #app,
+       pointer-events:auto on each button makes them tappable. This pattern is required
+       on iPad Safari where fixed elements as body siblings can't receive taps over
+       scroll areas regardless of z-index. -->
+  <div id="chrome-overlay">
+    <div id="chrome-qr" class="chrome-qr" role="img" aria-label="QR code to theidcardfactory.co.uk">
+      <img src="./assets/qr-code.png" alt="Visit theidcardfactory.co.uk" width="96" height="96">
+      <span class="chrome-qr-label">Visit our website</span>
+    </div>
+
+    <button id="chrome-home" class="chrome-home" type="button" aria-label="Return to catalogue home">
+      <span class="chrome-home-icon">&#8962;</span>
+    </button>
+
+    <button id="chrome-email" class="chrome-email" type="button" aria-label="Sign up for email updates">
+      <span class="chrome-email-icon">&#9993;</span>
+      <span class="chrome-email-label">Sign up here</span>
+    </button>
   </div>
-
-  <button id="chrome-home" class="chrome-home" type="button" aria-label="Return to catalogue home">
-    <span class="chrome-home-icon">&#8962;</span>
-  </button>
-
-  <button id="chrome-email" class="chrome-email" type="button" aria-label="Sign up for email updates">
-    <span class="chrome-email-icon">&#9993;</span>
-    <span class="chrome-email-label">Sign up here</span>
-  </button>
 
   <script src="./src/db.js" defer></script>
   <script src="./src/config.js" defer></script>
