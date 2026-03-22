@@ -15,8 +15,8 @@ var _lastSyncAt = null;       // ISO string from sync_meta, used for NEW badge d
 var _activeCategory = null;   // currently selected category chip (null = no filter)
 var _searchQuery = '';        // current search query ('' = no search)
 var _windowStart = 0;         // index into _filtered of first rendered card
-var _windowSize = 80;         // max DOM card nodes (5 cols x 16 rows)
-var _batchSize = 20;          // cards added/removed per scroll event (5 cols x 4 rows)
+var _windowSize = 150;        // max DOM card nodes (5 cols x 30 rows) — larger buffer prevents blanking on fast iPad scroll
+var _batchSize = 25;          // cards added/removed per scroll event (5 cols x 5 rows)
 var _rowHeight = 0;           // measured from live DOM after first render
 var _observer = null;         // IntersectionObserver instance for sentinels
 var _topSentinel = null;      // sentinel element above visible window
@@ -250,7 +250,7 @@ function onScrollSafetyNet() {
       _windowStart = targetStart;
       renderGridWindow();
     }
-  }, 150);
+  }, 50);
 }
 
 // ============================================================
@@ -265,7 +265,7 @@ function setupObserver() {
   }
   _observer = new IntersectionObserver(onSentinelIntersect, {
     root: _scrollContainer,
-    rootMargin: '200px 0px'
+    rootMargin: '800px 0px'
   });
   _observer.observe(_topSentinel);
   _observer.observe(_bottomSentinel);

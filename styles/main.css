@@ -715,8 +715,8 @@ html, body {
 
 .catalogue-scroll {
   flex: 1;
-  overflow-y: auto;
-  /* -webkit-overflow-scrolling: touch removed — see .catalogue-chips comment above */
+  overflow-y: scroll;
+  overscroll-behavior: contain;
   position: relative;
 }
 
