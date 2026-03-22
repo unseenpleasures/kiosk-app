@@ -320,46 +320,7 @@ async function boot() {
   initIdleTimer();
 }
 
-// Debug: version indicator + touch logger — remove after iPad issues resolved
-var _vTag = document.createElement('div');
-_vTag.textContent = 'v17';
-_vTag.style.cssText = 'position:fixed;top:0;right:0;background:red;color:white;padding:4px 10px;font-size:18px;font-weight:bold;z-index:9999;pointer-events:none;';
-document.body.appendChild(_vTag);
-
-var _dbg = document.createElement('div');
-_dbg.style.cssText = 'position:fixed;bottom:80px;right:10px;background:rgba(0,0,0,0.9);color:lime;font-size:14px;padding:10px;z-index:9999;pointer-events:none;white-space:pre;font-family:monospace;border:2px solid lime;';
-_dbg.textContent = 'Waiting for tap...';
-document.body.appendChild(_dbg);
-
-document.addEventListener('touchstart', function(e) {
-  var t = e.touches[0];
-  var x = Math.round(t.clientX);
-  var y = Math.round(t.clientY);
-  var hb = document.getElementById('chrome-home');
-  var eb = document.getElementById('chrome-email');
-  var msg = 'Tap: ' + x + ',' + y + '\n';
-  if (hb) {
-    var hr = hb.getBoundingClientRect();
-    msg += 'Home: ' + Math.round(hr.left) + ',' + Math.round(hr.top) + '-' + Math.round(hr.right) + ',' + Math.round(hr.bottom) + '\n';
-    if (x >= hr.left && x <= hr.right && y >= hr.top && y <= hr.bottom) {
-      msg += '>>> HIT HOME <<<';
-      window.location.hash = '#/';
-    }
-  } else {
-    msg += 'Home btn: NOT FOUND\n';
-  }
-  if (eb) {
-    var er = eb.getBoundingClientRect();
-    msg += 'Email: ' + Math.round(er.left) + ',' + Math.round(er.top) + '-' + Math.round(er.right) + ',' + Math.round(er.bottom) + '\n';
-    if (x >= er.left && x <= er.right && y >= er.top && y <= er.bottom) {
-      msg += '>>> HIT EMAIL <<<';
-      window.location.hash = '#/email';
-    }
-  } else {
-    msg += 'Email btn: NOT FOUND\n';
-  }
-  _dbg.textContent = msg;
-}, { passive: false });
+// No debug overlays — touch routing handled by initChromeTouchRouter()
 
 // Run boot when DOM is ready
 if (document.readyState === 'loading') {
