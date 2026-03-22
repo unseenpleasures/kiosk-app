@@ -199,25 +199,47 @@ function initEmailButton() {
 // ============================================================
 
 function initChromeTouchRouter() {
+  // Debug overlay — shows touch coordinates and button rects
+  var dbg = document.createElement('div');
+  dbg.id = 'touch-debug';
+  dbg.style.cssText = 'position:fixed;bottom:60px;right:10px;background:rgba(0,0,0,0.85);color:lime;font-size:12px;padding:8px;z-index:9999;pointer-events:none;white-space:pre;font-family:monospace;max-width:300px;';
+  document.body.appendChild(dbg);
+
   document.addEventListener('touchstart', function(e) {
     var touch = e.touches[0];
     var x = touch.clientX;
     var y = touch.clientY;
 
     var homeBtn = document.getElementById('chrome-home');
-    if (homeBtn && hitTest(homeBtn, x, y)) {
+    var emailBtn = document.getElementById('chrome-email');
+    var hr = homeBtn ? homeBtn.getBoundingClientRect() : null;
+    var er = emailBtn ? emailBtn.getBoundingClientRect() : null;
+
+    var info = 'Touch: ' + Math.round(x) + ',' + Math.round(y) + '\n';
+    if (hr) info += 'Home: ' + Math.round(hr.left) + ',' + Math.round(hr.top) + ' ' + Math.round(hr.right) + ',' + Math.round(hr.bottom) + '\n';
+    if (er) info += 'Email: ' + Math.round(er.left) + ',' + Math.round(er.top) + ' ' + Math.round(er.right) + ',' + Math.round(er.bottom) + '\n';
+
+    var hitHome = homeBtn && hitTest(homeBtn, x, y);
+    var hitEmail = emailBtn && hitTest(emailBtn, x, y);
+    info += 'Hit: ' + (hitHome ? 'HOME' : hitEmail ? 'EMAIL' : 'none');
+    dbg.textContent = info;
+
+    if (hitHome) {
       e.preventDefault();
+      dbg.style.background = 'green';
       window.location.hash = '#/';
       resetCatalogueState();
       return;
     }
 
-    var emailBtn = document.getElementById('chrome-email');
-    if (emailBtn && hitTest(emailBtn, x, y)) {
+    if (hitEmail) {
       e.preventDefault();
+      dbg.style.background = 'blue';
       window.location.hash = '#/email';
       return;
     }
+
+    dbg.style.background = 'rgba(0,0,0,0.85)';
   }, { passive: false });
 }
 
@@ -300,7 +322,7 @@ async function boot() {
 
 // Debug: version indicator — remove after iPad issues resolved
 var _vTag = document.createElement('div');
-_vTag.textContent = 'v15';
+_vTag.textContent = 'v16';
 _vTag.style.cssText = 'position:fixed;top:0;right:0;background:red;color:white;padding:4px 10px;font-size:18px;font-weight:bold;z-index:9999;pointer-events:none;';
 document.body.appendChild(_vTag);
 
