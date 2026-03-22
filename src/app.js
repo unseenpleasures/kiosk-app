@@ -167,14 +167,6 @@ function initAdminTrigger() {
 function initHomeButton() {
   var homeBtn = document.getElementById('chrome-home');
   if (homeBtn) {
-    // Use touchend instead of click — iOS Safari's scroll gesture recognizer
-    // can swallow click events on fixed elements overlapping scroll areas
-    homeBtn.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      window.location.hash = '#/';
-      resetCatalogueState();
-    });
-    // Keep click for non-touch (desktop testing)
     homeBtn.addEventListener('click', function() {
       window.location.hash = '#/';
       resetCatalogueState();
@@ -191,17 +183,47 @@ function initHomeButton() {
 function initEmailButton() {
   var emailBtn = document.getElementById('chrome-email');
   if (emailBtn) {
-    // Use touchend instead of click — iOS Safari's scroll gesture recognizer
-    // can swallow click events on fixed elements overlapping scroll areas
-    emailBtn.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      window.location.hash = '#/email';
-    });
-    // Keep click for non-touch (desktop testing)
     emailBtn.addEventListener('click', function() {
       window.location.hash = '#/email';
     });
   }
+}
+
+// ============================================================
+// 6b. initChromeTouchRouter — coordinate-based touch routing for iPad Safari
+// iPad Safari standalone mode does not deliver touch/click events to position:fixed
+// elements overlapping scroll areas, regardless of z-index, pointer-events, or
+// compositing layers. This listener intercepts all touches at the document level
+// and manually checks if touch coordinates fall within a chrome button's bounding
+// rect. If so, it triggers the button's action directly.
+// ============================================================
+
+function initChromeTouchRouter() {
+  document.addEventListener('touchstart', function(e) {
+    var touch = e.touches[0];
+    var x = touch.clientX;
+    var y = touch.clientY;
+
+    var homeBtn = document.getElementById('chrome-home');
+    if (homeBtn && hitTest(homeBtn, x, y)) {
+      e.preventDefault();
+      window.location.hash = '#/';
+      resetCatalogueState();
+      return;
+    }
+
+    var emailBtn = document.getElementById('chrome-email');
+    if (emailBtn && hitTest(emailBtn, x, y)) {
+      e.preventDefault();
+      window.location.hash = '#/email';
+      return;
+    }
+  }, { passive: false });
+}
+
+function hitTest(el, x, y) {
+  var r = el.getBoundingClientRect();
+  return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
 }
 
 // ============================================================
@@ -258,6 +280,9 @@ async function boot() {
 
   // Wire up global chrome email button click handler (Phase 5)
   initEmailButton();
+
+  // Wire up coordinate-based touch routing for iPad Safari standalone mode
+  initChromeTouchRouter();
 
   // Wire up hidden admin trigger (7 taps on QR code)
   initAdminTrigger();
