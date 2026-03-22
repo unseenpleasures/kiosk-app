@@ -255,6 +255,8 @@ html, body {
   align-items: center;
   gap: var(--space-xs);
   z-index: 100;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   background: rgba(14, 27, 77, 0.92);
   border: 1px solid var(--color-accent);
   border-radius: 10px;
@@ -297,6 +299,9 @@ html, body {
   justify-content: center;
   cursor: pointer;
   z-index: 100;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  touch-action: manipulation;
 }
 
 .chrome-home:active {
@@ -1044,6 +1049,9 @@ html, body {
   justify-content: center;
   cursor: pointer;
   z-index: 100;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  touch-action: manipulation;
 }
 
 .chrome-email-label {

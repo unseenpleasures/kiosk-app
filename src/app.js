@@ -167,9 +167,16 @@ function initAdminTrigger() {
 function initHomeButton() {
   var homeBtn = document.getElementById('chrome-home');
   if (homeBtn) {
+    // Use touchend instead of click — iOS Safari's scroll gesture recognizer
+    // can swallow click events on fixed elements overlapping scroll areas
+    homeBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      window.location.hash = '#/';
+      resetCatalogueState();
+    });
+    // Keep click for non-touch (desktop testing)
     homeBtn.addEventListener('click', function() {
       window.location.hash = '#/';
-      // Phase 4: reset in-memory filter/search state
       resetCatalogueState();
     });
   }
@@ -184,6 +191,13 @@ function initHomeButton() {
 function initEmailButton() {
   var emailBtn = document.getElementById('chrome-email');
   if (emailBtn) {
+    // Use touchend instead of click — iOS Safari's scroll gesture recognizer
+    // can swallow click events on fixed elements overlapping scroll areas
+    emailBtn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      window.location.hash = '#/email';
+    });
+    // Keep click for non-touch (desktop testing)
     emailBtn.addEventListener('click', function() {
       window.location.hash = '#/email';
     });

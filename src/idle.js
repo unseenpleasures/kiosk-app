@@ -117,6 +117,13 @@ function initIdleTimer() {
   document.addEventListener('touchstart', resetIdleTimer, { passive: true });
   document.addEventListener('touchend', resetIdleTimer, { passive: true });
   document.addEventListener('pointerdown', resetIdleTimer, { passive: true });
+  // Also listen directly on #app — iOS Safari scroll areas may not propagate
+  // touch events to document when the scroll gesture recognizer captures them
+  var appEl = document.getElementById('app');
+  if (appEl) {
+    appEl.addEventListener('touchstart', resetIdleTimer, { passive: true });
+    appEl.addEventListener('touchmove', resetIdleTimer, { passive: true });
+  }
   resetIdleTimer();
   initEmailGracePeriod();  // Phase 4: wire email screen grace period
 }
